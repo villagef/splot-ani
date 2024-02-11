@@ -17,7 +17,7 @@ const config: Config = {
 					textDark: "rgb(30,41,59)",
 				},
 				secondary: {
-					DEFAULT: "rgb(12,51,74)",
+					DEFAULT: "rgb(30,41,59)",
 					background: "rgb(236,235,233)",
 					foreground: "rgb(255,255,255)",
 					textLight: "rgb(244,247,251)",
