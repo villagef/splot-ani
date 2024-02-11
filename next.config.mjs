@@ -4,7 +4,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: "https",
-				hostname: "handmaderki.pl",
+				hostname: "www.handmaderki.pl",
 				port: "",
 				pathname: "/**",
 			},
