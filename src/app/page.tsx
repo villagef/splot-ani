@@ -1,5 +1,5 @@
-import { ProductList } from "@/ui/components/ProductList";
 import products from "../data.json";
+import { ProductList } from "@/ui/components/ProductList";
 
 export default function Home() {
 	return (

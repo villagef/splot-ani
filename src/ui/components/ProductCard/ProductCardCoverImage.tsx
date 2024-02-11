@@ -1,5 +1,5 @@
-import { Product } from "@/ui/types";
 import Image from "next/image";
+import { type Product } from "@/ui/types";
 
 type Props = {
 	product: Pick<Product, "image" | "name">;

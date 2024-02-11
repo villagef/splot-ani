@@ -1,3 +1,4 @@
+/** @type {import('prettier').Config} */
 module.exports = {
 	semi: true,
 	singleQuote: false,
@@ -6,21 +7,4 @@ module.exports = {
 	useTabs: true,
 	plugins: ["prettier-plugin-tailwindcss"],
 	tailwindConfig: "./tailwind.config.ts",
-	importOrder: [
-		"^(react/(.*)$)|^(react$)",
-		"^(next/(.*)$)|^(next$)",
-		"<THIRD_PARTY_MODULES>",
-		"",
-		"^types$",
-		"^@/types/(.*)$",
-		"^@/config/(.*)$",
-		"^@/lib/(.*)$",
-		"^@/hooks/(.*)$",
-		"^@/ui/(.*)$",
-		"^@/registry/(.*)$",
-		"^@/styles/(.*)$",
-		"^@/app/(.*)$",
-		"",
-		"^[./]",
-	],
 };

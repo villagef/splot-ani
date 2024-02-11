@@ -1,8 +1,8 @@
+import React from "react";
 import { ProductCardTag } from "@/ui/components/ProductCard/ProductCardTag";
 import { ProductCardCoverImage } from "@/ui/components/ProductCard/ProductCardCoverImage";
 import { ProductCardItemDescription } from "@/ui/components/ProductCard/ProductCardItemDescription";
-import { Product } from "@/ui/types";
-import React from "react";
+import { type Product } from "@/ui/types";
 
 type Props = {
 	product: Product;
