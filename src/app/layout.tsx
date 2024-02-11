@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/ui/components/Footer";
+import { Navbar } from "@/ui/components/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const fonts = Montserrat({
+	weight: ["300", "400", "500", "700", "900"],
+	subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
 	title: "Splotani",
@@ -17,7 +21,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pl">
-			<body className={inter.className}>
+			<body className={fonts.className}>
+				<Navbar />
 				<main className="flex min-h-screen w-full flex-auto flex-col items-center">
 					<div className="container max-w-screen-xl items-center p-8">{children}</div>
 				</main>

@@ -6,7 +6,7 @@ import { footerLinksGroupOne, footerLinksGroupTwo, socialLinks } from "@/consts"
 
 export function Footer() {
 	return (
-		<footer className="bg-secondary-textDark text-primary ">
+		<footer className="bg-secondary text-primary sm:tracking-wider">
 			<div className="mx-auto w-full max-w-screen-xl p-4 md:py-8">
 				<div className="md:flex md:justify-between">
 					<div className="mb-6 md:mb-0">
