@@ -1,0 +1,36 @@
+{
+	"data": [
+		{
+			"id": "1",
+			"name": "Makrama wisząca",
+			"price": 2599,
+			"description": "Piękna makrama do dekoracji ściany.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2021/09/makrama-sunrise-boho-ozboda-3.jpeg",
+			"tag": "new"
+		},
+		{
+			"id": "2",
+			"name": "Zestaw choinkowy",
+			"price": 1250,
+			"description": "Ręcznie wykonane ozdoby choinkowe.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2023/10/zestaw-ozdob-na-choinke-minimalistyczne-dekoracje-swiateczne.jpg",
+			"tag": null
+		},
+		{
+			"id": "3",
+			"name": "Makrama na doniczkę",
+			"price": 1899,
+			"description": "Ozdoba do umieszczenia na doniczce rośliny.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2022/08/LRM_20220802_084341_copy_2198x2943-scaled.jpg",
+			"tag": "sold out"
+		},
+		{
+			"id": "4",
+			"name": "Łapacz snów",
+			"price": 899,
+			"description": "Praktyczna i dekoracyjna łapacz snów.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2022/12/32-lapacz-snow-aztec.png",
+			"tag": null
+		}
+	]
+}
