@@ -1,7 +1,7 @@
 {
 	"data": [
 		{
-			"id": "1",
+			"id": "makrama-wiszaca",
 			"name": "Makrama wisząca",
 			"price": 2599,
 			"description": "Piękna makrama do dekoracji ściany.",
@@ -9,7 +9,7 @@
 			"tag": "new"
 		},
 		{
-			"id": "2",
+			"id": "zestaw-choinkowy",
 			"name": "Zestaw choinkowy",
 			"price": 1250,
 			"description": "Ręcznie wykonane ozdoby choinkowe.",
@@ -17,7 +17,7 @@
 			"tag": null
 		},
 		{
-			"id": "3",
+			"id": "makrama-doniczka",
 			"name": "Makrama na doniczkę",
 			"price": 1899,
 			"description": "Ozdoba do umieszczenia na doniczce rośliny.",
@@ -25,7 +25,7 @@
 			"tag": "sold out"
 		},
 		{
-			"id": "4",
+			"id": "lapacz-snow",
 			"name": "Łapacz snów",
 			"price": 899,
 			"description": "Praktyczna i dekoracyjna łapacz snów.",

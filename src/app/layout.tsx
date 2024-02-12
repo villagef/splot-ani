@@ -5,7 +5,6 @@ import { Footer } from "@/ui/components/Footer";
 import { Navbar } from "@/ui/components/Navbar";
 
 const fonts = Montserrat({
-	weight: ["300", "400", "500", "700", "900"],
 	subsets: ["latin"],
 });
 
@@ -23,9 +22,7 @@ export default function RootLayout({
 		<html lang="pl">
 			<body className={fonts.className}>
 				<Navbar />
-				<main className="flex min-h-screen w-full flex-auto flex-col items-center">
-					<div className="container max-w-screen-xl items-center p-8">{children}</div>
-				</main>
+				<main className="flex min-h-screen w-full flex-auto flex-col items-center">{children}</main>
 				<Footer />
 			</body>
 		</html>
