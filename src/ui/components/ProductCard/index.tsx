@@ -1,9 +1,9 @@
 import React from "react";
+import Link from "next/link";
 import { ProductCardTag } from "@/ui/components/ProductCard/ProductCardTag";
 import { ProductCardCoverImage } from "@/ui/components/ProductCard/ProductCardCoverImage";
 import { ProductCardItemDescription } from "@/ui/components/ProductCard/ProductCardItemDescription";
 import { type Product } from "@/ui/types";
-import Link from "next/link";
 import { Links } from "@/consts";
 
 type Props = {

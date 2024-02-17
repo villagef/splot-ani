@@ -1,5 +1,5 @@
-import { Container } from "@/ui/atoms/Container";
 import type { Metadata } from "next";
+import { Container } from "@/ui/atoms/Container";
 
 export const metadata: Metadata = {
 	title: "Splotani",

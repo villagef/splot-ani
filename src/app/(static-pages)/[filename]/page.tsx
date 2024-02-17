@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { ComponentType } from "react";
+import { type ComponentType } from "react";
 
 type Props = {
 	params: {

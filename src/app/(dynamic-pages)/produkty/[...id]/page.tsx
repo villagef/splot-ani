@@ -1,9 +1,9 @@
+import { type Metadata } from "next/types";
 import { Typography } from "@/ui/atoms/Typography";
-import { Metadata } from "next/types";
 
 type Props = {
 	params: {
-		id: string[];
+		id: string;
 	};
 };
 
