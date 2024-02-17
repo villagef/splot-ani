@@ -33,7 +33,7 @@ export function Footer() {
 						</div>
 					</div>
 				</div>
-				<hr className="border-secondary-foreground my-6 sm:mx-auto lg:my-8 " />
+				<hr className="my-6 border-secondary-foreground sm:mx-auto lg:my-8 " />
 				<div className="flex items-center justify-between gap-4">
 					<span className="text-sm ">© 2024 Splotani™. All Rights Reserved.</span>
 					<div className="flex justify-end gap-6 py-2 sm:justify-center ">

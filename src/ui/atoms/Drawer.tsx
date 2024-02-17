@@ -12,7 +12,7 @@ type Props = {
 export function Drawer({ children, header, onClose, open }: Props) {
 	return (
 		<div
-			className={`${open ? "translate-y-0" : "translate-y-full"} fixed bottom-0 left-0 z-30 h-screen w-full bg-black/75 bg-white p-4 transition-all duration-200 ease-linear`}
+			className={`${open ? "translate-y-0" : "translate-y-full"} fixed bottom-0 left-0 z-30 h-screen w-full bg-black/75 p-4 transition-all duration-200 ease-linear`}
 			onClick={onClose}
 			aria-label="drawer-bottom"
 		>

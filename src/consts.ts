@@ -1,19 +1,20 @@
 export enum Links {
 	Home = "/",
-	About = "/about",
-	Contact = "/contact",
+	About = "/o-nas",
+	Contact = "/kontakt",
 	Blog = "/blog",
-	Returns = "/returns",
-	Payments = "/payments",
-	Terms = "/terms",
-	Privacy = "/privacy",
+	Products = "/produkty",
+	Returns = "/zwroty",
+	Payments = "/platnosci",
+	Terms = "/regulamin",
+	Privacy = "/polityka-prywatnosci",
 	Facebook = "https://www.facebook.com/",
 	Instagram = "https://www.instagram.com/",
 }
 
 export const navbarLinks = [
-	{ name: "Sklep", href: Links.Home },
-	{ name: "Blog", href: Links.Blog },
+	{ name: "Strona Główna", href: Links.Home },
+	{ name: "Produkty", href: Links.Products },
 	{ name: "O nas", href: Links.About },
 ] as const;
 

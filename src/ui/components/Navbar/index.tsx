@@ -7,12 +7,13 @@ import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
 import { Logo } from "@/ui/atoms/Logo";
 import { SearchBar } from "@/ui/atoms/SearchBar";
 import { MenuMobile } from "@/ui/components/Navbar/MenuMobile";
-import { NavbarLink } from "@/ui/components/Navbar/NavbarLink";
+import { LinkActive } from "@/ui/components/Navbar/LinkActive";
 
 export function Navbar() {
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+
 	return (
 		<>
 			<nav className="border-none bg-secondary px-2">
@@ -20,7 +21,7 @@ export function Navbar() {
 					<Logo />
 					<div className="flex items-center gap-4 md:order-2">
 						<SearchBar />
-						<ButtonIcon variant="text" onClick={handleOpen}>
+						<ButtonIcon variant="text" onClick={handleOpen} className="md:hidden">
 							<Icons.hamburger className="text-primary" />
 						</ButtonIcon>
 					</div>
@@ -30,7 +31,7 @@ export function Navbar() {
 					>
 						<ul className="flex flex-row gap-8 rounded-lg p-4 font-medium text-secondary-textLight ">
 							{navbarLinks.map((link) => (
-								<NavbarLink key={link.name} link={link} />
+								<LinkActive key={link.name} link={link} />
 							))}
 						</ul>
 					</div>

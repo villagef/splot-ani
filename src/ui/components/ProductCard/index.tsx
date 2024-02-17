@@ -3,6 +3,8 @@ import { ProductCardTag } from "@/ui/components/ProductCard/ProductCardTag";
 import { ProductCardCoverImage } from "@/ui/components/ProductCard/ProductCardCoverImage";
 import { ProductCardItemDescription } from "@/ui/components/ProductCard/ProductCardItemDescription";
 import { type Product } from "@/ui/types";
+import Link from "next/link";
+import { Links } from "@/consts";
 
 type Props = {
 	product: Product;
@@ -11,11 +13,13 @@ type Props = {
 export function ProductCard({ product }: Props) {
 	return (
 		<li>
-			<article className=" relative rounded-sm bg-white shadow-md">
-				<ProductCardTag product={product} />
-				<ProductCardCoverImage product={product} />
-				<ProductCardItemDescription product={product} />
-			</article>
+			<Link href={`${Links.Products}/${product.id}`}>
+				<article className=" relative rounded-sm bg-primary-background shadow-md">
+					<ProductCardTag product={product} />
+					<ProductCardCoverImage product={product} />
+					<ProductCardItemDescription product={product} />
+				</article>
+			</Link>
 		</li>
 	);
 }
