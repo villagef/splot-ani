@@ -261,4 +261,57 @@ export const Icons = {
 			<line x1="2" x2="22" y1="2" y2="22" />
 		</svg>
 	),
+	plus: (props: IconProps) => (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			className="lucide lucide-plus"
+			{...props}
+		>
+			<path d="M5 12h14" />
+			<path d="M12 5v14" />
+		</svg>
+	),
+	minus: (props: IconProps) => (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			className="lucide lucide-minus"
+			{...props}
+		>
+			<path d="M5 12h14" />
+		</svg>
+	),
+	arrowLeft: (props: IconProps) => (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			className="lucide lucide-arrow-left"
+			{...props}
+		>
+			<path d="m12 19-7-7 7-7" />
+			<path d="M19 12H5" />
+		</svg>
+	),
 };

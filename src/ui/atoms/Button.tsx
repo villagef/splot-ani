@@ -19,7 +19,7 @@ export function Button({ variant = "default", className = "", children, ...rest 
 			break;
 		case "text":
 			buttonClasses =
-				"text-primary-textLight hover:bg-secondary-background/5 hover:text-primary-textLight py-1.5";
+				"text-primary-textDark hover:bg-secondary-background/5 hover:text-primary-textLight py-1.5";
 			break;
 		default:
 			buttonClasses =

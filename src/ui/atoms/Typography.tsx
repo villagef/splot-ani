@@ -51,7 +51,7 @@ export function Typography({ variant = "body1", className = "", children }: Typo
 		}
 	};
 
-	const classes = `typography text-primary-textDark ${getFontSize(variant)} ${className}`;
+	const classes = `typography ${getFontSize(variant)} ${className}`;
 
 	return <p className={classes}>{children}</p>;
 }

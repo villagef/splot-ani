@@ -14,7 +14,7 @@ export function ProductCard({ product }: Props) {
 	return (
 		<li>
 			<Link href={`${Links.Products}/${product.id}`}>
-				<article className=" relative rounded-sm bg-primary-background shadow-md">
+				<article className="relative rounded-md bg-primary-background shadow-md">
 					<ProductCardTag product={product} />
 					<ProductCardCoverImage product={product} />
 					<ProductCardItemDescription product={product} />

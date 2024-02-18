@@ -25,8 +25,8 @@ export function ButtonIcon({ children, variant = "primary", className = "", ...r
 			break;
 		case "text":
 			buttonClasses =
-				"text-primary-textLight hover:bg-secondary-background/5 hover:text-primary-textLight";
-			iconClasses = "text-primary-textLight";
+				"hover:bg-secondary-background/5 hover:text-primary-textLight hover:scale-105";
+			iconClasses = "text-primary-textDark";
 			break;
 		default:
 			buttonClasses =
@@ -35,7 +35,7 @@ export function ButtonIcon({ children, variant = "primary", className = "", ...r
 			break;
 	}
 
-	const finalButtonClasses = `${baseClasses} ${buttonClasses} ${className}`;
+	const finalButtonClasses = `${className} ${baseClasses} ${buttonClasses}`;
 
 	return (
 		<button className={finalButtonClasses} {...rest}>

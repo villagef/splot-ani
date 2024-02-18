@@ -22,7 +22,9 @@ export default function RootLayout({
 		<html lang="pl">
 			<body className={fonts.className}>
 				<Navbar />
-				<main className="flex min-h-screen w-full flex-auto flex-col items-center">{children}</main>
+				<main className="flex min-h-screen w-full flex-auto flex-col items-center text-primary-textDark">
+					{children}
+				</main>
 				<Footer />
 			</body>
 		</html>

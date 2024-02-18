@@ -7,7 +7,7 @@ type Props = {
 
 export function ProductCardCoverImage({ product: { image, name } }: Props) {
 	return (
-		<div className="aspect-square overflow-hidden">
+		<div className="aspect-square overflow-hidden rounded-t-md">
 			<Image
 				width={320}
 				height={320}

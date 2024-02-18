@@ -19,7 +19,7 @@ export function LinkActive({ link: { href, name } }: Props) {
 	return (
 		<Link
 			href={href}
-			className={`tracking-wider hover:text-primary ${highlight && "font-bold text-primary"}`}
+			className={`tracking-widest hover:text-primary ${highlight && "font-bold text-primary"}`}
 		>
 			{name}
 		</Link>
