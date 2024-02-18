@@ -7,7 +7,7 @@ import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
 import { Logo } from "@/ui/atoms/Logo";
 import { SearchBar } from "@/ui/atoms/SearchBar";
 import { MenuMobile } from "@/ui/components/Navbar/MenuMobile";
-import { LinkActive } from "@/ui/components/Navbar/LinkActive";
+import { LinkActive } from "@/ui/atoms/LinkActive";
 
 export function Navbar() {
 	const [open, setOpen] = useState(false);

@@ -18,6 +18,20 @@ export const navbarLinks = [
 	{ name: "O nas", href: Links.About },
 ] as const;
 
+export const mobileNavbarLinksGroupOne = [
+	{ name: "Strona Główna", href: Links.Home },
+	{ name: "Produkty", href: Links.Products },
+	{ name: "O nas", href: Links.About },
+] as const;
+
+export const mobileNavbarLinksGroupTwo = [
+	{ name: "Płatności", href: Links.Payments },
+	{ name: "Zwroty", href: Links.Returns },
+	{ name: "Regulamin sklepu", href: Links.Terms },
+	{ name: "Polityka prywatności", href: Links.Privacy },
+	{ name: "Kontakt", href: Links.Contact },
+] as const;
+
 export const footerLinksGroupOne = [
 	{ name: "O nas", href: Links.About },
 	{ name: "Kontakt", href: Links.Contact },

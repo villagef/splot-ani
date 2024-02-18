@@ -25,7 +25,7 @@ export function Drawer({ children, header, onClose, open }: Props) {
 					<Icons.close />
 				</ButtonIcon>
 				{header && <div className="mt-8 h-auto min-h-10 w-full">{header}</div>}
-				<div className="mt-4 h-auto min-h-10 w-full">{children}</div>
+				<div className="mt-8 h-auto min-h-10 w-full">{children}</div>
 			</div>
 		</div>
 	);
