@@ -13,7 +13,7 @@ type Props = {
 export function ProductCard({ product }: Props) {
 	return (
 		<li>
-			<Link href={`${Links.Products}/${product.id}`}>
+			<Link href={`${Links.Products}/${product.id}?imgIdx=0`}>
 				<article className="relative rounded-md bg-primary-background shadow-md">
 					<ProductCardTag product={product} />
 					<ProductCardCoverImage product={product} />

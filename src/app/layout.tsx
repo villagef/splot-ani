@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 import { Footer } from "@/ui/components/Footer";
 import { Navbar } from "@/ui/components/Navbar";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
 					{children}
 				</main>
 				<Footer />
+				<Toaster position="top-right" richColors />
 			</body>
 		</html>
 	);
