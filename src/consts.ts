@@ -12,6 +12,8 @@ export enum Links {
 	Instagram = "https://www.instagram.com/",
 }
 
+export const PRODUCTS_PER_PAGE = 9 as const;
+
 export const navbarLinks = [
 	{ name: "Strona Główna", href: Links.Home },
 	{ name: "Produkty", href: Links.Products },
