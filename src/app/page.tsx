@@ -11,7 +11,7 @@ export default function Home() {
 				<Typography variant="h2" className="text-center">
 					Topowe produkty
 				</Typography>
-				<ProductList slice />
+				<ProductList />
 			</Container>
 		</>
 	);

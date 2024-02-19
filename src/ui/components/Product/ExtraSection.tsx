@@ -8,7 +8,7 @@ export function ExtraSection() {
 			<Typography variant="h2" className="text-center">
 				Inni oglądali również...
 			</Typography>
-			<ProductList category={ProductCategory.All} slice />
+			<ProductList category={ProductCategory.All} />
 		</div>
 	);
 }
