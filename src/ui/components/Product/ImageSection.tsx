@@ -4,11 +4,12 @@ import { Icons } from "@/ui/Icons";
 import { SmallImage } from "@/ui/components/Product/SmallImage";
 import { LargeImage } from "@/ui/components/Product/LargeImage";
 import { type ProductPageProps } from "@/ui/types";
+import { Links } from "@/consts";
 
 export function ImageSection({ params, searchParams }: ProductPageProps) {
 	return (
 		<>
-			<Link href={"/"} className="flex gap-4 pt-2 text-primary-textDark/70 md:hidden">
+			<Link href={Links.Products} className="flex gap-4 pt-2 text-primary-textDark/70 md:hidden">
 				<Icons.arrowLeft />
 				<Typography variant="subtitle2" className="font-semibold ">
 					Powrót do poprzedniej strony

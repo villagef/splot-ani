@@ -3,12 +3,13 @@ import { Typography } from "@/ui/atoms/Typography";
 import { Icons } from "@/ui/Icons";
 import { Wrapper } from "@/ui/components/Product/Wrapper";
 import { ActionButtons } from "@/ui/components/Product/ActionButtons";
+import { Links } from "@/consts";
 
 export function ContentSection() {
 	return (
 		<div className="grid place-content-center">
 			<div className="grid place-content-center gap-8 rounded-xl bg-primary-foreground p-4 tracking-wide shadow-md md:gap-10 md:p-8">
-				<Link href={"/"} className="hidden gap-4 text-primary-textDark/70 md:flex">
+				<Link href={Links.Products} className="hidden gap-4 text-primary-textDark/70 md:flex">
 					<Icons.arrowLeft />
 					<Typography variant="subtitle2" className="font-semibold ">
 						Powrót do poprzedniej strony
