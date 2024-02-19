@@ -6,7 +6,8 @@
 			"price": 2599,
 			"description": "Piękna makrama do dekoracji ściany.",
 			"image": "https://www.handmaderki.pl/wp-content/uploads/2021/09/makrama-sunrise-boho-ozboda-3.jpeg",
-			"tag": "new"
+			"tag": "new",
+			"category": "inne"
 		},
 		{
 			"id": "zestaw-choinkowy",
@@ -14,7 +15,8 @@
 			"price": 1250,
 			"description": "Ręcznie wykonane ozdoby choinkowe.",
 			"image": "https://www.handmaderki.pl/wp-content/uploads/2023/10/zestaw-ozdob-na-choinke-minimalistyczne-dekoracje-swiateczne.jpg",
-			"tag": null
+			"tag": null,
+			"category": "sezonowe"
 		},
 		{
 			"id": "makrama-doniczka",
@@ -22,7 +24,8 @@
 			"price": 1899,
 			"description": "Ozdoba do umieszczenia na doniczce rośliny.",
 			"image": "https://www.handmaderki.pl/wp-content/uploads/2022/08/LRM_20220802_084341_copy_2198x2943-scaled.jpg",
-			"tag": "sold out"
+			"tag": "sold out",
+			"category": "kwietniki"
 		},
 		{
 			"id": "lapacz-snow",
@@ -30,7 +33,80 @@
 			"price": 899,
 			"description": "Praktyczna i dekoracyjna łapacz snów.",
 			"image": "https://www.handmaderki.pl/wp-content/uploads/2022/12/32-lapacz-snow-aztec.png",
-			"tag": null
+			"tag": null,
+			"category": "inne"
+		},
+		{
+			"id": "makrama-szara",
+			"name": "Makrama szara",
+			"price": 1999,
+			"description": "Piękna makrama do dekoracji ściany.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2021/09/makrama-sunrise-boho-ozboda-3.jpeg",
+			"tag": null,
+			"category": "inne"
+		},
+		{
+			"id": "makrama-zielona",
+			"name": "Makrama zielona",
+			"price": 1999,
+			"description": "Piękna makrama do dekoracji ściany.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2021/09/makrama-sunrise-boho-ozboda-3.jpeg",
+			"tag": null,
+			"category": "inne"
+		},
+		{
+			"id": "makrama-biala",
+			"name": "Makrama biała",
+			"price": 1999,
+			"description": "Piękna makrama do dekoracji ściany.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2021/09/makrama-sunrise-boho-ozboda-3.jpeg",
+			"tag": null,
+			"category": "inne"
+		},
+		{
+			"id": "makrama-czarna",
+			"name": "Makrama czarna",
+			"price": 1999,
+			"description": "Piękna makrama do dekoracji ściany.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2021/09/makrama-sunrise-boho-ozboda-3.jpeg",
+			"tag": null,
+			"category": "inne"
+		},
+		{
+			"id": "makrama-szara-2",
+			"name": "Makrama szara",
+			"price": 1999,
+			"description": "Piękna makrama do dekoracji ściany.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2021/09/makrama-sunrise-boho-ozboda-3.jpeg",
+			"tag": null,
+			"category": "inne"
+		},
+		{
+			"id": "makrama-zielona-2",
+			"name": "Makrama zielona",
+			"price": 1999,
+			"description": "Piękna makrama do dekoracji ściany.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2021/09/makrama-sunrise-boho-ozboda-3.jpeg",
+			"tag": null,
+			"category": "inne"
+		},
+		{
+			"id": "makrama-biala-2",
+			"name": "Makrama biała",
+			"price": 1999,
+			"description": "Piękna makrama do dekoracji ściany.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2021/09/makrama-sunrise-boho-ozboda-3.jpeg",
+			"tag": null,
+			"category": "inne"
+		},
+		{
+			"id": "makrama-czarna-2",
+			"name": "Makrama czarna",
+			"price": 1999,
+			"description": "Piękna makrama do dekoracji ściany.",
+			"image": "https://www.handmaderki.pl/wp-content/uploads/2021/09/makrama-sunrise-boho-ozboda-3.jpeg",
+			"tag": null,
+			"category": "inne"
 		}
 	]
 }

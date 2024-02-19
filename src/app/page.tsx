@@ -1,4 +1,3 @@
-import products from "../data.json";
 import { Typography } from "@/ui/atoms/Typography";
 import { Hero } from "@/ui/components/Hero";
 import { ProductList } from "@/ui/components/ProductList";
@@ -12,7 +11,7 @@ export default function Home() {
 				<Typography variant="h2" className="text-center">
 					Topowe produkty
 				</Typography>
-				<ProductList products={products.data} />
+				<ProductList slice />
 			</Container>
 		</>
 	);

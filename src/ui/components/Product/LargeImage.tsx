@@ -14,9 +14,9 @@ export function LargeImage({ params, selectedImgIdx }: Props) {
 		<Image
 			src={src}
 			alt={params.id}
-			width={700}
-			height={650}
-			className="max-h-[650px] rounded-lg object-cover object-center shadow-lg"
+			width={500}
+			height={500}
+			className="max-h-[500px] rounded-lg object-cover object-center shadow-lg"
 			quality={50}
 		/>
 	);
