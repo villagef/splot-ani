@@ -4,17 +4,17 @@ import products from "@/data.json";
 
 type Props = {
 	category?: ProductCategory;
-	slice?: boolean;
+	sliceNum?: number;
 	columns?: number;
 };
 
-export function ProductList({ category = ProductCategory.All, slice, columns = 4 }: Props) {
+export function ProductList({ category = ProductCategory.All, sliceNum = 4, columns = 4 }: Props) {
 	const _products = products as { data: Product[] };
 	const data =
 		category === ProductCategory.All
 			? _products.data
 			: _products.data.filter((product: Product) => product.category === category);
-	const dataSliced = slice ? data.slice(0, 4) : data;
+	const dataSliced = data.slice(0, sliceNum);
 
 	return (
 		<ul

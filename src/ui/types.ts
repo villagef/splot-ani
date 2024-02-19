@@ -17,10 +17,10 @@ export type ProductPageProps = {
 };
 
 export enum ProductCategory {
-	All = "all",
+	All = "wszystkie",
 	Bags = "torebki",
 	FlowerBeds = "kwietniki",
 	Baskets = "koszyczki",
-	Other = "inne",
 	Seasonal = "sezonowe",
+	Other = "inne",
 }

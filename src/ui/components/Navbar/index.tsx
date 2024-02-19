@@ -5,7 +5,7 @@ import { navbarLinks } from "@/consts";
 import { Icons } from "@/ui/Icons";
 import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
 import { Logo } from "@/ui/atoms/Logo";
-import { SearchBar } from "@/ui/atoms/SearchBar";
+// import { SearchBar } from "@/ui/atoms/SearchBar";
 import { MenuMobile } from "@/ui/components/Navbar/MenuMobile";
 import { LinkActive } from "@/ui/atoms/LinkActive";
 
@@ -20,7 +20,7 @@ export function Navbar() {
 				<div className="mx-auto flex w-full max-w-screen-xl items-center justify-between p-2">
 					<Logo />
 					<div className="flex items-center gap-4 md:order-2">
-						<SearchBar />
+						{/* <SearchBar /> */}
 						<ButtonIcon variant="text" onClick={handleOpen} className="md:hidden">
 							<Icons.hamburger className="text-primary" />
 						</ButtonIcon>
