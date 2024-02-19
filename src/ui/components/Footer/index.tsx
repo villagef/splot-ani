@@ -1,12 +1,12 @@
-import Image from "next/image";
-import Link from "next/link";
 import { Logo } from "@/ui/atoms/Logo";
 import { FooterLink } from "@/ui/components/Footer/FooterLink";
 import { footerLinksGroupOne, footerLinksGroupTwo, socialLinks } from "@/consts";
+import { LinkSocial } from "@/ui/atoms/LinkSocial";
+import { Separator } from "@/ui/atoms/Separator";
 
 export function Footer() {
 	return (
-		<footer className="bg-secondary text-primary sm:tracking-wider">
+		<footer className="bg-secondary text-primary-textLight sm:tracking-wider">
 			<div className="mx-auto w-full max-w-screen-xl p-4 md:py-8">
 				<div className="md:flex md:justify-between">
 					<div className="mb-6 md:mb-0">
@@ -33,14 +33,12 @@ export function Footer() {
 						</div>
 					</div>
 				</div>
-				<hr className="border-secondary-foreground my-6 sm:mx-auto lg:my-8 " />
+				<Separator fullWidth />
 				<div className="flex items-center justify-between gap-4">
 					<span className="text-sm ">© 2024 Splotani™. All Rights Reserved.</span>
 					<div className="flex justify-end gap-6 py-2 sm:justify-center ">
 						{socialLinks.map((link) => (
-							<Link key={link.name} href={link.href} aria-label={`Follow us on ${link.name}`}>
-								<Image width={32} height={32} src={link.icon} alt={link.name} />
-							</Link>
+							<LinkSocial key={link.name} link={link} />
 						))}
 					</div>
 				</div>

@@ -10,14 +10,14 @@ const config: Config = {
 		extend: {
 			colors: {
 				primary: {
-					DEFAULT: "rgb(162,102,111)",
+					DEFAULT: "rgb(176,88,101)",
 					background: "rgb(255,250,250)",
 					foreground: "rgb(255,255,255)",
 					textLight: "rgb(244,247,251)",
 					textDark: "rgb(30,41,59)",
 				},
 				secondary: {
-					DEFAULT: "rgb(30,41,59)",
+					DEFAULT: "rgb(34,46,89)",
 					background: "rgb(236,235,233)",
 					foreground: "rgb(255,255,255)",
 					textLight: "rgb(244,247,251)",
@@ -26,6 +26,6 @@ const config: Config = {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/typography")],
 };
 export default config;

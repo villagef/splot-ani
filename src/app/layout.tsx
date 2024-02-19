@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 import { Footer } from "@/ui/components/Footer";
 import { Navbar } from "@/ui/components/Navbar";
 
 const fonts = Montserrat({
-	weight: ["300", "400", "500", "700", "900"],
 	subsets: ["latin"],
 });
 
@@ -23,10 +23,11 @@ export default function RootLayout({
 		<html lang="pl">
 			<body className={fonts.className}>
 				<Navbar />
-				<main className="flex min-h-screen w-full flex-auto flex-col items-center">
-					<div className="container max-w-screen-xl items-center p-8">{children}</div>
+				<main className="flex min-h-screen w-full flex-auto flex-col items-center text-primary-textDark">
+					{children}
 				</main>
 				<Footer />
+				<Toaster position="top-right" richColors />
 			</body>
 		</html>
 	);
