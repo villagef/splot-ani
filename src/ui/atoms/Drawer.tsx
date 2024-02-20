@@ -18,11 +18,11 @@ export function Drawer({ children, header, onClose, open }: Props) {
 		>
 			<div
 				id="drawer-bottom"
-				className={`${open ? "translate-y-0" : "translate-y-full"} duration-250 bg-secon fixed bottom-0 left-0 z-40 min-h-[600px] w-full transform overflow-y-hidden rounded-t-2xl bg-secondary p-4 text-secondary-textLight transition-all ease-linear`}
+				className={`${open ? "translate-y-0" : "translate-y-full"} duration-250 bg-secon fixed bottom-0 left-0 z-40 min-h-[600px] w-full transform overflow-y-hidden rounded-t-2xl bg-primary-background p-4 text-secondary transition-all ease-linear`}
 				aria-labelledby="bottom-drawer"
 			>
 				<ButtonIcon variant="text" className="absolute right-2 top-2 ">
-					<Icons.close className="text-primary-textLight" />
+					<Icons.close className="text-secondary" />
 				</ButtonIcon>
 				{header && <div className="mt-8 h-auto min-h-10 w-full">{header}</div>}
 				<div className="mt-8 h-auto min-h-10 w-full">{children}</div>

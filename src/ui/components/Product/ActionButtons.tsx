@@ -20,7 +20,7 @@ export function ActionButtons() {
 
 	return (
 		<Wrapper>
-			<div className="flex w-max items-center gap-2 rounded-md bg-secondary/10 px-1 md:gap-4">
+			<div className="flex w-max items-center gap-2 rounded-md bg-secondary/5 px-1 md:gap-4">
 				<ButtonIcon variant="text" disabled={count <= 1} onClick={handleDecrement}>
 					<Icons.minus />
 				</ButtonIcon>

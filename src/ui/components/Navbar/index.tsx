@@ -5,7 +5,6 @@ import { navbarLinks } from "@/consts";
 import { Icons } from "@/ui/Icons";
 import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
 import { Logo } from "@/ui/atoms/Logo";
-// import { SearchBar } from "@/ui/atoms/SearchBar";
 import { MenuMobile } from "@/ui/components/Navbar/MenuMobile";
 import { LinkActive } from "@/ui/atoms/LinkActive";
 
@@ -16,24 +15,31 @@ export function Navbar() {
 
 	return (
 		<>
-			<nav className="border-none bg-secondary px-2">
-				<div className="mx-auto flex w-full max-w-screen-xl items-center justify-between p-2">
-					<Logo />
-					<div className="flex items-center gap-4 md:order-2">
-						{/* <SearchBar /> */}
-						<ButtonIcon variant="text" onClick={handleOpen} className="md:hidden">
-							<Icons.hamburger className="text-primary" />
-						</ButtonIcon>
-					</div>
+			<nav className="border-none bg-primary-background p-2 shadow-md md:px-6">
+				<div className="mx-auto grid w-full max-w-screen-xl grid-cols-5 place-items-stretch ">
+					<ButtonIcon variant="text" onClick={handleOpen} className="col-span-2 p-0 lg:hidden">
+						<Icons.hamburger className="text-primary" />
+					</ButtonIcon>
 					<div
-						className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
+						className="col-span-2 hidden items-center justify-between lg:flex lg:w-auto"
 						id="navbar-search"
 					>
-						<ul className="flex flex-row gap-8 rounded-lg p-4 font-medium text-secondary-textLight ">
+						<ul className="flex flex-row gap-8 rounded-lg font-medium text-secondary ">
 							{navbarLinks.map((link) => (
 								<LinkActive key={link.name} link={link} />
 							))}
 						</ul>
+					</div>
+					<div className="col-start-3 grid place-content-center">
+						<Logo size={100} />
+					</div>
+					<div className="col-span-2 col-start-4 grid grid-flow-col place-items-center gap-6 justify-self-end md:gap-8">
+						<ButtonIcon variant="text">
+							<Icons.favourite />
+						</ButtonIcon>
+						<ButtonIcon variant="text">
+							<Icons.shoppingCart />
+						</ButtonIcon>
 					</div>
 				</div>
 			</nav>

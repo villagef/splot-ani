@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/ui/atoms/Button";
-import { ProductCategory } from "@/ui/types";
+import { ProductCategory } from "@/consts";
 
 export function CategoriesList() {
 	const [selectedCategory, setSelectedCategory] = useState<ProductCategory>(ProductCategory.All);

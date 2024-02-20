@@ -1,3 +1,5 @@
+import { type ProductCategory } from "@/consts";
+
 export type Product = {
 	id: string;
 	name: string;
@@ -15,12 +17,3 @@ export type ProductPageProps = {
 		imgIdx: string;
 	};
 };
-
-export enum ProductCategory {
-	All = "wszystkie",
-	Bags = "torebki",
-	FlowerBeds = "kwietniki",
-	Baskets = "koszyczki",
-	Seasonal = "sezonowe",
-	Other = "inne",
-}

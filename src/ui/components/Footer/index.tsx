@@ -6,7 +6,7 @@ import { Separator } from "@/ui/atoms/Separator";
 
 export function Footer() {
 	return (
-		<footer className="bg-secondary text-primary-textLight sm:tracking-wider">
+		<footer className="bg-primary-background text-secondary shadow-inner shadow-xl sm:tracking-wider">
 			<div className="mx-auto w-full max-w-screen-xl p-4 md:py-8">
 				<div className="md:flex md:justify-between">
 					<div className="mb-6 md:mb-0">
