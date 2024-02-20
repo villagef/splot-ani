@@ -12,6 +12,13 @@ export enum Links {
 	Instagram = "https://www.instagram.com/",
 }
 
+export enum ProductCategory {
+	All = "wszystkie",
+	Bags = "torebki",
+	FlowerBeds = "kwietniki",
+	Baskets = "koszyki",
+}
+
 export const PRODUCTS_PER_PAGE = 9 as const;
 
 export const navbarLinks = [

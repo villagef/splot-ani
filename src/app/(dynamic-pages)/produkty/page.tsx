@@ -7,7 +7,7 @@ export default function Products() {
 	return (
 		<>
 			<CategoriesList />
-			<ProductList columns={3} sliceNum={PRODUCTS_PER_PAGE} />
+			<ProductList columns={"3"} sliceNum={PRODUCTS_PER_PAGE} />
 			<Pagination />
 		</>
 	);

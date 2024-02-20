@@ -4,7 +4,7 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export function ButtonIcon({ children, variant = "primary", className = "", ...rest }: Props) {
-	const baseClasses = "rounded-full p-2 focus:outline-none";
+	const baseClasses = "rounded-full focus:outline-none";
 
 	let buttonClasses = "";
 	let iconClasses = "";
@@ -35,7 +35,7 @@ export function ButtonIcon({ children, variant = "primary", className = "", ...r
 			break;
 	}
 
-	const finalButtonClasses = `${className} ${baseClasses} ${buttonClasses}`;
+	const finalButtonClasses = `${baseClasses} ${buttonClasses} ${className}`;
 
 	return (
 		<button className={finalButtonClasses} {...rest}>

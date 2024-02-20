@@ -19,13 +19,15 @@ export function Pagination() {
 
 	const renderPages = () => {
 		const pages = [];
+		console.log(currentPage);
 		for (let i = 1; i <= totalPages; i++) {
 			const isActive = currentPage === i;
 			pages.push(
 				<li key={i}>
 					<Button
 						onClick={() => onPageChange(i)}
-						className={`h-10 border px-4 leading-tight border-${isActive ? "blue-300" : "gray-300"}`}
+						className={`h-10 border px-4 leading-tight ${isActive && "bg-primary text-primary-textLight"}`}
+						disabled={isActive}
 					>
 						{i}
 					</Button>
