@@ -1,14 +1,16 @@
-import { ProductCategory } from "@/consts";
+import { getProducts } from "@/api/products";
 import { Typography } from "@/ui/atoms/Typography";
 import { ProductList } from "@/ui/components/ProductList";
 
-export function ExtraSection() {
+export async function ExtraSection() {
+	const products = await getProducts({ skip: 0 });
+
 	return (
 		<div>
 			<Typography variant="h2" className="text-center">
 				Inni oglądali również...
 			</Typography>
-			<ProductList columns="4" category={ProductCategory.All} />
+			<ProductList products={products} />
 		</div>
 	);
 }

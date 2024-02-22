@@ -12,7 +12,7 @@ const config: Config = {
 				primary: {
 					DEFAULT: "rgb(176,88,101)",
 					background: "rgb(255,250,250)",
-					foreground: "rgb(255,255,255)",
+					foreground: "rgba(255,255,255, 0.5)",
 					textLight: "rgb(244,247,251)",
 					textDark: "rgb(30,41,59)",
 				},

@@ -1,22 +1,17 @@
 import Image from "next/image";
 
 type Props = {
-	params: {
-		id: string;
-		src: string[];
-	};
-	selectedImgIdx: number;
+	image: string;
 };
 
-export function LargeImage({ params, selectedImgIdx }: Props) {
-	const src = params.src[selectedImgIdx] || params.src[0];
+export function LargeImage({ image }: Props) {
 	return (
 		<Image
-			src={src}
-			alt={params.id}
+			src={image}
+			alt={"Product image"}
 			width={500}
 			height={500}
-			className="max-h-[500px] rounded-lg object-cover object-center shadow-lg"
+			className="max-h-[500px] rounded-lg bg-primary-foreground object-cover object-center shadow-lg"
 			quality={50}
 		/>
 	);

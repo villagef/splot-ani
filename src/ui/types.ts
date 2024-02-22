@@ -1,12 +1,18 @@
-import { type ProductCategory } from "@/consts";
-
 export type Product = {
-	id: string;
+	slug: string;
 	name: string;
 	price: number;
-	image: string;
-	tag: string | null;
-	category: ProductCategory;
+	quantity?: number;
+	lowestPrice?: number;
+	previousPrice?: number;
+	description?: string;
+	images: {
+		url: string;
+	}[];
+	tag?: string | null;
+	categories?: {
+		name: string;
+	}[];
 };
 
 export type ProductPageProps = {

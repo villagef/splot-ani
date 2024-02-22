@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import { ProductCardTag } from "@/ui/components/ProductCard/ProductCardTag";
 import { ProductCardCoverImage } from "@/ui/components/ProductCard/ProductCardCoverImage";
@@ -12,9 +11,9 @@ type Props = {
 
 export function ProductCard({ product }: Props) {
 	return (
-		<li>
-			<Link href={`${Links.Products}/${product.id}?imgIdx=0`}>
-				<article className="relative rounded-md bg-primary-background shadow-md">
+		<li className="rounded-md bg-primary-foreground shadow-md hover:shadow-lg">
+			<Link href={`${Links.Products}/${product.slug}?imgIdx=0`}>
+				<article className="relative rounded-md hover:shadow-md">
 					<ProductCardTag product={product} />
 					<ProductCardCoverImage product={product} />
 					<ProductCardItemDescription product={product} />

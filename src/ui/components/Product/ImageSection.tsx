@@ -3,10 +3,19 @@ import { Typography } from "@/ui/atoms/Typography";
 import { Icons } from "@/ui/Icons";
 import { SmallImage } from "@/ui/components/Product/SmallImage";
 import { LargeImage } from "@/ui/components/Product/LargeImage";
-import { type ProductPageProps } from "@/ui/types";
+import type { Product } from "@/ui/types";
 import { Links } from "@/consts";
 
-export function ImageSection({ params, searchParams }: ProductPageProps) {
+type Props = {
+	product: Product;
+	imgIdx: number;
+};
+
+export function ImageSection({ product, imgIdx }: Props) {
+	const images = product?.images || [];
+	const src = images?.map((img) => img.url);
+	const selectedImage = src[imgIdx];
+
 	return (
 		<>
 			<Link href={Links.Products} className="flex gap-4 pt-2 text-primary-textDark/70 md:hidden">
@@ -16,13 +25,10 @@ export function ImageSection({ params, searchParams }: ProductPageProps) {
 				</Typography>
 			</Link>
 			<div className="grid w-full max-w-[500px] place-content-start gap-4 place-self-center lg:gap-8">
-				<LargeImage
-					params={{ id: params.id, src: ["/makrama-1.jpg", "/makrama-1.jpg"] }}
-					selectedImgIdx={Number(searchParams.imgIdx)}
-				/>
+				<LargeImage image={selectedImage} />
 				<div className="relative flex w-full gap-4 overflow-x-auto lg:gap-4">
-					{Array.from({ length: 5 }).map((_, i) => (
-						<SmallImage key={i} src={"/makrama-1.jpg"} idx={i} />
+					{images?.map((img, i) => (
+						<SmallImage key={i} idx={i} image={img.url} selected={imgIdx === i} />
 					))}
 				</div>
 			</div>

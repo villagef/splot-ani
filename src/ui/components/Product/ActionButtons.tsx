@@ -8,7 +8,11 @@ import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
 import { Typography } from "@/ui/atoms/Typography";
 import { Wrapper } from "@/ui/components/Product/Wrapper";
 
-export function ActionButtons() {
+type Props = {
+	quantity: number | undefined;
+};
+
+export function ActionButtons({ quantity = 0 }: Props) {
 	const [count, setCount] = useState<number>(1);
 	const handleIncrement = () => setCount((prev) => prev + 1);
 	const handleDecrement = () => setCount((prev) => prev - 1);
@@ -20,25 +24,33 @@ export function ActionButtons() {
 
 	return (
 		<Wrapper>
-			<div className="flex w-max items-center gap-2 rounded-md bg-secondary/5 px-1 md:gap-4">
-				<ButtonIcon variant="text" disabled={count <= 1} onClick={handleDecrement}>
-					<Icons.minus />
-				</ButtonIcon>
-				<Typography variant="h4" className="w-2">
-					{count}
+			{quantity <= 0 ? (
+				<Typography variant="subtitle1" className="text-pretty font-bold text-primary">
+					Produkt wyprzedany!
 				</Typography>
-				<ButtonIcon variant="text" onClick={handleIncrement}>
-					<Icons.plus />
-				</ButtonIcon>
-			</div>
-			<Button
-				variant="primary"
-				color="primary"
-				className="w-full shadow-md shadow-primary"
-				onClick={handleAddToCart}
-			>
-				Dodaj do koszyka
-			</Button>
+			) : (
+				<>
+					<div className="flex w-max items-center gap-2 rounded-md bg-secondary/5 px-1 md:gap-4">
+						<ButtonIcon variant="text" disabled={count <= 1} onClick={handleDecrement}>
+							<Icons.minus />
+						</ButtonIcon>
+						<Typography variant="h4" className="w-2">
+							{count}
+						</Typography>
+						<ButtonIcon variant="text" onClick={handleIncrement} disabled={count >= quantity}>
+							<Icons.plus />
+						</ButtonIcon>
+					</div>
+					<Button
+						variant="primary"
+						color="primary"
+						className="w-full shadow-md shadow-primary"
+						onClick={handleAddToCart}
+					>
+						Dodaj do koszyka
+					</Button>
+				</>
+			)}
 		</Wrapper>
 	);
 }

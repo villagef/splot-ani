@@ -3,6 +3,7 @@ import { type ProductPageProps } from "@/ui/types";
 import { ImageSection } from "@/ui/components/Product/ImageSection";
 import { ContentSection } from "@/ui/components/Product/ContentSection";
 import { ExtraSection } from "@/ui/components/Product/ExtraSection";
+import { getProduct } from "@/api/products";
 
 // export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // 	// const res = await fetch(
@@ -19,12 +20,15 @@ import { ExtraSection } from "@/ui/components/Product/ExtraSection";
 // 	};
 // }
 
-export default function Product({ params, searchParams }: ProductPageProps) {
+export default async function Product({ params, searchParams }: ProductPageProps) {
+	const product = await getProduct({ slug: params.id[0] });
+	const imgIdx = searchParams.imgIdx ? parseInt(searchParams.imgIdx) : 0;
+
 	return (
 		<div className="grid w-full gap-20">
 			<div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 md:gap-12 xl:gap-24">
-				<ImageSection params={params} searchParams={searchParams} />
-				<ContentSection />
+				<ImageSection product={product} imgIdx={imgIdx} />
+				<ContentSection product={product} />
 			</div>
 			<ExtraSection />
 		</div>
