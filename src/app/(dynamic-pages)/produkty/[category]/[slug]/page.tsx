@@ -21,7 +21,7 @@ import { getProduct } from "@/api/products";
 // }
 
 export default async function Product({ params, searchParams }: ProductPageProps) {
-	const product = await getProduct({ slug: params.id[0] });
+	const product = await getProduct({ slug: params.slug });
 	const imgIdx = searchParams.imgIdx ? parseInt(searchParams.imgIdx) : 0;
 
 	return (

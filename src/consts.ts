@@ -13,13 +13,13 @@ export enum Links {
 }
 
 export enum ProductCategory {
-	All = "wszystkie",
-	Bags = "torebki",
-	FlowerBeds = "kwietniki",
-	Baskets = "koszyki",
+	All = "Wszystkie",
+	Bags = "Torebki",
+	FlowerBeds = "Kwietniki",
+	Baskets = "Koszyki",
 }
 
-export const PRODUCTS_PER_PAGE = 9 as const;
+export const PRODUCTS_PER_PAGE = 12 as const;
 
 export const navbarLinks = [
 	{ name: "Strona Główna", href: Links.Home },

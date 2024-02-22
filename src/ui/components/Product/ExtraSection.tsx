@@ -1,9 +1,9 @@
-import { getProducts } from "@/api/products";
+import { getAllProducts } from "@/api/products";
 import { Typography } from "@/ui/atoms/Typography";
 import { ProductList } from "@/ui/components/ProductList";
 
 export async function ExtraSection() {
-	const products = await getProducts({ skip: 0 });
+	const products = await getAllProducts({ skip: 0 });
 
 	return (
 		<div>

@@ -1,50 +1,64 @@
 import { GraphQLClient } from "graphql-request";
-
-type Product = {
-	id: string;
-	name: string;
-	slug: string;
-	price: number;
-	lowestPrice: number;
-	previousPrice: number;
-	description: string;
-	categories: { name: string }[];
-	images: { url: string }[];
-};
-
-type ProductsGraphQLResponse = {
-	products: Product[];
-};
-
-type Params = {
-	slug?: string;
-	first?: number;
-	last?: number;
-	before?: string;
-	after?: string;
-	skip?: number;
-};
+import { type ProductsGraphQLResponse, type QueryParams } from "@/api/types";
 
 const hygraph = new GraphQLClient(process.env.HYGRAPH_ENDPOINT as string);
 
-export const getProducts = async ({ first = 12, skip = 0 }: Params) => {
-	const { products }: ProductsGraphQLResponse = await hygraph.request(
-		`{
-		products(first: ${first}, skip: ${skip}) {
-            slug
-            name
-            price
-            images(first: 1) {
-                url
-            }
-		}
-	  }`,
-	);
-
-	return products;
+export const getProductsByCategory = async ({ first = 12, skip = 0, category }: QueryParams) => {
+	try {
+		const { products }: ProductsGraphQLResponse = await hygraph.request(
+			`query GetProductsByCategory($categories: String!, $first: Int!, $skip: Int!){
+			products(where: {categories_every: {name: $categories}}, first: $first, skip: $skip) {
+				slug
+				name
+				price
+				images(first: 1) {
+					url
+				}
+				categories {
+					name
+				}
+			},
+		  }`,
+			{
+				categories: category,
+				first,
+				skip,
+			},
+		);
+		return products;
+	} catch (error) {
+		return [];
+	}
 };
 
-export const getProduct = async ({ slug }: Params) => {
+export const getAllProducts = async ({ first = 12, skip = 0 }: QueryParams) => {
+	try {
+		const { products }: ProductsGraphQLResponse = await hygraph.request(
+			`query GetAllProducts($first: Int!, $skip: Int!){
+			products(first: $first, skip: $skip) {
+				slug
+				name
+				price
+				images(first: 1) {
+					url
+				}
+				categories {
+					name
+				}
+			},
+		  }`,
+			{
+				first,
+				skip,
+			},
+		);
+		return products;
+	} catch (error) {
+		return [];
+	}
+};
+
+export const getProduct = async ({ slug }: QueryParams) => {
 	const { products }: ProductsGraphQLResponse = await hygraph.request(
 		`query GetProduct($slug: String!) {
             products(where: { slug: $slug }) {
@@ -65,9 +79,8 @@ export const getProduct = async ({ slug }: Params) => {
             }
         }`,
 		{
-			slug,
+			slug: slug,
 		},
 	);
-
 	return products[0];
 };
