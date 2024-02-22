@@ -1,8 +1,8 @@
 import { ProductCard } from "@/ui/components/ProductCard";
-import { type Product } from "@/ui/types";
+import type { ProductCardType } from "@/ui/types";
 
 type Props = {
-	products: Product[];
+	products: ProductCardType[];
 	sliceNum?: number;
 	columns?: "3" | "4";
 };
