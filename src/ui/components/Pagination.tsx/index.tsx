@@ -13,13 +13,11 @@ export function Pagination() {
 	const totalPages = Math.ceil(productsLenght / PRODUCTS_PER_PAGE) || 1;
 
 	const onPageChange = (page: number) => {
-		console.log(page);
 		setCurrentPage(page);
 	};
 
 	const renderPages = () => {
 		const pages = [];
-		console.log(currentPage);
 		for (let i = 1; i <= totalPages; i++) {
 			const isActive = currentPage === i;
 			pages.push(

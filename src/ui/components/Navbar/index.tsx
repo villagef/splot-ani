@@ -15,7 +15,7 @@ export function Navbar() {
 
 	return (
 		<>
-			<nav className="border-none bg-primary-background p-2 shadow-md md:px-6">
+			<nav className="border-none bg-primary-foreground p-2 shadow-md md:px-6">
 				<div className="mx-auto grid w-full max-w-screen-xl grid-cols-5 place-items-stretch ">
 					<ButtonIcon variant="text" onClick={handleOpen} className="col-span-2 p-0 lg:hidden">
 						<Icons.hamburger className="text-primary" />
