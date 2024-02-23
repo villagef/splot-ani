@@ -16,7 +16,7 @@ export function CategoriesList({ params }: Props) {
 		<ul className="flex flex-wrap gap-4 pt-4 md:gap-6 md:pt-0">
 			{Object.values(ProductCategory).map((category) => (
 				<li key={category}>
-					<Link href={`/produkty/${category.toLowerCase()}`}>
+					<Link href={`/produkty/${category.toLowerCase()}/1`}>
 						<Button
 							className={`${_category === category && "bg-secondary text-secondary-textLight"} `}
 							variant="outlined"

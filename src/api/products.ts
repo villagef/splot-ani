@@ -1,13 +1,18 @@
 import { GraphQLClient } from "graphql-request";
 import { type ProductsGraphQLResponse, type QueryParams } from "@/api/types";
+import { PRODUCTS_PER_PAGE } from "@/consts";
 
 const hygraph = new GraphQLClient(process.env.HYGRAPH_ENDPOINT as string);
 
-export const getProductsByCategory = async ({ first = 12, skip = 0, category }: QueryParams) => {
+export const getProductsByCategory = async ({
+	first = PRODUCTS_PER_PAGE,
+	skip = 0,
+	category,
+}: QueryParams) => {
 	try {
-		const { products }: ProductsGraphQLResponse = await hygraph.request(
+		const { products, productsConnection }: ProductsGraphQLResponse = await hygraph.request(
 			`query GetProductsByCategory($categories: String!, $first: Int!, $skip: Int!){
-			products(where: {categories_every: {name: $categories}}, first: $first, skip: $skip) {
+			products(where: {categories_every: {name: $categories}}, first: $first, skip: $skip, locales: en) {
 				slug
 				name
 				price
@@ -18,24 +23,32 @@ export const getProductsByCategory = async ({ first = 12, skip = 0, category }: 
 					name
 				}
 			},
-		  }`,
+			productsConnection(where: {categories_every: {name: $categories}}) {
+				pageInfo {
+				  pageSize
+				  hasPreviousPage
+				  hasNextPage
+				}
+			  }
+		  }
+		  `,
 			{
 				categories: category,
 				first,
 				skip,
 			},
 		);
-		return products;
+		return { products, productsConnection };
 	} catch (error) {
 		return [];
 	}
 };
 
-export const getAllProducts = async ({ first = 12, skip = 0 }: QueryParams) => {
+export const getAllProducts = async ({ first = PRODUCTS_PER_PAGE, skip = 0 }: QueryParams) => {
 	try {
-		const { products }: ProductsGraphQLResponse = await hygraph.request(
+		const { products, productsConnection }: ProductsGraphQLResponse = await hygraph.request(
 			`query GetAllProducts($first: Int!, $skip: Int!){
-			products(first: $first, skip: $skip) {
+			products(first: $first, skip: $skip, locales: en) {
 				slug
 				name
 				price
@@ -46,13 +59,20 @@ export const getAllProducts = async ({ first = 12, skip = 0 }: QueryParams) => {
 					name
 				}
 			},
+			productsConnection {
+				pageInfo {
+				  pageSize
+				  hasPreviousPage
+				  hasNextPage
+				}
+			  }
 		  }`,
 			{
 				first,
 				skip,
 			},
 		);
-		return products;
+		return { products, productsConnection };
 	} catch (error) {
 		return [];
 	}
