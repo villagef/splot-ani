@@ -10,8 +10,11 @@ type Props = {
 	params: { category: ProductCategory; page: string };
 };
 
-export function generateMetadata() {
-	return { title: "Produkty po kategorii" };
+export async function generateStaticParams() {
+	return Object.values(ProductCategory).map((category) => ({
+		category: category.toLowerCase(),
+		page: "1",
+	}));
 }
 
 export default async function ProductsPaginated({ params }: Props) {

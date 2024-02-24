@@ -1,17 +1,16 @@
+import { type Route } from "next";
 import Link from "next/link";
 
 type Props = {
-	link: {
-		name: string;
-		href: string;
-	};
+	href: Route;
+	children: React.ReactNode;
 };
 
-export function FooterLink({ link: { name, href } }: Props) {
+export function FooterLink({ href, children }: Props) {
 	return (
 		<li className="mb-4">
 			<Link href={href}>
-				<p className="hover:underline">{name}</p>
+				<p className="hover:underline">{children}</p>
 			</Link>
 		</li>
 	);

@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import { Logo } from "@/ui/atoms/Logo";
 import { FooterLink } from "@/ui/components/Footer/FooterLink";
 import { footerLinksGroupOne, footerLinksGroupTwo, socialLinks } from "@/consts";
@@ -22,7 +23,9 @@ export function Footer() {
 							<h2 className="text-md mb-6 font-semibold uppercase ">Splotani.pl</h2>
 							<ul className="font-normal ">
 								{footerLinksGroupOne.map((link) => (
-									<FooterLink key={link.name} link={link} />
+									<FooterLink key={link.name} href={link.href as Route}>
+										{link.name}
+									</FooterLink>
 								))}
 							</ul>
 						</div>
@@ -30,7 +33,9 @@ export function Footer() {
 							<h2 className="text-md mb-6 font-semibold uppercase ">Pomoc</h2>
 							<ul>
 								{footerLinksGroupTwo.map((link) => (
-									<FooterLink key={link.name} link={link} />
+									<FooterLink key={link.name} href={link.href as Route}>
+										{link.name}
+									</FooterLink>
 								))}
 							</ul>
 						</div>
@@ -41,7 +46,12 @@ export function Footer() {
 					<span className="text-sm ">© 2024 Splotani™. All Rights Reserved.</span>
 					<div className="flex justify-end gap-6 py-2 sm:justify-center ">
 						{socialLinks.map((link) => (
-							<LinkSocial key={link.name} link={link} />
+							<LinkSocial
+								key={link.name}
+								href={link.href as Route}
+								name={link.name}
+								icon={link.icon}
+							/>
 						))}
 					</div>
 				</div>

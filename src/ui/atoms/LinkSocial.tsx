@@ -1,18 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Route } from "next";
 
 type Props = {
-	link: {
-		name: string;
-		href: string;
-		icon: string;
-	};
+	name: string;
+	href: Route;
+	icon: string;
 };
 
-export function LinkSocial({ link }: Props) {
+export function LinkSocial({ href, name, icon }: Props) {
 	return (
-		<Link key={link.name} href={link.href} aria-label={`Follow us on ${link.name}`} target="_blank">
-			<Image width={32} height={32} src={link.icon} alt={link.name} />
+		<Link key={name} href={href} aria-label={`Follow us on ${name}`} target="_blank">
+			<Image width={32} height={32} src={icon} alt={name} />
 		</Link>
 	);
 }

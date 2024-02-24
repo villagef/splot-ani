@@ -1,3 +1,4 @@
+import { type Route } from "next";
 import { Drawer } from "@/ui/atoms/Drawer";
 import { mobileNavbarLinksGroupOne, mobileNavbarLinksGroupTwo, socialLinks } from "@/consts";
 import { LinkActive } from "@/ui/atoms/LinkActive";
@@ -27,7 +28,12 @@ export function MenuMobile({ open, onClose }: Props) {
 				<Separator />
 				<div className="flex gap-4">
 					{socialLinks.map((link) => (
-						<LinkSocial key={link.name} link={link} />
+						<LinkSocial
+							key={link.name}
+							href={link.href as Route}
+							name={link.name}
+							icon={link.icon}
+						/>
 					))}
 				</div>
 			</div>
