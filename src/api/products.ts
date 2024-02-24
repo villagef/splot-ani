@@ -79,8 +79,9 @@ export const getAllProducts = async ({ first = PRODUCTS_PER_PAGE, skip = 0 }: Qu
 };
 
 export const getProduct = async ({ slug }: QueryParams) => {
-	const { products }: ProductsGraphQLResponse = await hygraph.request(
-		`query GetProduct($slug: String!) {
+	try {
+		const { products }: ProductsGraphQLResponse = await hygraph.request(
+			`query GetProduct($slug: String!) {
             products(where: { slug: $slug }) {
                 slug
                 name
@@ -98,9 +99,71 @@ export const getProduct = async ({ slug }: QueryParams) => {
 
             }
         }`,
-		{
-			slug: slug,
-		},
-	);
-	return products[0];
+			{
+				slug: slug,
+			},
+		);
+		return products[0];
+	} catch (error) {
+		return [];
+	}
+};
+
+export const getTopProducts = async () => {
+	try {
+		const { products }: ProductsGraphQLResponse = await hygraph.request(
+			`query GetTopProducts {
+				products(first: 4, where: {top: true}) {
+				  name
+				  slug
+				  price
+				  images(first: 1) {
+					url
+				  }
+				  categories {
+					name
+				  }
+				}
+			  }
+		  `,
+		);
+		return products;
+	} catch (error) {
+		return [];
+	}
+};
+
+export const getMostPopularProducts = async ({ slug }: QueryParams) => {
+	try {
+		const { products }: ProductsGraphQLResponse = await hygraph.request(
+			`query GetProduct($slug: String!) {
+            products(
+				orderBy: publishedAt_DESC
+				first: 4
+				where: {NOT: {slug: $slug}}
+			  ) {
+                slug
+                name
+                price
+				lowestPrice
+				previousPrice
+				quantity
+                images {
+                    url
+                }
+                description
+                categories {
+                    name
+                }
+
+            }
+        }`,
+			{
+				slug: slug,
+			},
+		);
+		return products;
+	} catch (error) {
+		return [];
+	}
 };

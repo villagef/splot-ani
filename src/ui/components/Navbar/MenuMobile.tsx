@@ -14,11 +14,15 @@ export function MenuMobile({ open, onClose }: Props) {
 		<Drawer open={open} onClose={onClose}>
 			<div className="flex flex-col items-center gap-4">
 				{mobileNavbarLinksGroupOne.map((link) => (
-					<LinkActive key={link.href} link={link} />
+					<LinkActive key={link.href} href={link.href}>
+						{link.name}
+					</LinkActive>
 				))}
 				<Separator />
 				{mobileNavbarLinksGroupTwo.map((link) => (
-					<LinkActive key={link.href} link={link} />
+					<LinkActive key={link.href} href={link.href}>
+						{link.name}
+					</LinkActive>
 				))}
 				<Separator />
 				<div className="flex gap-4">

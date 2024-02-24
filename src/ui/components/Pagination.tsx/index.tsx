@@ -1,7 +1,8 @@
-import Link from "next/link";
+import { type Route } from "next";
 import { PRODUCTS_PER_PAGE } from "@/consts";
 import { Icons } from "@/ui/Icons";
 import { Button } from "@/ui/atoms/Button";
+import { LinkActive } from "@/ui/atoms/LinkActive";
 
 type Props = {
 	total: number;
@@ -17,14 +18,14 @@ export function Pagination({ total, currentPage, path }: Props) {
 			const isActive = currentPage === i;
 			pages.push(
 				<li key={i}>
-					<Link href={`${path}${i}`}>
+					<LinkActive href={`${path}${i}` as Route}>
 						<Button
 							className={`h-10 border px-4 leading-tight ${isActive && "bg-primary text-primary-textLight"}`}
 							disabled={isActive}
 						>
 							{i}
 						</Button>
-					</Link>
+					</LinkActive>
 				</li>,
 			);
 		}
@@ -32,27 +33,30 @@ export function Pagination({ total, currentPage, path }: Props) {
 	};
 
 	return (
-		<ul className="flex h-10 items-center justify-center gap-2 -space-x-px pb-4 text-base md:pb-0">
+		<ul
+			className="flex h-10 items-center justify-center gap-2 -space-x-px pb-4 text-base md:pb-0"
+			aria-label="pagination"
+		>
 			<li>
-				<Link href={`${path}${currentPage - 1}`}>
+				<LinkActive href={`${path}${currentPage - 1}` as Route}>
 					<Button
 						className="ms-0 h-10 rounded-l-lg border  px-4 leading-tight"
 						disabled={currentPage === 1}
 					>
 						<Icons.chevronLeft />
 					</Button>
-				</Link>
+				</LinkActive>
 			</li>
 			{renderPages()}
 			<li>
-				<Link href={`${path}${currentPage + 1}`}>
+				<LinkActive href={`${path}${currentPage + 1}` as Route}>
 					<Button
 						className="h-10 rounded-r-lg border px-4 leading-tight"
 						disabled={currentPage === totalPages}
 					>
 						<Icons.chevronRight />
 					</Button>
-				</Link>
+				</LinkActive>
 			</li>
 		</ul>
 	);

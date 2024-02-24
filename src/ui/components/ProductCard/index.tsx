@@ -10,7 +10,10 @@ type Props = {
 
 export function ProductCard({ product }: Props) {
 	return (
-		<li className="rounded-md bg-primary-foreground shadow-md hover:shadow-lg">
+		<li
+			className="rounded-md bg-primary-foreground shadow-md hover:shadow-lg"
+			aria-label="product card"
+		>
 			<Link href={`/produkt/${product.slug}?imgIdx=0`}>
 				<article className="relative rounded-md hover:shadow-md">
 					<ProductCardTag product={product} />

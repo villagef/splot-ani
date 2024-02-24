@@ -1,7 +1,7 @@
 import { getAllProducts, getProductsByCategory } from "@/api/products";
 import { type ProductsGraphQLResponse } from "@/api/types";
 import { PRODUCTS_PER_PAGE, ProductCategory } from "@/consts";
-import { CategoriesList } from "@/ui/components/CategoriesList";
+import { FiltersCategories } from "@/ui/components/FiltersCategories";
 import { Pagination } from "@/ui/components/Pagination.tsx";
 import { ProductList } from "@/ui/components/ProductList";
 import { categoryHandler } from "@/utils/categoryHandler";
@@ -33,7 +33,7 @@ export default async function ProductsPaginated({ params }: Props) {
 
 	return (
 		<>
-			<CategoriesList params={params} />
+			<FiltersCategories params={params} />
 			<ProductList products={products} columns={"3"} sliceNum={PRODUCTS_PER_PAGE} />
 			<Pagination total={totalItems} currentPage={_pageNumber} path={_path} />
 		</>

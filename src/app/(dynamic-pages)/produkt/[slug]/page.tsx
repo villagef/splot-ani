@@ -1,36 +1,46 @@
-// import { type Metadata } from "next/types";
-import { type ProductPageProps } from "@/ui/types";
+import type { Metadata } from "next/types";
+import type { ProductPageProps, Product } from "@/ui/types";
 import { ImageSection } from "@/ui/components/Product/ImageSection";
 import { ContentSection } from "@/ui/components/Product/ContentSection";
-import { ExtraSection } from "@/ui/components/Product/ExtraSection";
 import { getProduct } from "@/api/products";
+import { MostPopularProductsList } from "@/ui/components/ProductList/MostPopularProductsList";
 
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-// 	// const res = await fetch(
-// 	// 	"https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clsqaxyym000008l373lb2u18/master",
-// 	// );
-// 	// const data = await res.json();
-// 	return {
-// 		title: "Product z id: " + params.id,
-// 		description: "Product description",
-// 		// image: "https://splotani.pl/images/logo.png",
-// 		// url: "https://splotani.pl/produkty/1",
-// 		// type: "website",
-// 		// siteName: "Splotani",
-// 	};
-// }
+export async function generateMetadata({
+	params,
+}: {
+	params: { slug: string };
+}): Promise<Metadata> {
+	const product = (await getProduct({ slug: params.slug })) as Product;
+
+	return {
+		title: product.name,
+		description: product.description,
+		applicationName: "Splotani",
+		openGraph: {
+			title: product.name,
+			description: product.description,
+			siteName: "Splotani",
+			url: `https://splotani.pl/produkt/${product.slug}`,
+			images: [
+				{
+					url: product.images[0].url,
+				},
+			],
+		},
+	};
+}
 
 export default async function Product({ params, searchParams }: ProductPageProps) {
-	const product = await getProduct({ slug: params.slug });
+	const product = (await getProduct({ slug: params.slug })) as Product;
 	const imgIdx = searchParams.imgIdx ? parseInt(searchParams.imgIdx) : 0;
 
 	return (
-		<div className="grid w-full gap-20">
+		<div className="grid w-full gap-10 sm:gap-20">
 			<div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 md:gap-12 xl:gap-24">
 				<ImageSection product={product} imgIdx={imgIdx} />
 				<ContentSection product={product} />
 			</div>
-			<ExtraSection />
+			<MostPopularProductsList slug={params.slug} />
 		</div>
 	);
 }
