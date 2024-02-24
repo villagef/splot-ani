@@ -4,24 +4,22 @@ import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-type Props = {
-	link: {
-		name: string;
-		href: Route;
-	};
-	className?: string;
+type Props<T extends string> = {
+	href: Route<T>;
+	children: React.ReactNode;
 };
 
-export function LinkActive({ link: { href, name } }: Props) {
+export function LinkActive<T extends string>({ href, children }: Props<T>) {
 	const pathname = usePathname();
-	const highlight = pathname === href || (href !== "/" && pathname.includes(href)) ? true : false;
+	const highlight =
+		pathname === href || (href !== "/" && pathname.includes(href as string)) ? true : false;
 
 	return (
 		<Link
 			href={href}
 			className={`tracking-widest hover:text-primary ${highlight && "font-bold text-primary"}`}
 		>
-			{name}
+			{children}
 		</Link>
 	);
 }

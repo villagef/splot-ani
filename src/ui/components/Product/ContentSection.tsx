@@ -52,7 +52,7 @@ export function ContentSection({ product }: Props) {
 						</Typography>
 					)}
 					<Typography variant="body2" className="text-pretty pt-2 text-primary-textDark/70">
-						Najniższa cena z 30 dni przed obniżką: {priceHandler(lowestPrice)}
+						Najniższa cena z 30 dni: {priceHandler(lowestPrice)}
 					</Typography>
 				</div>
 				<Wrapper>

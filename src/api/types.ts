@@ -13,6 +13,13 @@ export type Product = {
 
 export type ProductsGraphQLResponse = {
 	products: Product[];
+	productsConnection: {
+		pageInfo: {
+			pageSize: number;
+			hasPreviousPage: boolean;
+			hasNextPage: boolean;
+		};
+	};
 };
 
 export type QueryParams = {

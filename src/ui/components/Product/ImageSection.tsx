@@ -1,8 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Typography } from "@/ui/atoms/Typography";
 import { Icons } from "@/ui/Icons";
 import { SmallImage } from "@/ui/components/Product/SmallImage";
-import { LargeImage } from "@/ui/components/Product/LargeImage";
 import type { Product } from "@/ui/types";
 import { Links } from "@/consts";
 
@@ -24,9 +24,17 @@ export function ImageSection({ product, imgIdx }: Props) {
 					Powrót do poprzedniej strony
 				</Typography>
 			</Link>
-			<div className="grid w-full max-w-[500px] place-content-start gap-4 place-self-center lg:gap-8">
-				<LargeImage image={selectedImage} />
-				<div className="relative flex w-full gap-4 overflow-x-auto lg:gap-4">
+			<div className="grid w-full max-w-[500px] place-content-start gap-4 place-self-center lg:gap-6">
+				<Image
+					src={selectedImage}
+					alt={"Product image"}
+					width={500}
+					height={500}
+					className="max-h-[500px] rounded-lg bg-primary-foreground object-cover object-center shadow-lg"
+					quality={50}
+					priority
+				/>
+				<div className="relative flex w-full gap-4 overflow-x-auto lg:gap-6">
 					{images?.map((img, i) => (
 						<SmallImage key={i} idx={i} image={img.url} selected={imgIdx === i} />
 					))}

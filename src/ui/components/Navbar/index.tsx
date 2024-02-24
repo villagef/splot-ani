@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import type { Route } from "next";
 import { navbarLinks } from "@/consts";
 import { Icons } from "@/ui/Icons";
 import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
@@ -15,7 +16,7 @@ export function Navbar() {
 
 	return (
 		<>
-			<nav className="border-none bg-primary-foreground p-2 shadow-md md:px-6">
+			<nav className="border-none bg-primary-foreground p-2 shadow-md md:px-6" aria-label="navbar">
 				<div className="mx-auto grid w-full max-w-screen-xl grid-cols-5 place-items-stretch ">
 					<ButtonIcon variant="text" onClick={handleOpen} className="col-span-2 p-0 lg:hidden">
 						<Icons.hamburger className="text-primary" />
@@ -26,7 +27,9 @@ export function Navbar() {
 					>
 						<ul className="flex flex-row gap-8 rounded-lg font-medium text-secondary ">
 							{navbarLinks.map((link) => (
-								<LinkActive key={link.name} link={link} />
+								<LinkActive key={link.name} href={link.href as Route}>
+									{link.name}
+								</LinkActive>
 							))}
 						</ul>
 					</div>

@@ -1,16 +1,16 @@
-import { getAllProducts } from "@/api/products";
+import { getTopProducts } from "@/api/products";
+import { Container } from "@/ui/atoms/Container";
 import { Typography } from "@/ui/atoms/Typography";
 import { ProductList } from "@/ui/components/ProductList";
 
-export async function ExtraSection() {
-	const products = await getAllProducts({ skip: 0 });
-
+export async function TopProductsList() {
+	const products = await getTopProducts();
 	return (
-		<div>
+		<Container>
 			<Typography variant="h2" className="text-center">
-				Inni oglądali również...
+				Topowe produkty
 			</Typography>
 			<ProductList products={products} />
-		</div>
+		</Container>
 	);
 }
