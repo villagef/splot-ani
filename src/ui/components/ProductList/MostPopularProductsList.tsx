@@ -10,7 +10,7 @@ type Props = {
 export async function MostPopularProductsList({ slug }: Props) {
 	const products = await getMostPopularProducts({ slug });
 	return (
-		<Container>
+		<Container data-testid="related-products">
 			<Typography variant="h2" className="text-center">
 				Inni oglądali również...
 			</Typography>

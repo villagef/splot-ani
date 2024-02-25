@@ -26,6 +26,28 @@ const nextConfig = {
 			},
 		],
 	},
+	redirects: async () => {
+		return [
+			{
+				source: "/produkty",
+				destination: "/produkty/wszystkie/1",
+				// TODO: Change to true after adding all products
+				permanent: false,
+			},
+			{
+				source: "/produkty/:category",
+				destination: "/produkty/:category/1",
+				// TODO: Change to true after adding all products
+				permanent: false,
+			},
+			{
+				source: "/produkt",
+				destination: "/produkty/wszystkie/1",
+				// TODO: Change to true after adding all products
+				permanent: false,
+			},
+		];
+	},
 };
 
 const withMDX = require("@next/mdx")();

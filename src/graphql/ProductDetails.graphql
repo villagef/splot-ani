@@ -1,0 +1,7 @@
+fragment ProductDetails on Product {
+	...ProductCommon
+	lowestPrice
+	previousPrice
+	quantity
+	description
+}

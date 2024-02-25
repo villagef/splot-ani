@@ -1,0 +1,9 @@
+query Product($slug: String!) {
+	products(where: { slug: $slug }) {
+		...ProductCommon
+		lowestPrice
+		previousPrice
+		quantity
+		description
+	}
+}

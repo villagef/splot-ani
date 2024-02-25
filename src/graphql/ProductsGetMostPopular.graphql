@@ -1,0 +1,5 @@
+query ProductsGetMostPopular($slug: String!) {
+	products(orderBy: publishedAt_DESC, first: 4, where: { NOT: { slug: $slug } }) {
+		...ProductCommon
+	}
+}

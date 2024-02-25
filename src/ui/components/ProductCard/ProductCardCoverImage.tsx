@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { type Product } from "@/ui/types";
+import { type ProductCommonFragment } from "@/gql/graphql";
 
 type Props = {
-	product: Pick<Product, "images" | "name">;
+	product: Pick<ProductCommonFragment, "images" | "name">;
 };
 
 export function ProductCardCoverImage({ product: { images, name } }: Props) {
@@ -11,7 +11,7 @@ export function ProductCardCoverImage({ product: { images, name } }: Props) {
 			<Image
 				width={320}
 				height={320}
-				src={images[0].url}
+				src={images[0] ? images[0]?.url : "/makrama-1.png"}
 				alt={name}
 				className="h-full w-full object-cover object-center transition-transform duration-300 ease-in-out hover:scale-105"
 				quality={40}

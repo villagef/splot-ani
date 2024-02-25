@@ -1,0 +1,13 @@
+query ProductsGetAll($first: Int!, $skip: Int!) {
+	products(first: $first, skip: $skip) {
+		...ProductCommon
+	}
+	productsConnection(first: $first, skip: $skip) {
+		pageInfo {
+			pageSize
+		}
+		aggregate {
+			count
+		}
+	}
+}

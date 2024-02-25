@@ -1,11 +1,10 @@
 import React from "react";
-import { type Product } from "@/ui/types";
 
 import { priceHandler } from "@/utils/priceHandler";
-
+import { type ProductCommonFragment } from "@/gql/graphql";
 
 type Props = {
-	product: Pick<Product, "name" | "price">;
+	product: Pick<ProductCommonFragment, "name" | "price">;
 };
 
 export function ProductCardItemDescription({ product: { name, price } }: Props) {

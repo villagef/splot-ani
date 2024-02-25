@@ -4,17 +4,17 @@ import { Icons } from "@/ui/Icons";
 import { Wrapper } from "@/ui/components/Product/Wrapper";
 import { ActionButtons } from "@/ui/components/Product/ActionButtons";
 import { Links } from "@/consts";
-import type { Product } from "@/ui/types";
 import { priceHandler } from "@/utils/priceHandler";
 import { discountHandler } from "@/utils/discountHandler";
+import { type ProductDetailsFragment } from "@/gql/graphql";
 
 type Props = {
-	product: Product;
+	product: ProductDetailsFragment;
 };
 
 export function ContentSection({ product }: Props) {
 	const { name, price, quantity, previousPrice, lowestPrice, description, categories } = product;
-	const category = categories ? categories[0].name : "";
+	const category = categories ? categories[0]?.name : "";
 	const showDiscount = previousPrice && price < previousPrice;
 
 	return (

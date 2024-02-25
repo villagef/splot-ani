@@ -9,7 +9,7 @@ import { Typography } from "@/ui/atoms/Typography";
 import { Wrapper } from "@/ui/components/Product/Wrapper";
 
 type Props = {
-	quantity: number | undefined;
+	quantity: number | null | undefined;
 };
 
 export function ActionButtons({ quantity = 0 }: Props) {
@@ -24,7 +24,7 @@ export function ActionButtons({ quantity = 0 }: Props) {
 
 	return (
 		<Wrapper>
-			{quantity <= 0 ? (
+			{quantity && quantity <= 0 ? (
 				<Typography variant="subtitle1" className="text-pretty font-bold text-primary">
 					Produkt wyprzedany!
 				</Typography>
@@ -37,7 +37,11 @@ export function ActionButtons({ quantity = 0 }: Props) {
 						<Typography variant="h4" className="w-2">
 							{count}
 						</Typography>
-						<ButtonIcon variant="text" onClick={handleIncrement} disabled={count >= quantity}>
+						<ButtonIcon
+							variant="text"
+							onClick={handleIncrement}
+							disabled={quantity ? count >= quantity : true}
+						>
 							<Icons.plus />
 						</ButtonIcon>
 					</div>
