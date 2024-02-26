@@ -9,7 +9,7 @@ type Props = {
 	params: { category: ProductCategory; page: string };
 };
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
 	return Object.values(ProductCategory).map((category) => ({
 		category: category,
 		page: "1",
