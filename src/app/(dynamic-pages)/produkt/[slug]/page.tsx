@@ -5,6 +5,7 @@ import { ImageSection } from "@/ui/components/Product/ImageSection";
 import { ContentSection } from "@/ui/components/Product/ContentSection";
 import { getProduct } from "@/api/products";
 import { MostPopularProductsList } from "@/ui/components/ProductList/MostPopularProductsList";
+import { ProductListLoading } from "@/ui/components/ProductList/loading";
 
 export async function generateMetadata({
 	params,
@@ -53,7 +54,7 @@ export default async function Product({ params, searchParams }: Props) {
 				<ImageSection product={product} imgIdx={imgIdx} />
 				<ContentSection product={product} />
 			</div>
-			<Suspense fallback={"Ładowanie..."}>
+			<Suspense fallback={<ProductListLoading />}>
 				<MostPopularProductsList slug={params.slug} />
 			</Suspense>
 		</div>
