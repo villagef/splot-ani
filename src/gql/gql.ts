@@ -18,6 +18,7 @@ const documents = {
     "fragment ProductDetails on Product {\n  ...ProductCommon\n  lowestPrice\n  previousPrice\n  quantity\n  description\n}": types.ProductDetailsFragmentDoc,
     "query ProductsGetAll($first: Int!, $skip: Int!) {\n  products(first: $first, skip: $skip) {\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}": types.ProductsGetAllDocument,
     "query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip) {\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}": types.ProductsGetByCategorySlugDocument,
+    "query ProductsGetBySearchQuery($query: String!) {\n  products(where: {_search: $query}) {\n    ...ProductCommon\n  }\n}": types.ProductsGetBySearchQueryDocument,
     "query ProductsGetMostPopular($slug: String!) {\n  products(orderBy: publishedAt_DESC, first: 4, where: {NOT: {slug: $slug}}) {\n    ...ProductCommon\n  }\n}": types.ProductsGetMostPopularDocument,
     "query ProductsGetTop {\n  products(first: 4, where: {top: true}) {\n    ...ProductCommon\n  }\n}": types.ProductsGetTopDocument,
 };
@@ -56,6 +57,10 @@ export function graphql(source: "query ProductsGetAll($first: Int!, $skip: Int!)
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip) {\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}"): (typeof documents)["query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip) {\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query ProductsGetBySearchQuery($query: String!) {\n  products(where: {_search: $query}) {\n    ...ProductCommon\n  }\n}"): (typeof documents)["query ProductsGetBySearchQuery($query: String!) {\n  products(where: {_search: $query}) {\n    ...ProductCommon\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

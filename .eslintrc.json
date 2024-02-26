@@ -41,6 +41,8 @@
 			}
 		],
 
+		"@typescript-eslint/unbound-method": "off",
+
 		"import/no-duplicates": ["error", { "prefer-inline": true }],
 
 		// false negatives

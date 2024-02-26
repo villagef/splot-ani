@@ -4,6 +4,7 @@ import { mobileNavbarLinksGroupOne, mobileNavbarLinksGroupTwo, socialLinks } fro
 import { LinkActive } from "@/ui/atoms/LinkActive";
 import { Separator } from "@/ui/atoms/Separator";
 import { LinkSocial } from "@/ui/atoms/LinkSocial";
+import { Searchbar } from "@/ui/components/Searchbar";
 
 type Props = {
 	open: boolean;
@@ -14,6 +15,7 @@ export function MenuMobile({ open, onClose }: Props) {
 	return (
 		<Drawer open={open} onClose={onClose}>
 			<div className="flex flex-col items-center gap-4">
+				<Searchbar />
 				{mobileNavbarLinksGroupOne.map((link) => (
 					<LinkActive key={link.href} href={link.href}>
 						{link.name}

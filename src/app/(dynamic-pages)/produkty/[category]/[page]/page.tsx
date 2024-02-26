@@ -37,7 +37,7 @@ export default async function ProductsPaginated({ params }: Props) {
 	return (
 		<>
 			<FiltersCategories params={params} />
-			<ProductList products={products} columns={"3"} sliceNum={PRODUCTS_PER_PAGE} />
+			<ProductList products={products} columns={"3"} />
 			<Pagination
 				total={totalItems}
 				itemsPerPage={itemsPerPage}

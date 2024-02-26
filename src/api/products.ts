@@ -5,6 +5,7 @@ import {
 	ProductDocument,
 	ProductsGetByCategorySlugDocument,
 	ProductsGetAllDocument,
+	ProductsGetBySearchQueryDocument,
 } from "@/gql/graphql";
 import { executeGraphQL } from "@/api/graphqlApi";
 import { PRODUCTS_PER_PAGE } from "@/consts";
@@ -59,4 +60,11 @@ export const getMostPopularProducts = async ({ slug }: QueryParams) => {
 		},
 		category: product.categories[0]?.name,
 	}));
+};
+
+export const getProductsBySearchQuery = async ({ query }: QueryParams) => {
+	const graphqlResponse = await executeGraphQL(ProductsGetBySearchQueryDocument, {
+		query,
+	});
+	return graphqlResponse?.products;
 };
