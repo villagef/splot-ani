@@ -19,7 +19,12 @@ export function Navbar() {
 		<>
 			<nav className="border-none bg-primary-foreground p-2 shadow-md md:px-6" aria-label="navbar">
 				<div className="mx-auto grid w-full max-w-screen-xl grid-cols-5 place-items-stretch ">
-					<ButtonIcon variant="text" onClick={handleOpen} className="col-span-2 p-0 lg:hidden">
+					<ButtonIcon
+						variant="text"
+						onClick={handleOpen}
+						className="col-span-2 p-0 lg:hidden"
+						aria-label="Side menu button"
+					>
 						<Icons.hamburger className="text-primary" />
 					</ButtonIcon>
 					<div
@@ -28,9 +33,9 @@ export function Navbar() {
 					>
 						<ul className="flex flex-row gap-8 rounded-lg font-medium text-secondary ">
 							{navbarLinks.map((link) => (
-								<LinkActive key={link.name} href={link.href as Route}>
-									{link.name}
-								</LinkActive>
+								<li key={link.name}>
+									<LinkActive href={link.href as Route}>{link.name}</LinkActive>
+								</li>
 							))}
 						</ul>
 					</div>
@@ -41,10 +46,10 @@ export function Navbar() {
 						<div className="hidden lg:block">
 							<Searchbar />
 						</div>
-						<ButtonIcon variant="text">
+						<ButtonIcon variant="text" aria-label="Go to favourite products button">
 							<Icons.favourite />
 						</ButtonIcon>
-						<ButtonIcon variant="text">
+						<ButtonIcon variant="text" aria-label="Go to cart button">
 							<Icons.shoppingCart />
 						</ButtonIcon>
 					</div>

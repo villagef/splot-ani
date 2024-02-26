@@ -20,7 +20,7 @@ export function Searchbar() {
 	}, 500);
 
 	return (
-		<div className="relative">
+		<div className="relative" aria-label="Search input" id="search-input">
 			<Image
 				width={24}
 				height={24}
