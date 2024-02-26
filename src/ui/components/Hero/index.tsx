@@ -6,10 +6,9 @@ export function Hero() {
 			<Image
 				src="https://i.etsystatic.com/12804288/r/il/a23a6f/2665266866/il_fullxfull.2665266866_smu4.jpg"
 				alt="hero section from https://i.etsystatic.com/12804288/r/il/a23a6f/2665266866/il_fullxfull.2665266866_smu4.jpg"
-				priority
 				fill
 				className="-z-10 object-cover object-right xl:object-center"
-				quality={100}
+				quality={70}
 			/>
 		</div>
 	);
