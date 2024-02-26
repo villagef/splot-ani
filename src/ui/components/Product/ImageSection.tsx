@@ -30,7 +30,7 @@ export function ImageSection({ product, imgIdx }: Props) {
 					alt={"Product image"}
 					width={500}
 					height={500}
-					className="max-h-[500px] rounded-lg bg-primary-foreground object-cover object-center shadow-lg"
+					className="max-h-[500px] rounded-lg border-none bg-transparent object-cover object-center shadow-lg"
 					quality={50}
 					priority
 				/>

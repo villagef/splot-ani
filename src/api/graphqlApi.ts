@@ -1,5 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 import { type TypedDocumentNode } from "@apollo/client";
+import { notFound } from "next/navigation";
 import type { QueryParams } from "@/api/types";
 
 export const executeGraphQL = async <TResult, TVariables>(
@@ -16,6 +17,6 @@ export const executeGraphQL = async <TResult, TVariables>(
 
 		return data;
 	} catch (error) {
-		throw new Error("GraphQL Error", { cause: error });
+		throw notFound();
 	}
 };

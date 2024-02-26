@@ -6,4 +6,5 @@ export type QueryParams = {
 	after?: string;
 	skip?: number;
 	category?: string;
+	query?: string;
 };

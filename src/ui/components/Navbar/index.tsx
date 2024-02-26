@@ -8,6 +8,7 @@ import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
 import { Logo } from "@/ui/atoms/Logo";
 import { MenuMobile } from "@/ui/components/Navbar/MenuMobile";
 import { LinkActive } from "@/ui/atoms/LinkActive";
+import { Searchbar } from "@/ui/components/Searchbar";
 
 export function Navbar() {
 	const [open, setOpen] = useState(false);
@@ -37,6 +38,9 @@ export function Navbar() {
 						<Logo size={100} />
 					</div>
 					<div className="col-span-2 col-start-4 grid grid-flow-col place-items-center gap-6 justify-self-end md:gap-8">
+						<div className="hidden lg:block">
+							<Searchbar />
+						</div>
 						<ButtonIcon variant="text">
 							<Icons.favourite />
 						</ButtonIcon>
