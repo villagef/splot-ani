@@ -13,10 +13,10 @@ export enum Links {
 }
 
 export enum ProductCategory {
-	All = "Wszystkie",
-	Bags = "Torebki",
-	FlowerBeds = "Kwietniki",
-	Baskets = "Koszyki",
+	All = "wszystkie",
+	Bags = "torebki",
+	FlowerBeds = "kwietniki",
+	Baskets = "koszyki",
 }
 
 export const PRODUCTS_PER_PAGE = 3 as const;

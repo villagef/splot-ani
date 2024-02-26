@@ -1,8 +1,8 @@
+import { type ProductCommonFragment } from "@/gql/graphql";
 import { ProductCard } from "@/ui/components/ProductCard";
-import type { ProductCardType } from "@/ui/types";
 
 type Props = {
-	products: ProductCardType[];
+	products: ProductCommonFragment[];
 	sliceNum?: number;
 	columns?: "3" | "4";
 };

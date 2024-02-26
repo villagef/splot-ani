@@ -1,169 +1,62 @@
-import { GraphQLClient } from "graphql-request";
-import { type ProductsGraphQLResponse, type QueryParams } from "@/api/types";
+import type { QueryParams } from "@/api/types";
+import {
+	ProductsGetMostPopularDocument,
+	ProductsGetTopDocument,
+	ProductDocument,
+	ProductsGetByCategorySlugDocument,
+	ProductsGetAllDocument,
+} from "@/gql/graphql";
+import { executeGraphQL } from "@/api/graphqlApi";
 import { PRODUCTS_PER_PAGE } from "@/consts";
 
-const hygraph = new GraphQLClient(process.env.HYGRAPH_ENDPOINT as string);
-
-export const getProductsByCategory = async ({
-	first = PRODUCTS_PER_PAGE,
-	skip = 0,
-	category,
-}: QueryParams) => {
-	try {
-		const { products, productsConnection }: ProductsGraphQLResponse = await hygraph.request(
-			`query GetProductsByCategory($categories: String!, $first: Int!, $skip: Int!){
-			products(where: {categories_every: {name: $categories}}, first: $first, skip: $skip, locales: en) {
-				slug
-				name
-				price
-				images(first: 1) {
-					url
-				}
-				categories {
-					name
-				}
-			},
-			productsConnection(where: {categories_every: {name: $categories}}) {
-				pageInfo {
-				  pageSize
-				  hasPreviousPage
-				  hasNextPage
-				}
-			  }
-		  }
-		  `,
-			{
-				categories: category,
-				first,
-				skip,
-			},
-		);
-		return { products, productsConnection };
-	} catch (error) {
-		return [];
-	}
+export const getProductsByCategorySlug = async ({ skip = 0, slug }: QueryParams) => {
+	const graphqlResponse = await executeGraphQL(ProductsGetByCategorySlugDocument, {
+		first: PRODUCTS_PER_PAGE,
+		slug,
+		skip,
+	});
+	return {
+		products: graphqlResponse?.categories[0]?.products,
+		productsConnection: graphqlResponse?.productsConnection,
+	};
 };
 
-export const getAllProducts = async ({ first = PRODUCTS_PER_PAGE, skip = 0 }: QueryParams) => {
-	try {
-		const { products, productsConnection }: ProductsGraphQLResponse = await hygraph.request(
-			`query GetAllProducts($first: Int!, $skip: Int!){
-			products(first: $first, skip: $skip, locales: en) {
-				slug
-				name
-				price
-				images(first: 1) {
-					url
-				}
-				categories {
-					name
-				}
-			},
-			productsConnection {
-				pageInfo {
-				  pageSize
-				  hasPreviousPage
-				  hasNextPage
-				}
-			  }
-		  }`,
-			{
-				first,
-				skip,
-			},
-		);
-		return { products, productsConnection };
-	} catch (error) {
-		return [];
-	}
+export const getAllProducts = async ({ skip = 0 }: QueryParams) => {
+	const graphqlResponse = await executeGraphQL(ProductsGetAllDocument, {
+		first: PRODUCTS_PER_PAGE,
+		skip,
+	});
+	return {
+		products: graphqlResponse?.products,
+		productsConnection: graphqlResponse?.productsConnection,
+	};
 };
 
 export const getProduct = async ({ slug }: QueryParams) => {
-	try {
-		const { products }: ProductsGraphQLResponse = await hygraph.request(
-			`query GetProduct($slug: String!) {
-            products(where: { slug: $slug }) {
-                slug
-                name
-                price
-				lowestPrice
-				previousPrice
-				quantity
-                images {
-                    url
-                }
-                description
-                categories {
-                    name
-                }
-
-            }
-        }`,
-			{
-				slug: slug,
-			},
-		);
-		return products[0];
-	} catch (error) {
-		return [];
-	}
+	const graphqlResponse = await executeGraphQL(ProductDocument, { slug });
+	return graphqlResponse?.products[0];
 };
 
 export const getTopProducts = async () => {
-	try {
-		const { products }: ProductsGraphQLResponse = await hygraph.request(
-			`query GetTopProducts {
-				products(first: 4, where: {top: true}) {
-				  name
-				  slug
-				  price
-				  images(first: 1) {
-					url
-				  }
-				  categories {
-					name
-				  }
-				}
-			  }
-		  `,
-		);
-		return products;
-	} catch (error) {
-		return [];
-	}
+	const graphqlResponse = await executeGraphQL(ProductsGetTopDocument, {});
+	return graphqlResponse?.products?.map((product) => ({
+		...product,
+		image: {
+			url: product.images[0]?.url,
+			alt: product.name,
+		},
+		category: product.categories[0]?.name,
+	}));
 };
 
 export const getMostPopularProducts = async ({ slug }: QueryParams) => {
-	try {
-		const { products }: ProductsGraphQLResponse = await hygraph.request(
-			`query GetProduct($slug: String!) {
-            products(
-				orderBy: publishedAt_DESC
-				first: 4
-				where: {NOT: {slug: $slug}}
-			  ) {
-                slug
-                name
-                price
-				lowestPrice
-				previousPrice
-				quantity
-                images {
-                    url
-                }
-                description
-                categories {
-                    name
-                }
-
-            }
-        }`,
-			{
-				slug: slug,
-			},
-		);
-		return products;
-	} catch (error) {
-		return [];
-	}
+	const graphqlResponse = await executeGraphQL(ProductsGetMostPopularDocument, { slug });
+	return graphqlResponse?.products?.map((product) => ({
+		...product,
+		image: {
+			url: product.images[0]?.url,
+			alt: product.name,
+		},
+		category: product.categories[0]?.name,
+	}));
 };

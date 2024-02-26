@@ -3,11 +3,11 @@ import Image from "next/image";
 import { Typography } from "@/ui/atoms/Typography";
 import { Icons } from "@/ui/Icons";
 import { SmallImage } from "@/ui/components/Product/SmallImage";
-import type { Product } from "@/ui/types";
 import { Links } from "@/consts";
+import { type ProductDetailsFragment } from "@/gql/graphql";
 
 type Props = {
-	product: Product;
+	product: ProductDetailsFragment;
 	imgIdx: number;
 };
 
@@ -26,7 +26,7 @@ export function ImageSection({ product, imgIdx }: Props) {
 			</Link>
 			<div className="grid w-full max-w-[500px] place-content-start gap-4 place-self-center lg:gap-6">
 				<Image
-					src={selectedImage}
+					src={selectedImage ? selectedImage : "/makrama-1.png"}
 					alt={"Product image"}
 					width={500}
 					height={500}

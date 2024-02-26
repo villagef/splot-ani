@@ -1,17 +1,17 @@
 import { type Route } from "next";
-import { PRODUCTS_PER_PAGE } from "@/consts";
 import { Icons } from "@/ui/Icons";
 import { Button } from "@/ui/atoms/Button";
 import { LinkActive } from "@/ui/atoms/LinkActive";
 
 type Props = {
 	total: number;
+	itemsPerPage: number;
 	currentPage: number;
 	path: string;
 };
 
-export function Pagination({ total, currentPage, path }: Props) {
-	const totalPages = Math.ceil(total / PRODUCTS_PER_PAGE);
+export function Pagination({ total, itemsPerPage, currentPage, path }: Props) {
+	const totalPages = Math.ceil(total / itemsPerPage);
 	const renderPages = () => {
 		const pages = [];
 		for (let i = 1; i <= totalPages; i++) {

@@ -1,0 +1,15 @@
+query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {
+	categories(where: { slug: $slug }) {
+		products(first: $first, skip: $skip) {
+			...ProductCommon
+		}
+	}
+	productsConnection(where: { categories_every: { slug: $slug } }) {
+		pageInfo {
+			pageSize
+		}
+		aggregate {
+			count
+		}
+	}
+}

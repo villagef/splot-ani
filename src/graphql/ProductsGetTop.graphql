@@ -1,0 +1,5 @@
+query ProductsGetTop {
+	products(first: 4, where: { top: true }) {
+		...ProductCommon
+	}
+}

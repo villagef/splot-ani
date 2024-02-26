@@ -1,17 +1,20 @@
 import type { Metadata } from "next/types";
 import { Suspense } from "react";
-import type { ProductPageProps, Product } from "@/ui/types";
+import { notFound } from "next/navigation";
 import { ImageSection } from "@/ui/components/Product/ImageSection";
 import { ContentSection } from "@/ui/components/Product/ContentSection";
 import { getProduct } from "@/api/products";
 import { MostPopularProductsList } from "@/ui/components/ProductList/MostPopularProductsList";
+import { ProductListLoading } from "@/ui/components/ProductList/loading";
 
 export async function generateMetadata({
 	params,
 }: {
 	params: { slug: string };
 }): Promise<Metadata> {
-	const product = (await getProduct({ slug: params.slug })) as Product;
+	const product = await getProduct({ slug: params.slug });
+
+	if (!product) throw notFound();
 
 	return {
 		title: product.name,
@@ -23,16 +26,27 @@ export async function generateMetadata({
 			siteName: "Splotani",
 			images: [
 				{
-					url: product.images[0].url,
+					url: product.images[0]?.url || "",
 				},
 			],
 		},
 	};
 }
 
-export default async function Product({ params, searchParams }: ProductPageProps) {
-	const product = (await getProduct({ slug: params.slug })) as Product;
+type Props = {
+	params: {
+		slug: string;
+	};
+	searchParams: {
+		imgIdx: string;
+	};
+};
+
+export default async function Product({ params, searchParams }: Props) {
+	const product = await getProduct({ slug: params.slug });
 	const imgIdx = searchParams.imgIdx ? parseInt(searchParams.imgIdx) : 0;
+
+	if (!product) throw notFound();
 
 	return (
 		<div className="grid w-full gap-10 sm:gap-20">
@@ -40,7 +54,7 @@ export default async function Product({ params, searchParams }: ProductPageProps
 				<ImageSection product={product} imgIdx={imgIdx} />
 				<ContentSection product={product} />
 			</div>
-			<Suspense fallback={"Ładowanie..."}>
+			<Suspense fallback={<ProductListLoading />}>
 				<MostPopularProductsList slug={params.slug} />
 			</Suspense>
 		</div>
