@@ -1,7 +1,10 @@
 fragment ProductDetails on Product {
-	...ProductCommon
+	images(first: 1) {
+		url
+	}
 	lowestPrice
 	previousPrice
 	quantity
 	description
+	...ProductCommon
 }

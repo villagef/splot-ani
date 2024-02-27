@@ -18,6 +18,7 @@ export function LinkActive<T extends string>({ href, children }: Props<T>) {
 		<Link
 			href={href}
 			className={`tracking-widest hover:text-primary ${highlight && "font-bold text-primary"}`}
+			aria-current={highlight ? true : undefined}
 		>
 			{children}
 		</Link>

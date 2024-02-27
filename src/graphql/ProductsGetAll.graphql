@@ -1,5 +1,8 @@
 query ProductsGetAll($first: Int!, $skip: Int!) {
 	products(first: $first, skip: $skip) {
+		images(first: 1) {
+			url
+		}
 		...ProductCommon
 	}
 	productsConnection(first: $first, skip: $skip) {

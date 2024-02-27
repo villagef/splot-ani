@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { type ProductCommonFragment } from "@/gql/graphql";
+import type { ProductDetailsFragment } from "@/gql/graphql";
 
 type Props = {
-	product: Pick<ProductCommonFragment, "images" | "name">;
+	product: Omit<ProductDetailsFragment, "description">;
 };
 
 export function ProductCardCoverImage({ product: { images, name } }: Props) {

@@ -2,10 +2,10 @@ import Link from "next/link";
 // import { ProductCardTag } from "@/ui/components/ProductCard/ProductCardTag";
 import { ProductCardCoverImage } from "@/ui/components/ProductCard/ProductCardCoverImage";
 import { ProductCardItemDescription } from "@/ui/components/ProductCard/ProductCardItemDescription";
-import { type ProductCommonFragment } from "@/gql/graphql";
+import type { ProductDetailsFragment } from "@/gql/graphql";
 
 type Props = {
-	product: ProductCommonFragment;
+	product: Omit<ProductDetailsFragment, "description">;
 };
 
 export function ProductCard({ product }: Props) {
