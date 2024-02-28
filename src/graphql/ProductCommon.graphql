@@ -2,6 +2,8 @@ fragment ProductCommon on Product {
 	slug
 	name
 	price
+	previousPrice
+	createdAt
 	categories(first: 1) {
 		name
 	}

@@ -14,7 +14,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  */
 const documents = {
     "query Product($slug: String!) {\n  products(where: {slug: $slug}) {\n    ...ProductCommon\n    lowestPrice\n    previousPrice\n    quantity\n    description\n    images {\n      url\n    }\n  }\n}": types.ProductDocument,
-    "fragment ProductCommon on Product {\n  slug\n  name\n  price\n  categories(first: 1) {\n    name\n  }\n}": types.ProductCommonFragmentDoc,
+    "fragment ProductCommon on Product {\n  slug\n  name\n  price\n  previousPrice\n  createdAt\n  categories(first: 1) {\n    name\n  }\n}": types.ProductCommonFragmentDoc,
     "fragment ProductDetails on Product {\n  images(first: 1) {\n    url\n  }\n  lowestPrice\n  previousPrice\n  quantity\n  description\n  ...ProductCommon\n}": types.ProductDetailsFragmentDoc,
     "query ProductsGetAll($first: Int!, $skip: Int!) {\n  products(first: $first, skip: $skip) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}": types.ProductsGetAllDocument,
     "query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip) {\n      images(first: 1) {\n        url\n      }\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}": types.ProductsGetByCategorySlugDocument,
@@ -44,7 +44,7 @@ export function graphql(source: "query Product($slug: String!) {\n  products(whe
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment ProductCommon on Product {\n  slug\n  name\n  price\n  categories(first: 1) {\n    name\n  }\n}"): (typeof documents)["fragment ProductCommon on Product {\n  slug\n  name\n  price\n  categories(first: 1) {\n    name\n  }\n}"];
+export function graphql(source: "fragment ProductCommon on Product {\n  slug\n  name\n  price\n  previousPrice\n  createdAt\n  categories(first: 1) {\n    name\n  }\n}"): (typeof documents)["fragment ProductCommon on Product {\n  slug\n  name\n  price\n  previousPrice\n  createdAt\n  categories(first: 1) {\n    name\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
