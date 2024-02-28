@@ -1,4 +1,5 @@
 fragment ProductCommon on Product {
+	id
 	slug
 	name
 	price

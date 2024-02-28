@@ -49,9 +49,11 @@ export function Navbar() {
 						<ButtonIcon variant="text" aria-label="Go to favourite products button">
 							<Icons.favourite />
 						</ButtonIcon>
-						<ButtonIcon variant="text" aria-label="Go to cart button">
-							<Icons.shoppingCart />
-						</ButtonIcon>
+						<LinkActive href="/koszyk">
+							<ButtonIcon variant="text" aria-label="Go to cart button">
+								<Icons.shoppingCart />
+							</ButtonIcon>
+						</LinkActive>
 					</div>
 				</div>
 			</nav>
