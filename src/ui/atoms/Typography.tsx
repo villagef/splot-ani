@@ -1,5 +1,5 @@
 type TypographyProps = {
-	variant?:
+	variant:
 		| "h1"
 		| "h2"
 		| "h3"
@@ -18,19 +18,26 @@ type TypographyProps = {
 };
 
 export function Typography({ variant = "body1", className = "", children }: TypographyProps) {
+	let Tag = "p" as keyof JSX.IntrinsicElements;
 	const getFontSize = (variant: string) => {
 		switch (variant) {
 			case "h1":
+				Tag = "h1";
 				return "text-4xl font-bold";
 			case "h2":
+				Tag = "h2";
 				return "text-3xl font-bold";
 			case "h3":
+				Tag = "h3";
 				return "text-2xl font-bold";
 			case "h4":
+				Tag = "h4";
 				return "text-xl font-bold";
 			case "h5":
+				Tag = "h5";
 				return "text-lg font-bold";
 			case "h6":
+				Tag = "h6";
 				return "text-base font-bold";
 			case "subtitle1":
 				return "text-lg";
@@ -53,5 +60,5 @@ export function Typography({ variant = "body1", className = "", children }: Typo
 
 	const classes = `typography ${getFontSize(variant)} ${className}`;
 
-	return <p className={classes}>{children}</p>;
+	return <Tag className={classes}>{children}</Tag>;
 }

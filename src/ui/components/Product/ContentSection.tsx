@@ -31,7 +31,7 @@ export function ContentSection({ product }: Props) {
 						{category}
 					</Typography>
 					<Typography variant="h1" className="text-pretty text-primary">
-						<h1>{name}</h1>
+						{name}
 					</Typography>
 				</div>
 				<Typography variant="body1" className="leading-8">
