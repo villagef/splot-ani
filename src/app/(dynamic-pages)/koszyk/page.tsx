@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import type { Route } from "next";
 import { getTopProducts } from "@/api/products";
 import { Icons } from "@/ui/Icons";
 import { BoxShadow } from "@/ui/atoms/BoxShadow";
@@ -34,25 +36,31 @@ export default async function Cart() {
 						return (
 							<BoxShadow key={index} className="flex flex-col gap-4 sm:flex-row">
 								<div className="relative h-80 w-full overflow-hidden rounded-lg sm:hidden ">
-									<Image
-										src={product.images[0]?.url || ""}
-										alt={"Product image"}
-										fill
-										className="rounded-lg border-none bg-transparent object-cover object-center shadow-lg"
-										quality={30}
-										priority
-									/>
+									<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
+										<Image
+											src={product.images[0]?.url || ""}
+											alt={"Product image"}
+											fill
+											className="rounded-lg border-none bg-transparent object-cover object-center shadow-lg"
+											quality={30}
+											priority
+										/>
+									</Link>
 								</div>
 								<div className="hidden sm:block">
-									<SmallImage idx={index} image={product.images[0]?.url || ""} selected={false} />
+									<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
+										<SmallImage idx={index} image={product.images[0]?.url || ""} selected={false} />
+									</Link>
 								</div>
 								<div className="flex w-full justify-between">
 									<div className="flex flex-col justify-between gap-4">
 										<div>
-											<Typography variant="h6" className="text-pretty">
-												{product.name}
-											</Typography>
-											<Typography variant="h6" className="text-pretty">
+											<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
+												<Typography variant="h6" className="text-pretty hover:text-primary">
+													{product.name}
+												</Typography>
+											</Link>
+											<Typography variant="subtitle2" className="text-pretty">
 												{priceHandler(product.price)}
 											</Typography>
 										</div>
