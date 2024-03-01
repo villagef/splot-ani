@@ -1,20 +1,24 @@
-"use client";
-
-import { toast } from "sonner";
-import { Button } from "@/ui/atoms/Button";
+import { cookies } from "next/headers";
 import { Typography } from "@/ui/atoms/Typography";
 import { Wrapper } from "@/ui/components/Product/Wrapper";
 import { ButtonIncreaseDecrease } from "@/ui/components/ButtonIncreaseDecrease.tsx";
+import { addProductToCart, getOrCreateCart } from "@/api/cart";
+import { Cookies } from "@/consts";
+import { ButtonAddToCart } from "@/ui/components/ButtonAddToCart";
 
 type Props = {
+	productId: string;
 	quantity: number | null | undefined;
 };
 
-export function ActionButtons({ quantity = 0 }: Props) {
-	const handleAddToCart = () => {
-		console.log("Add to cart");
-		toast.success("Dodano do koszyka");
-	};
+export function ActionButtons({ productId, quantity = 0 }: Props) {
+	async function addToCartAction(_formData: FormData) {
+		"use server";
+
+		const cart = await getOrCreateCart();
+		cookies().set(Cookies.CartId, cart.id, {});
+		await addProductToCart(cart.id, productId, 1);
+	}
 
 	return (
 		<Wrapper>
@@ -24,15 +28,12 @@ export function ActionButtons({ quantity = 0 }: Props) {
 				</Typography>
 			) : (
 				<>
-					<ButtonIncreaseDecrease id="1" quantity={quantity} />
-					<Button
-						variant="primary"
-						color="primary"
-						className="w-full shadow-md shadow-primary"
-						onClick={handleAddToCart}
-					>
-						Dodaj do koszyka
-					</Button>
+					<form>
+						<ButtonIncreaseDecrease id={productId} quantity={1} maxQuantity={quantity} />
+					</form>
+					<form action={addToCartAction}>
+						<ButtonAddToCart />
+					</form>
 				</>
 			)}
 		</Wrapper>

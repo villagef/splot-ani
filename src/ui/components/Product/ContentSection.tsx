@@ -13,7 +13,8 @@ type Props = {
 };
 
 export function ContentSection({ product }: Props) {
-	const { name, price, quantity, previousPrice, lowestPrice, description, categories } = product;
+	const { id, name, price, quantity, previousPrice, lowestPrice, description, categories } =
+		product;
 	const category = categories ? categories[0]?.name : "";
 	const showDiscount = previousPrice && price < previousPrice;
 
@@ -60,7 +61,7 @@ export function ContentSection({ product }: Props) {
 						Dostępność: <span className="font-bold text-primary">{quantity} szt.</span>
 					</Typography>
 				</Wrapper>
-				<ActionButtons quantity={quantity} />
+				<ActionButtons productId={id} quantity={quantity} />
 			</div>
 		</div>
 	);

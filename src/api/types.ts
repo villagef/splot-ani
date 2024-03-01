@@ -7,4 +7,11 @@ export type QueryParams = {
 	skip?: number;
 	category?: string;
 	query?: string;
+	id?: string;
+	orderID?: string;
+	productId?: string;
+	total?: number;
+	cartId?: string;
+	quantity?: number;
+	orderItemId?: string;
 };

@@ -12,7 +12,12 @@ export const executeGraphQL = async <TResult, TVariables>(
 			throw new Error("Missing HYGRAPH_ENDPOINT");
 		}
 
-		const hygraph = new GraphQLClient(process.env.HYGRAPH_ENDPOINT);
+		const hygraph = new GraphQLClient(process.env.HYGRAPH_ENDPOINT, {
+			headers: {
+				"Content-Type": "application/json",
+				authorization: `Bearer ${process.env.HYGRAPH_MUTATION_TOKEN}`,
+			},
+		});
 		const data = await hygraph.request(query, variables);
 
 		return data;

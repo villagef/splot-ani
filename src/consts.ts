@@ -19,6 +19,10 @@ export enum ProductCategory {
 	Baskets = "koszyki",
 }
 
+export enum Cookies {
+	CartId = "splotani_cartId",
+}
+
 export const PRODUCTS_PER_PAGE = 4 as const;
 
 export const navbarLinks = [

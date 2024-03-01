@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
-import { getTopProducts } from "@/api/products";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { Icons } from "@/ui/Icons";
 import { BoxShadow } from "@/ui/atoms/BoxShadow";
 import { Button } from "@/ui/atoms/Button";
@@ -11,18 +12,18 @@ import { Typography } from "@/ui/atoms/Typography";
 import { ButtonIncreaseDecrease } from "@/ui/components/ButtonIncreaseDecrease.tsx";
 import { SmallImage } from "@/ui/components/Product/SmallImage";
 import { priceHandler } from "@/utils/priceHandler";
+import { getCartById } from "@/api/cart";
+import { Cookies } from "@/consts";
 
 export default async function Cart() {
-	const products = await getTopProducts();
+	const cartId = cookies().get(Cookies.CartId)?.value;
+	if (!cartId) {
+		redirect("/");
+	}
+	const { order: cart } = await getCartById(cartId);
 
-	if (!products) {
-		return (
-			<div>
-				<Typography variant="h1" className="text-pretty text-center text-primary">
-					Brak produktów w koszyku
-				</Typography>
-			</div>
-		);
+	if (!cart) {
+		redirect("/");
 	}
 
 	return (
@@ -32,7 +33,17 @@ export default async function Cart() {
 			</Typography>
 			<div className="grid w-full gap-10 py-4 text-secondary-textDark md:py-8 lg:grid-cols-5">
 				<div className="grid gap-4 lg:col-span-3">
-					{products.map((product, index) => {
+					{cart.orderItems?.map((item, index) => {
+						const { id, product, quantity } = item;
+						if (!product) {
+							return (
+								<div key={id}>
+									<Typography variant="h1" className="text-pretty text-center text-primary">
+										Brak produktów w koszyku
+									</Typography>
+								</div>
+							);
+						}
 						return (
 							<BoxShadow key={index} className="flex flex-col gap-4 sm:flex-row">
 								<div className="relative h-80 w-full overflow-hidden rounded-lg sm:hidden ">
@@ -64,7 +75,13 @@ export default async function Cart() {
 												{priceHandler(product.price)}
 											</Typography>
 										</div>
-										<ButtonIncreaseDecrease id={product.id} quantity={2} />
+										<form>
+											<ButtonIncreaseDecrease
+												id={id}
+												quantity={quantity || 0}
+												maxQuantity={product.quantity}
+											/>
+										</form>
 									</div>
 									<div>
 										<ButtonIcon variant="text">
@@ -82,9 +99,7 @@ export default async function Cart() {
 						<Separator fullWidth />
 						<div className="flex justify-between">
 							<Typography variant="h6">Produkty</Typography>
-							<Typography variant="h6">
-								{priceHandler(products.reduce((acc, curr) => acc + curr.price, 0))}
-							</Typography>
+							<Typography variant="h6">122</Typography>
 						</div>
 						<div className="flex justify-between">
 							<Typography variant="h6">Dostawa</Typography>

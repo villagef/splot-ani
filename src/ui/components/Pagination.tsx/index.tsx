@@ -33,7 +33,7 @@ export function Pagination({ total, itemsPerPage, currentPage, path }: Props) {
 		return pages;
 	};
 
-	if (totalPages <= PRODUCTS_PER_PAGE) {
+	if (total <= PRODUCTS_PER_PAGE) {
 		return null;
 	}
 
