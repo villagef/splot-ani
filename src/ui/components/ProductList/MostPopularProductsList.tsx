@@ -7,8 +7,12 @@ type Props = {
 	slug: string;
 };
 
-export async function MostPopularProductsList({ slug }: Props) {
+export async function MostPopularProductsList({ slug }: Props): Promise<JSX.Element | null> {
 	const products = await getMostPopularProducts({ slug });
+
+	if (!products) {
+		return null;
+	}
 
 	return (
 		<Container>

@@ -6,10 +6,10 @@ export const tagsHandler = (
 	const createdAt = new Date(product.createdAt as Date).getTime();
 	const thirtyDaysAgo = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30).getTime();
 
-	const isNewTag = createdAt > thirtyDaysAgo ? "Nowy" : null;
+	const isNewTag = createdAt > thirtyDaysAgo ? "Nowość" : null;
 
 	const isSaleTag =
 		product.previousPrice && product.previousPrice > product.price ? "Wyprzedaż" : null;
 
-	return [isNewTag, isSaleTag].filter(Boolean) as string[];
+	return [isNewTag, isSaleTag].filter(Boolean)?.[0];
 };

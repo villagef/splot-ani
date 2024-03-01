@@ -19,7 +19,7 @@ export enum ProductCategory {
 	Baskets = "koszyki",
 }
 
-export const PRODUCTS_PER_PAGE = 3 as const;
+export const PRODUCTS_PER_PAGE = 4 as const;
 
 export const navbarLinks = [
 	{ name: "Strona Główna", href: Links.Home },

@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { getAllProducts, getProductsByCategorySlug } from "@/api/products";
 import { PRODUCTS_PER_PAGE, ProductCategory } from "@/consts";
 import { FiltersCategories } from "@/ui/components/FiltersCategories";
@@ -30,17 +31,20 @@ export default async function ProductsPaginated({ params }: Props) {
 					slug: _category,
 				});
 
+	if (!data) {
+		return notFound();
+	}
+
 	const products = data?.products || [];
-	const itemsPerPage = PRODUCTS_PER_PAGE;
 	const totalItems = data?.productsConnection?.aggregate?.count || 0;
 
 	return (
 		<>
 			<FiltersCategories params={params} />
-			<ProductList products={products} columns={"3"} />
+			<ProductList products={products} />
 			<Pagination
 				total={totalItems}
-				itemsPerPage={itemsPerPage}
+				itemsPerPage={PRODUCTS_PER_PAGE}
 				currentPage={_pageNumber}
 				path={_path}
 			/>

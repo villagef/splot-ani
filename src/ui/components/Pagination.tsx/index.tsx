@@ -2,6 +2,7 @@ import { type Route } from "next";
 import { Icons } from "@/ui/Icons";
 import { Button } from "@/ui/atoms/Button";
 import { LinkActive } from "@/ui/atoms/LinkActive";
+import { PRODUCTS_PER_PAGE } from "@/consts";
 
 type Props = {
 	total: number;
@@ -31,6 +32,10 @@ export function Pagination({ total, itemsPerPage, currentPage, path }: Props) {
 		}
 		return pages;
 	};
+
+	if (totalPages <= PRODUCTS_PER_PAGE) {
+		return null;
+	}
 
 	return (
 		<ul

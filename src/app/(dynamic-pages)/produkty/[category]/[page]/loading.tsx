@@ -22,7 +22,7 @@ export default function Loading() {
 			<ul
 				data-testid="products-list"
 				aria-label="products list"
-				className={`grid grid-cols-1 gap-8 py-8 sm:grid-cols-2 lg:grid-cols-3`}
+				className={`grid grid-cols-1 gap-8 py-8 sm:grid-cols-2 lg:grid-cols-${PRODUCTS_PER_PAGE}`}
 			>
 				{Array.from({ length: PRODUCTS_PER_PAGE }, (_, i) => (
 					<li

@@ -42,7 +42,7 @@ export function Navbar() {
 					<div className="col-start-3 grid place-content-center">
 						<Logo size={100} />
 					</div>
-					<div className="col-span-2 col-start-4 grid grid-flow-col place-items-center gap-6 justify-self-end md:gap-8">
+					<div className="col-span-2 col-start-4 grid grid-flow-col place-items-center gap-6 justify-self-end pr-2 md:gap-8">
 						<div className="hidden lg:block">
 							<Searchbar />
 						</div>
