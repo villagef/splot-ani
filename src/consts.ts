@@ -23,6 +23,20 @@ export enum Cookies {
 	CartId = "splotani_cartId",
 }
 
+export const CookieConfig =
+	process.env.NODE_ENV === "development"
+		? {}
+		: ({
+				maxAge: 60 * 60 * 24 * 30,
+				expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+				path: "/",
+				domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
+				httpOnly: true,
+				secure: true,
+				sameSite: "lax",
+				priority: "low",
+			} as const);
+
 export const PRODUCTS_PER_PAGE = 4 as const;
 
 export const navbarLinks = [

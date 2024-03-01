@@ -3,7 +3,7 @@ import { Typography } from "@/ui/atoms/Typography";
 import { Wrapper } from "@/ui/components/Product/Wrapper";
 import { ButtonIncreaseDecrease } from "@/ui/components/ButtonIncreaseDecrease.tsx";
 import { addProductToCart, getOrCreateCart } from "@/api/cart";
-import { Cookies } from "@/consts";
+import { CookieConfig, Cookies } from "@/consts";
 import { ButtonAddToCart } from "@/ui/components/ButtonAddToCart";
 
 type Props = {
@@ -16,7 +16,7 @@ export function ActionButtons({ productId, quantity = 0 }: Props) {
 		"use server";
 
 		const cart = await getOrCreateCart();
-		cookies().set(Cookies.CartId, cart.id, {});
+		cookies().set(Cookies.CartId, cart.id, CookieConfig);
 		await addProductToCart(cart.id, productId, 1);
 	}
 

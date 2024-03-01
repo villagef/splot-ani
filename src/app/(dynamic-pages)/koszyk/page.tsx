@@ -45,7 +45,7 @@ export default async function Cart() {
 							);
 						}
 						return (
-							<BoxShadow key={index} className="flex flex-col gap-4 sm:flex-row">
+							<BoxShadow key={index} className="flex h-fit flex-col gap-4 sm:flex-row">
 								<div className="relative h-80 w-full overflow-hidden rounded-lg sm:hidden ">
 									<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
 										<Image
