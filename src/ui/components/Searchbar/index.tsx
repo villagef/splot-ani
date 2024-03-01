@@ -30,6 +30,7 @@ export function Searchbar() {
 			/>
 			<input
 				type="text"
+				role="searchbox"
 				id="search-navbar"
 				className="block w-full rounded-3xl border  bg-gray-50 p-2 pl-10 text-sm text-gray-900 focus:ring-0"
 				placeholder="Szukaj..."

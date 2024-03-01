@@ -1,18 +1,20 @@
-import { type ProductCommonFragment } from "@/gql/graphql";
+import type { ProductDetailsFragment } from "@/gql/graphql";
+import { tagsHandler } from "@/utils/tagsHandler";
 
 type Props = {
-	// product: Pick<ProductCommonFragment, "tag">;
-	product: ProductCommonFragment;
+	product: Pick<ProductDetailsFragment, "price" | "previousPrice" | "createdAt">;
 };
 
-// export function ProductCardTag({ product: { tag } }: Props) {
-export function ProductCardTag({}: Props) {
-	const tag = null;
+export function ProductCardTag({ product }: Props) {
+	const tag = tagsHandler(product);
+
 	return (
-		tag && (
-			<div className="absolute right-0 top-0 z-10 rounded-bl-md rounded-tr-md bg-primary bg-opacity-60 px-2 py-1 text-sm lowercase text-primary-textLight">
-				{tag}
-			</div>
-		)
+		<div className="absolute right-0 top-0 z-10 flex gap-2">
+			{tag && (
+				<div className="rounded-bl-md rounded-tr-md bg-primary/70 px-2 py-1 text-sm uppercase text-primary-textLight">
+					{tag}
+				</div>
+			)}
+		</div>
 	);
 }

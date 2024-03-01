@@ -15,7 +15,9 @@ export function MenuMobile({ open, onClose }: Props) {
 	return (
 		<Drawer open={open} onClose={onClose}>
 			<div className="flex flex-col items-center gap-4">
-				<Searchbar />
+				<div className="block lg:hidden">
+					<Searchbar />
+				</div>
 				{mobileNavbarLinksGroupOne.map((link) => (
 					<LinkActive key={link.href} href={link.href}>
 						{link.name}

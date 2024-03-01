@@ -1,26 +1,24 @@
-"use client";
-
-import { useState } from "react";
-import { toast } from "sonner";
-import { Icons } from "@/ui/Icons";
-import { Button } from "@/ui/atoms/Button";
-import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
+import { cookies } from "next/headers";
 import { Typography } from "@/ui/atoms/Typography";
 import { Wrapper } from "@/ui/components/Product/Wrapper";
+import { ButtonIncreaseDecrease } from "@/ui/components/ButtonIncreaseDecrease.tsx";
+import { addProductToCart, getOrCreateCart } from "@/api/cart";
+import { CookieConfig, Cookies } from "@/consts";
+import { ButtonAddToCart } from "@/ui/components/ButtonAddToCart";
 
 type Props = {
+	productId: string;
 	quantity: number | null | undefined;
 };
 
-export function ActionButtons({ quantity = 0 }: Props) {
-	const [count, setCount] = useState<number>(1);
-	const handleIncrement = () => setCount((prev) => prev + 1);
-	const handleDecrement = () => setCount((prev) => prev - 1);
-	const handleAddToCart = () => {
-		console.log("Add to cart");
-		setCount(1);
-		toast.success("Dodano do koszyka");
-	};
+export function ActionButtons({ productId, quantity = 0 }: Props) {
+	async function addToCartAction(_formData: FormData) {
+		"use server";
+
+		const cart = await getOrCreateCart();
+		cookies().set(Cookies.CartId, cart.id, CookieConfig);
+		await addProductToCart(cart.id, productId, 1);
+	}
 
 	return (
 		<Wrapper>
@@ -30,29 +28,12 @@ export function ActionButtons({ quantity = 0 }: Props) {
 				</Typography>
 			) : (
 				<>
-					<div className="flex w-max items-center gap-2 rounded-md bg-secondary/5 px-1 md:gap-4">
-						<ButtonIcon variant="text" disabled={count <= 1} onClick={handleDecrement}>
-							<Icons.minus />
-						</ButtonIcon>
-						<Typography variant="h4" className="w-2">
-							{count}
-						</Typography>
-						<ButtonIcon
-							variant="text"
-							onClick={handleIncrement}
-							disabled={quantity ? count >= quantity : true}
-						>
-							<Icons.plus />
-						</ButtonIcon>
-					</div>
-					<Button
-						variant="primary"
-						color="primary"
-						className="w-full shadow-md shadow-primary"
-						onClick={handleAddToCart}
-					>
-						Dodaj do koszyka
-					</Button>
+					<form>
+						<ButtonIncreaseDecrease id={productId} quantity={1} maxQuantity={quantity} />
+					</form>
+					<form action={addToCartAction}>
+						<ButtonAddToCart />
+					</form>
 				</>
 			)}
 		</Wrapper>

@@ -24,13 +24,13 @@ export function ImageSection({ product, imgIdx }: Props) {
 					Powrót do poprzedniej strony
 				</Typography>
 			</Link>
-			<div className="grid w-full max-w-[500px] place-content-start gap-4 place-self-center lg:gap-6">
+			<div className="grid h-full w-full place-content-baseline gap-4 lg:gap-6">
 				<Image
 					src={selectedImage ? selectedImage : "/makrama-1.png"}
 					alt={"Product image"}
-					width={500}
-					height={500}
-					className="max-h-[500px] rounded-lg border-none bg-transparent object-cover object-center shadow-lg"
+					width={700}
+					height={600}
+					className="rounded-lg border-none bg-transparent object-cover object-center shadow-lg lg:max-h-[600px]"
 					quality={50}
 					priority
 				/>

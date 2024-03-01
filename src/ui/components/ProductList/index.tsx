@@ -1,8 +1,8 @@
-import { type ProductCommonFragment } from "@/gql/graphql";
+import type { ProductDetailsFragment } from "@/gql/graphql";
 import { ProductCard } from "@/ui/components/ProductCard";
 
 type Props = {
-	products: ProductCommonFragment[];
+	products: Omit<ProductDetailsFragment, "description">[];
 	columns?: "3" | "4";
 };
 

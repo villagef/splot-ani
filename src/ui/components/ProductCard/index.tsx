@@ -1,11 +1,11 @@
 import Link from "next/link";
-// import { ProductCardTag } from "@/ui/components/ProductCard/ProductCardTag";
+import { ProductCardTag } from "@/ui/components/ProductCard/ProductCardTag";
 import { ProductCardCoverImage } from "@/ui/components/ProductCard/ProductCardCoverImage";
 import { ProductCardItemDescription } from "@/ui/components/ProductCard/ProductCardItemDescription";
-import { type ProductCommonFragment } from "@/gql/graphql";
+import type { ProductDetailsFragment } from "@/gql/graphql";
 
 type Props = {
-	product: ProductCommonFragment;
+	product: Omit<ProductDetailsFragment, "description">;
 };
 
 export function ProductCard({ product }: Props) {
@@ -16,7 +16,7 @@ export function ProductCard({ product }: Props) {
 		>
 			<Link href={`/produkt/${product.slug}?imgIdx=0`}>
 				<article className="relative rounded-md hover:shadow-md">
-					{/* <ProductCardTag product={product} /> */}
+					<ProductCardTag product={product} />
 					<ProductCardCoverImage product={product} />
 					<ProductCardItemDescription product={product} />
 				</article>

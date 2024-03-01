@@ -12,12 +12,17 @@ type Props<T extends string> = {
 export function LinkActive<T extends string>({ href, children }: Props<T>) {
 	const pathname = usePathname();
 	const highlight =
-		pathname === href || (href !== "/" && pathname.includes(href as string)) ? true : false;
+		pathname === href ||
+		(href !== "/" && pathname.includes(href as string)) ||
+		(pathname.includes("produkt") && href.includes("produkt"))
+			? true
+			: false;
 
 	return (
 		<Link
 			href={href}
 			className={`tracking-widest hover:text-primary ${highlight && "font-bold text-primary"}`}
+			aria-current={highlight ? true : undefined}
 		>
 			{children}
 		</Link>

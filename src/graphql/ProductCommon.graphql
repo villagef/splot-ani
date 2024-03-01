@@ -1,10 +1,10 @@
 fragment ProductCommon on Product {
+	id
 	slug
 	name
 	price
-	images(first: 1) {
-		url
-	}
+	previousPrice
+	createdAt
 	categories(first: 1) {
 		name
 	}

@@ -1,9 +1,12 @@
-query Product($slug: String!) {
+query ProductGetBySlug($slug: String!) {
 	products(where: { slug: $slug }) {
 		...ProductCommon
 		lowestPrice
 		previousPrice
 		quantity
 		description
+		images {
+			url
+		}
 	}
 }

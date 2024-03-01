@@ -1,6 +1,9 @@
 query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {
 	categories(where: { slug: $slug }) {
 		products(first: $first, skip: $skip) {
+			images(first: 1) {
+				url
+			}
 			...ProductCommon
 		}
 	}

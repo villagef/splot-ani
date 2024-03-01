@@ -2,7 +2,7 @@ import type { QueryParams } from "@/api/types";
 import {
 	ProductsGetMostPopularDocument,
 	ProductsGetTopDocument,
-	ProductDocument,
+	ProductGetBySlugDocument,
 	ProductsGetByCategorySlugDocument,
 	ProductsGetAllDocument,
 	ProductsGetBySearchQueryDocument,
@@ -34,7 +34,7 @@ export const getAllProducts = async ({ skip = 0 }: QueryParams) => {
 };
 
 export const getProduct = async ({ slug }: QueryParams) => {
-	const graphqlResponse = await executeGraphQL(ProductDocument, { slug });
+	const graphqlResponse = await executeGraphQL(ProductGetBySlugDocument, { slug });
 	return graphqlResponse?.products[0];
 };
 

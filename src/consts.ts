@@ -19,7 +19,20 @@ export enum ProductCategory {
 	Baskets = "koszyki",
 }
 
-export const PRODUCTS_PER_PAGE = 3 as const;
+export enum Cookies {
+	CartId = "splotani_cartId",
+}
+
+export const CookieConfig = {
+	maxAge: 60 * 60 * 24 * 30,
+	expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+	httpOnly: true,
+	secure: process.env.NODE_ENV === "production",
+	sameSite: "lax",
+	priority: "low",
+} as const;
+
+export const PRODUCTS_PER_PAGE = 4 as const;
 
 export const navbarLinks = [
 	{ name: "Strona Główna", href: Links.Home },
