@@ -20,16 +20,16 @@ export async function generateMetadata({
 		title: product.name,
 		description: product.description,
 		applicationName: "Splotani",
-		openGraph: {
-			title: product.name,
-			description: product.description,
-			siteName: "Splotani",
-			images: [
-				{
-					url: product.images[0]?.url || "",
-				},
-			],
-		},
+		// openGraph: {
+		// 	title: product.name,
+		// 	description: product.description,
+		// 	siteName: "Splotani",
+		// 	images: [
+		// 		{
+		// 			url: product.images[0]?.url || "",
+		// 		},
+		// 	],
+		// },
 	};
 }
 
