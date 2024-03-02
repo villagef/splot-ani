@@ -6,7 +6,7 @@ type Props = {
 export function BoxShadow({ children, className }: Props) {
 	return (
 		<div
-			className={`rounded-xl bg-primary-foreground p-4 tracking-wide shadow-md md:p-8 ${className}`}
+			className={`rounded-xl bg-primary-foreground p-3 tracking-wide shadow-md md:p-6 ${className}`}
 		>
 			{children}
 		</div>

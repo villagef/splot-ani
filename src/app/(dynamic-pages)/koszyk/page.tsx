@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
 import { cookies } from "next/headers";
@@ -45,24 +44,10 @@ export default async function Cart() {
 							);
 						}
 						return (
-							<BoxShadow key={index} className="flex h-fit flex-col gap-4 sm:flex-row">
-								<div className="relative h-80 w-full overflow-hidden rounded-lg sm:hidden ">
-									<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
-										<Image
-											src={product.images[0]?.url || ""}
-											alt={"Product image"}
-											fill
-											className="rounded-lg border-none bg-transparent object-cover object-center shadow-lg"
-											quality={30}
-											priority
-										/>
-									</Link>
-								</div>
-								<div className="hidden sm:block">
-									<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
-										<SmallImage idx={index} image={product.images[0]?.url || ""} selected={false} />
-									</Link>
-								</div>
+							<BoxShadow key={index} className="flex h-fit flex-row gap-4">
+								<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
+									<SmallImage idx={index} image={product.images[0]?.url || ""} selected={false} />
+								</Link>
 								<div className="flex w-full justify-between">
 									<div className="flex flex-col justify-between gap-4">
 										<div>

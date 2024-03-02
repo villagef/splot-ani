@@ -28,7 +28,7 @@ export function ActionButtons({ productId, quantity = 0 }: Props) {
 				</Typography>
 			) : (
 				<>
-					<form>
+					<form className="flex">
 						<ButtonIncreaseDecrease id={productId} quantity={1} maxQuantity={quantity} />
 					</form>
 					<form action={addToCartAction}>
