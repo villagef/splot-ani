@@ -12,7 +12,10 @@ const fonts = Montserrat({
 
 export const metadata: Metadata = {
 	title: "Splotani",
-	description: "Splotani - sklep z rękodziełem",
+	description: "Splotani - sklep z rękodziełem z makramy",
+	applicationName: "Splotani",
+	// TODO - change to real URL
+	metadataBase: new URL("https://splot-ani.vercel.app/"),
 };
 
 export default function RootLayout({

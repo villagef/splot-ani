@@ -16,20 +16,21 @@ export async function generateMetadata({
 
 	if (!product) throw notFound();
 
-	const siteUrl = `https://splotani.pl/produkt/${product.slug}?imgIdx=0`;
+	// const siteUrl = `https://splotani.pl/produkt/${product.slug}?imgIdx=0`;
 
 	return {
 		title: product.name,
 		description: product.description,
 		applicationName: "Splotani",
-		openGraph: {
-			title: product.name,
-			description: product.description,
-			url: siteUrl,
-		},
-		alternates: {
-			canonical: siteUrl,
-		},
+		metadataBase: new URL(`https://splot-ani.vercel.app/produkt/${product.slug}?imgIdx=0`),
+		// openGraph: {
+		// 	title: product.name,
+		// 	description: product.description,
+		// 	url: siteUrl,
+		// },
+		// alternates: {
+		// 	canonical: siteUrl,
+		// },
 	};
 }
 
