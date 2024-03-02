@@ -24,6 +24,7 @@ export function ButtonIncreaseDecrease({ id, quantity, maxQuantity = 0 }: Props)
 				disabled={status.pending || optimisticQuantity <= 1}
 				type="submit"
 				className={`${status.pending && "disabled:cursor-wait"}`}
+				data-testid="decrement"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity - 1);
 					await changeProductQuantity(optimisticQuantity - 1, id);
@@ -31,7 +32,7 @@ export function ButtonIncreaseDecrease({ id, quantity, maxQuantity = 0 }: Props)
 			>
 				<Icons.minus />
 			</ButtonIcon>
-			<Typography variant="h4" className="w-2">
+			<Typography variant="h6" className="w-2">
 				{optimisticQuantity}
 			</Typography>
 			<ButtonIcon
@@ -39,6 +40,7 @@ export function ButtonIncreaseDecrease({ id, quantity, maxQuantity = 0 }: Props)
 				disabled={status.pending || (maxQuantity ? optimisticQuantity >= maxQuantity : true)}
 				type="submit"
 				className={`${status.pending && "disabled:cursor-wait"}`}
+				data-testid="increment"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity + 1);
 					await changeProductQuantity(optimisticQuantity + 1, id);

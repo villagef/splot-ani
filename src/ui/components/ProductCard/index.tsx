@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { type Route } from "next";
 import { ProductCardTag } from "@/ui/components/ProductCard/ProductCardTag";
 import { ProductCardCoverImage } from "@/ui/components/ProductCard/ProductCardCoverImage";
 import { ProductCardItemDescription } from "@/ui/components/ProductCard/ProductCardItemDescription";
@@ -11,10 +12,10 @@ type Props = {
 export function ProductCard({ product }: Props) {
 	return (
 		<li
-			className="rounded-md bg-primary-foreground shadow-md hover:shadow-lg"
+			className="rounded-md bg-primary-foreground shadow-md transition-transform ease-linear hover:shadow-lg"
 			aria-label="product card"
 		>
-			<Link href={`/produkt/${product.slug}?imgIdx=0`}>
+			<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
 				<article className="relative rounded-md hover:shadow-md">
 					<ProductCardTag product={product} />
 					<ProductCardCoverImage product={product} />

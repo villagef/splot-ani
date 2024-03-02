@@ -49,14 +49,17 @@ export default async function Cart() {
 									<SmallImage idx={index} image={product.images[0]?.url || ""} selected={false} />
 								</Link>
 								<div className="flex w-full justify-between">
-									<div className="flex flex-col justify-between gap-4">
+									<div className="flex flex-col justify-between gap-2 sm:gap-4">
 										<div>
 											<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
-												<Typography variant="h6" className="text-pretty hover:text-primary">
+												<Typography
+													variant="h6"
+													className="text-pretty text-xs hover:text-primary sm:text-base"
+												>
 													{product.name}
 												</Typography>
 											</Link>
-											<Typography variant="subtitle2" className="text-pretty">
+											<Typography variant="subtitle2" className="text-pretty text-xs sm:text-base">
 												{priceHandler(product.price)}
 											</Typography>
 										</div>
