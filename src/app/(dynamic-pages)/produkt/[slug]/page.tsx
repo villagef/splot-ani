@@ -22,7 +22,7 @@ export async function generateMetadata({
 		title: product.name,
 		description: product.description,
 		applicationName: "Splotani",
-		metadataBase: new URL(`https://splot-ani.vercel.app/produkt/${product.slug}?imgIdx=0`),
+		metadataBase: new URL(`https://splot-ani.vercel.app/`),
 		// openGraph: {
 		// 	title: product.name,
 		// 	description: product.description,

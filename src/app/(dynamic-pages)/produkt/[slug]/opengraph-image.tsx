@@ -9,29 +9,64 @@ type Props = {
 
 export const runtime = "edge";
 export const alt = "splotani.pl";
-export const contentType = "image/jpg";
 export const size = {
-	width: 800,
-	height: 400,
+	width: 1200,
+	height: 630,
 };
+
+export const contentType = "image/png";
 
 export default async function Image({ params }: Props) {
 	const product = await getProduct({ slug: params.slug });
 	return new ImageResponse(
 		(
-			<div tw="flex flex-row w-full h-full bg-[#fffafa] text-[#222e59]">
-				<div tw="flex w-1/2 overflow-hidden">
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "row",
+					width: "100%",
+					height: "100%",
+					backgroundColor: "#fffafa",
+					color: "#222e59",
+				}}
+			>
+				<div style={{ display: "flex", width: "50%", overflow: "hidden", position: "relative" }}>
 					<img
 						src={product?.images[0]?.url || ""}
 						alt={`Zdjęcie produktu - ${product?.name}`}
-						tw="h-full w-full object-cover object-center"
+						style={{ height: "100%", width: "100%", objectFit: "cover", objectPosition: "center" }}
 					/>
-					<div tw="flex absolute bg-black/15 w-full h-full"></div>
+					<div
+						style={{
+							position: "absolute",
+							backgroundColor: "rgba(0,0,0,0.15)",
+							width: "100%",
+							height: "100%",
+						}}
+					></div>
 				</div>
-				<div tw="flex flex-col h-full w-1/2 items-center justify-center text-center">
-					<p tw="uppercase">splotani.pl</p>
-					<h1 tw="text-[#a36871]">{product?.name || ""}</h1>
-					<div tw="rounded-3xl bg-[#222e59]/90 text-white font-bold py-3 px-5">
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						height: "100%",
+						width: "50%",
+						alignItems: "center",
+						justifyContent: "center",
+						textAlign: "center",
+					}}
+				>
+					<p style={{ textTransform: "uppercase" }}>splotani.pl</p>
+					<h1 style={{ color: "#a36871" }}>{product?.name || ""}</h1>
+					<div
+						style={{
+							borderRadius: "1.5rem",
+							backgroundColor: "rgba(34,46,89,0.9)",
+							color: "white",
+							fontWeight: "bold",
+							padding: "0.75rem 1.25rem",
+						}}
+					>
 						Kliknij po więcej
 					</div>
 				</div>
