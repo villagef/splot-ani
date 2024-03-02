@@ -16,20 +16,20 @@ export async function generateMetadata({
 
 	if (!product) throw notFound();
 
+	const siteUrl = `https://splotani.pl/produkt/${product.slug}?imgIdx=0`;
+
 	return {
 		title: product.name,
 		description: product.description,
 		applicationName: "Splotani",
-		// openGraph: {
-		// 	title: product.name,
-		// 	description: product.description,
-		// 	siteName: "Splotani",
-		// 	images: [
-		// 		{
-		// 			url: product.images[0]?.url || "",
-		// 		},
-		// 	],
-		// },
+		openGraph: {
+			title: product.name,
+			description: product.description,
+			url: siteUrl,
+		},
+		alternates: {
+			canonical: siteUrl,
+		},
 	};
 }
 
