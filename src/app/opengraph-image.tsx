@@ -26,7 +26,7 @@ export default async function Image() {
 					justifyContent: "center",
 					flexDirection: "column",
 					flexWrap: "nowrap",
-					backgroundColor: "white",
+					backgroundColor: "#fffafa",
 					backgroundImage:
 						"radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%)",
 					backgroundSize: "100px 100px",
@@ -39,7 +39,7 @@ export default async function Image() {
 						justifyContent: "center",
 					}}
 				>
-					<svg width="140" viewBox="0 0 1914 1914" fill="#000">
+					<svg width="200" viewBox="0 0 1914 1914" fill="#000">
 						<path
 							fill="#1b254a"
 							stroke="#1b254a"
