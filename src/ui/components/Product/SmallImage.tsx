@@ -25,7 +25,7 @@ export function SmallImage({ idx, image, selected }: Props) {
 				alt={"Small product image"}
 				fill
 				className={`border-1 rounded-lg border-primary ${selected && "opacity-60"} object-cover object-center transition-transform duration-300 ease-in-out hover:scale-105`}
-				quality={30}
+				quality={10}
 			/>
 		</div>
 	);

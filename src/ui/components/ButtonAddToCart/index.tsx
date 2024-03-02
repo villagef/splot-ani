@@ -11,7 +11,7 @@ export function ButtonAddToCart() {
 			variant="primary"
 			color="primary"
 			disabled={status.pending}
-			className="h-full shadow-md shadow-primary disabled:cursor-wait"
+			className="h-full shadow-sm shadow-primary disabled:cursor-wait"
 		>
 			Dodaj do koszyka
 		</Button>

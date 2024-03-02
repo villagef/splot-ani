@@ -12,7 +12,7 @@ export async function TopProductsList(): Promise<JSX.Element | null> {
 
 	return (
 		<Container data-testid="related-products">
-			<Typography variant="h2" className="text-center">
+			<Typography variant="h2" className="pt-2 text-center md:pt-0">
 				Topowe produkty
 			</Typography>
 			<ProductList products={products} />
