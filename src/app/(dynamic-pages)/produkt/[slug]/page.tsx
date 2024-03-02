@@ -14,23 +14,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
 	const product = await getProduct({ slug: params.slug });
 
-	if (!product) throw notFound();
-
-	// const siteUrl = `https://splotani.pl/produkt/${product.slug}?imgIdx=0`;
+	if (!product) throw new Error("Product not found");
 
 	return {
 		title: product.name,
 		description: product.description,
 		applicationName: "Splotani",
-		metadataBase: new URL(`https://splot-ani.vercel.app/`),
-		// openGraph: {
-		// 	title: product.name,
-		// 	description: product.description,
-		// 	url: siteUrl,
-		// },
-		// alternates: {
-		// 	canonical: siteUrl,
-		// },
 	};
 }
 

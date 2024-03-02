@@ -7,14 +7,14 @@ type Props = {
 	};
 };
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const alt = "splotani.pl";
 export const size = {
 	width: 1200,
 	height: 630,
 };
 
-export const contentType = "image/png";
+export const contentType = "image/jpg";
 
 export default async function Image({ params }: Props) {
 	const product = await getProduct({ slug: params.slug });
@@ -31,7 +31,7 @@ export default async function Image({ params }: Props) {
 				}}
 			>
 				<div style={{ display: "flex", width: "50%", overflow: "hidden", position: "relative" }}>
-					<img
+					<img /* eslint-disable-line */
 						src={product?.images[0]?.url || ""}
 						alt={`Zdjęcie produktu - ${product?.name}`}
 						style={{ height: "100%", width: "100%", objectFit: "cover", objectPosition: "center" }}
