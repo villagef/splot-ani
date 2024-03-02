@@ -7,35 +7,34 @@ type Props = {
 	};
 };
 
-// Route segment config
 export const runtime = "edge";
-
-// Image metadata
 export const alt = "splotani.pl";
+export const contentType = "image/jpg";
 export const size = {
-	width: 1200,
-	height: 630,
+	width: 800,
+	height: 400,
 };
 
-export const contentType = "image/jpg";
-
-// Image generation
 export default async function Image({ params }: Props) {
 	const product = await getProduct({ slug: params.slug });
 	return new ImageResponse(
 		(
-			<div
-				style={{
-					fontSize: 48,
-					background: "white",
-					width: "100%",
-					height: "100%",
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-				}}
-			>
-				{product?.images[0]?.url || "splotani.pl"}
+			<div tw="flex flex-row w-full h-full bg-[#fffafa] text-[#222e59]">
+				<div tw="flex w-1/2 overflow-hidden">
+					<img
+						src={product?.images[0]?.url || ""}
+						alt={`Zdjęcie produktu - ${product?.name}`}
+						tw="h-full w-full object-cover object-center"
+					/>
+					<div tw="flex absolute bg-black/15 w-full h-full"></div>
+				</div>
+				<div tw="flex flex-col h-full w-1/2 items-center justify-center text-center">
+					<p tw="uppercase">splotani.pl</p>
+					<h1 tw="text-[#a36871]">{product?.name || ""}</h1>
+					<div tw="rounded-3xl bg-[#222e59]/90 text-white font-bold py-3 px-5">
+						Kliknij po więcej
+					</div>
+				</div>
 			</div>
 		),
 		{
