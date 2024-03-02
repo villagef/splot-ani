@@ -7,7 +7,7 @@ type Props = {
 	};
 };
 
-export const runtime = "nodejes";
+export const runtime = "nodejs";
 export const alt = "splotani.pl";
 export const size = {
 	width: 1200,
