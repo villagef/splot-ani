@@ -8,15 +8,15 @@ import {
 	ProductGetByIdDocument,
 } from "@/gql/graphql";
 
-export const getCartById = (cartId: string) => {
+export const getCartById = async (cartId: string) => {
 	return executeGraphQL(CartGetByIdDocument, { id: cartId });
 };
 
-export const createCart = () => {
+export const createCart = async () => {
 	return executeGraphQL(CartCreateDocument, {});
 };
 
-export const addProductToCart = async (cartId: string, productId: string, total: number) => {
+export const addProductToCart = async (cartId: string, productId: string, quantity: number) => {
 	const { product } = await executeGraphQL(ProductGetByIdDocument, {
 		id: productId,
 	});
@@ -27,7 +27,7 @@ export const addProductToCart = async (cartId: string, productId: string, total:
 	await executeGraphQL(CartAddProductDocument, {
 		cartId,
 		productId,
-		total,
+		quantity,
 	});
 };
 

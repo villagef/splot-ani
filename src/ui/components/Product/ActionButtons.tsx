@@ -1,22 +1,33 @@
 import { cookies } from "next/headers";
 import { Typography } from "@/ui/atoms/Typography";
 import { Wrapper } from "@/ui/components/Product/Wrapper";
-import { addProductToCart, getOrCreateCart } from "@/api/cart";
+import { addProductToCart, getCartById, getOrCreateCart } from "@/api/cart";
 import { CookieConfig, Cookies } from "@/consts";
 import { ButtonAddToCart } from "@/ui/components/ButtonAddToCart";
+import { changeProductQuantity } from "@/app/(dynamic-pages)/koszyk/actions";
 
 type Props = {
 	productId: string;
-	quantity: number | null | undefined;
+	quantity: number;
 };
 
 export function ActionButtons({ productId, quantity = 0 }: Props) {
 	async function addToCartAction(_formData: FormData) {
 		"use server";
 
-		const cart = await getOrCreateCart();
-		cookies().set(Cookies.CartId, cart.id, CookieConfig);
-		await addProductToCart(cart.id, productId, 1);
+		const { id: cartId } = await getOrCreateCart();
+		cookies().set(Cookies.CartId, cartId, CookieConfig);
+
+		const { order: cart } = await getCartById(cartId);
+
+		if (cart) {
+			const { orderItems } = cart;
+			const orderItem = orderItems.find((item) => item.product?.id === productId) || null;
+
+			orderItem
+				? await changeProductQuantity(cartId, orderItem.id, orderItem.quantity + 1)
+				: await addProductToCart(cartId, productId, 1);
+		}
 	}
 
 	return (

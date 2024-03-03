@@ -61,7 +61,7 @@ export function ContentSection({ product }: Props) {
 						Dostępność: <span className="font-bold text-primary">{quantity} szt.</span>
 					</Typography>
 				</Wrapper>
-				<ActionButtons productId={id} quantity={quantity} />
+				<ActionButtons productId={id} quantity={quantity || 0} />
 			</div>
 		</div>
 	);
