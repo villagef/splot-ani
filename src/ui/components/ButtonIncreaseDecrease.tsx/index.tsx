@@ -8,12 +8,13 @@ import { Typography } from "@/ui/atoms/Typography";
 import { changeProductQuantity } from "@/app/(dynamic-pages)/koszyk/actions";
 
 type Props = {
-	id: string;
+	cartId: string;
+	productId: string;
 	quantity: number;
 	maxQuantity: number | null | undefined;
 };
 
-export function ButtonIncreaseDecrease({ id, quantity, maxQuantity = 0 }: Props) {
+export function ButtonIncreaseDecrease({ cartId, productId, quantity, maxQuantity = 0 }: Props) {
 	const [optimisticQuantity, setOptimisticQuantity] = useState(quantity);
 	const status = useFormStatus();
 
@@ -27,7 +28,7 @@ export function ButtonIncreaseDecrease({ id, quantity, maxQuantity = 0 }: Props)
 				data-testid="decrement"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity - 1);
-					await changeProductQuantity(optimisticQuantity - 1, id);
+					await changeProductQuantity(cartId, productId, optimisticQuantity - 1);
 				}}
 			>
 				<Icons.minus />
@@ -43,7 +44,7 @@ export function ButtonIncreaseDecrease({ id, quantity, maxQuantity = 0 }: Props)
 				data-testid="increment"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity + 1);
-					await changeProductQuantity(optimisticQuantity + 1, id);
+					await changeProductQuantity(cartId, productId, optimisticQuantity + 1);
 				}}
 			>
 				<Icons.plus />

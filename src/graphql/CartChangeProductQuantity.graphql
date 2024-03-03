@@ -1,5 +1,16 @@
-mutation CartChangeProductQuantity($quantity: Int!, $orderItemId: ID!) {
-	updateOrderItem(data: { quantity: $quantity }, where: { id: $orderItemId }) {
+mutation CartChangeProductQuantity($cartId: ID!, $productId: ID!, $quantity: Int!) {
+	upsertOrderItem(
+		where: { id: $productId }
+		upsert: {
+			create: {
+				quantity: $quantity
+				total: $quantity
+				order: { connect: { id: $cartId } }
+				product: { connect: { id: $productId } }
+			}
+			update: { quantity: $quantity, total: $quantity }
+		}
+	) {
 		quantity
 	}
 }

@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 import { Typography } from "@/ui/atoms/Typography";
 import { Wrapper } from "@/ui/components/Product/Wrapper";
-import { ButtonIncreaseDecrease } from "@/ui/components/ButtonIncreaseDecrease.tsx";
 import { addProductToCart, getOrCreateCart } from "@/api/cart";
 import { CookieConfig, Cookies } from "@/consts";
 import { ButtonAddToCart } from "@/ui/components/ButtonAddToCart";
@@ -27,14 +26,9 @@ export function ActionButtons({ productId, quantity = 0 }: Props) {
 					Produkt wyprzedany!
 				</Typography>
 			) : (
-				<>
-					<form className="flex">
-						<ButtonIncreaseDecrease id={productId} quantity={1} maxQuantity={quantity} />
-					</form>
-					<form action={addToCartAction}>
-						<ButtonAddToCart />
-					</form>
-				</>
+				<form action={addToCartAction}>
+					<ButtonAddToCart />
+				</form>
 			)}
 		</Wrapper>
 	);

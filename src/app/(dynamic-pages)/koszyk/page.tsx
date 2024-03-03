@@ -65,7 +65,8 @@ export default async function Cart() {
 										</div>
 										<form>
 											<ButtonIncreaseDecrease
-												id={id}
+												cartId={cartId}
+												productId={id}
 												quantity={quantity || 0}
 												maxQuantity={product.quantity}
 											/>
