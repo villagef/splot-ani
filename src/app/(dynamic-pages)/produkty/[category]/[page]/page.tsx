@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getAllProducts, getProductsByCategorySlug } from "@/api/products";
-import { PRODUCTS_PER_PAGE, ProductCategory } from "@/consts";
+import { Links, PRODUCTS_PER_PAGE, ProductCategory } from "@/consts";
 import { FiltersCategories } from "@/ui/components/FiltersCategories";
 import { Pagination } from "@/ui/components/Pagination.tsx";
 import { ProductList } from "@/ui/components/ProductList";
@@ -21,7 +21,7 @@ export default async function ProductsPaginated({ params }: Props) {
 	const _category = categoryHandler(params.category);
 	const _pageNumber = params.page ? parseInt(params.page) : 1;
 	const _skip = (_pageNumber - 1) * PRODUCTS_PER_PAGE;
-	const _path = `/produkty/${_category}/`;
+	const _path = `${Links.Products}/${_category}/`;
 
 	const data =
 		_category == ProductCategory.All

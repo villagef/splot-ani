@@ -6,6 +6,7 @@ import type { QueryParams } from "@/api/types";
 export const executeGraphQL = async <TResult, TVariables>(
 	query: TypedDocumentNode<TResult, TVariables>,
 	variables: QueryParams,
+	revalidate?: NextFetchRequestConfig["revalidate"],
 ): Promise<TResult> => {
 	try {
 		if (!process.env.HYGRAPH_ENDPOINT) {
@@ -15,13 +16,17 @@ export const executeGraphQL = async <TResult, TVariables>(
 		const hygraph = new GraphQLClient(process.env.HYGRAPH_ENDPOINT, {
 			headers: {
 				"Content-Type": "application/json",
-				authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`,
+				authorization: `Bearer ${process.env.HYGRAPH_QUERY_TOKEN}`,
+			},
+			next: {
+				revalidate: revalidate,
 			},
 		});
 		const data = await hygraph.request(query, variables);
 
 		return data;
 	} catch (error) {
+		console.log(error);
 		throw notFound();
 	}
 };

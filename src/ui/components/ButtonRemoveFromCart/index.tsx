@@ -1,10 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import { removeProductFromCart } from "@/app/(dynamic-pages)/koszyk/actions";
 import { Icons } from "@/ui/Icons";
 import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
-import { useRouter } from "next/navigation";
-import { useTransition } from "react";
 
 type Props = {
 	productId: string;

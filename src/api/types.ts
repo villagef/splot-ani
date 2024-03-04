@@ -14,4 +14,5 @@ export type QueryParams = {
 	cartId?: string;
 	quantity?: number;
 	orderItemId?: string;
+	itemId?: string;
 };

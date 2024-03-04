@@ -4,6 +4,7 @@ import { ProductCardTag } from "@/ui/components/ProductCard/ProductCardTag";
 import { ProductCardCoverImage } from "@/ui/components/ProductCard/ProductCardCoverImage";
 import { ProductCardItemDescription } from "@/ui/components/ProductCard/ProductCardItemDescription";
 import type { ProductDetailsFragment } from "@/gql/graphql";
+import { Links } from "@/consts";
 
 type Props = {
 	product: Omit<ProductDetailsFragment, "description">;
@@ -15,7 +16,7 @@ export function ProductCard({ product }: Props) {
 			className="rounded-md bg-primary-foreground shadow-md transition-transform ease-linear hover:shadow-lg"
 			aria-label="product card"
 		>
-			<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
+			<Link href={`${Links.Product}/${product.slug}?imgIdx=0` as Route}>
 				<article className="relative rounded-md hover:shadow-md">
 					<ProductCardTag product={product} />
 					<ProductCardCoverImage product={product} />

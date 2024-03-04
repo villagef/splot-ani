@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useFormStatus } from "react-dom";
+import { useOptimistic } from "react";
 import { Icons } from "@/ui/Icons";
 import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
 import { Typography } from "@/ui/atoms/Typography";
@@ -15,19 +14,22 @@ type Props = {
 };
 
 export function ButtonIncreaseDecrease({ cartId, productId, quantity, maxQuantity = 0 }: Props) {
-	const [optimisticQuantity, setOptimisticQuantity] = useState(quantity);
-	const status = useFormStatus();
+	const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
+		quantity,
+		(_state, action: "INC" | "DEC") => {
+			return action === "INC" ? _state + 1 : _state - 1;
+		},
+	);
 
 	return (
-		<div className="flex w-max items-center gap-2 rounded-md bg-secondary/5 px-1 md:gap-4">
+		<form className="flex w-max items-center gap-2 rounded-md bg-secondary/5 px-1 md:gap-4">
 			<ButtonIcon
 				variant="text"
-				disabled={status.pending || optimisticQuantity <= 1}
+				disabled={optimisticQuantity <= 1}
 				type="submit"
-				className={`${status.pending && "disabled:cursor-wait"}`}
 				data-testid="decrement"
 				formAction={async () => {
-					setOptimisticQuantity(optimisticQuantity - 1);
+					setOptimisticQuantity("DEC");
 					await changeProductQuantity(cartId, productId, optimisticQuantity - 1);
 				}}
 			>
@@ -38,17 +40,16 @@ export function ButtonIncreaseDecrease({ cartId, productId, quantity, maxQuantit
 			</Typography>
 			<ButtonIcon
 				variant="text"
-				disabled={status.pending || (maxQuantity ? optimisticQuantity >= maxQuantity : true)}
+				disabled={maxQuantity ? optimisticQuantity >= maxQuantity : true}
 				type="submit"
-				className={`${status.pending && "disabled:cursor-wait"}`}
 				data-testid="increment"
 				formAction={async () => {
-					setOptimisticQuantity(optimisticQuantity + 1);
+					setOptimisticQuantity("INC");
 					await changeProductQuantity(cartId, productId, optimisticQuantity + 1);
 				}}
 			>
 				<Icons.plus />
 			</ButtonIcon>
-		</div>
+		</form>
 	);
 }

@@ -10,7 +10,7 @@ import { ButtonIncreaseDecrease } from "@/ui/components/ButtonIncreaseDecrease.t
 import { SmallImage } from "@/ui/components/Product/SmallImage";
 import { priceHandler } from "@/utils/priceHandler";
 import { getCartById } from "@/api/cart";
-import { Cookies } from "@/consts";
+import { Cookies, Links } from "@/consts";
 import { ButtonRemoveFromCart } from "@/ui/components/ButtonRemoveFromCart";
 
 export default async function Cart() {
@@ -39,14 +39,14 @@ export default async function Cart() {
 						const { id, product, quantity } = item;
 						return (
 							product && (
-								<BoxShadow key={index} className="flex h-fit flex-row gap-4">
-									<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
+								<BoxShadow key={id} className="flex h-fit flex-row gap-4">
+									<Link href={`${Links.Product}/${product.slug}?imgIdx=0` as Route}>
 										<SmallImage idx={index} image={product.images[0]?.url || ""} selected={false} />
 									</Link>
 									<div className="flex w-full justify-between">
 										<div className="flex flex-col justify-between gap-2 sm:gap-4">
 											<div>
-												<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
+												<Link href={`${Links.Product}/${product.slug}?imgIdx=0` as Route}>
 													<Typography
 														variant="h6"
 														className="text-pretty text-xs hover:text-primary sm:text-base"
@@ -61,14 +61,12 @@ export default async function Cart() {
 													{priceHandler(product.price)}
 												</Typography>
 											</div>
-											<form>
-												<ButtonIncreaseDecrease
-													cartId={cartId}
-													productId={id}
-													quantity={quantity || 0}
-													maxQuantity={product.quantity}
-												/>
-											</form>
+											<ButtonIncreaseDecrease
+												cartId={cartId}
+												productId={id}
+												quantity={quantity || 0}
+												maxQuantity={product.quantity}
+											/>
 										</div>
 										<div>
 											<ButtonRemoveFromCart productId={id} />

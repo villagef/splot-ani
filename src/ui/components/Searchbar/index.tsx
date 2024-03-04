@@ -4,6 +4,7 @@ import type { Route } from "next";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
+import { Links } from "@/consts";
 
 export function Searchbar() {
 	const searchParams = useSearchParams();
@@ -13,9 +14,9 @@ export function Searchbar() {
 		const params = new URLSearchParams(searchParams);
 		if (term) {
 			params.set("query", term);
-			push(`/search?${params.toString()}` as Route);
+			push(`${Links.Search}?${params.toString()}` as Route);
 		} else {
-			replace("/produkty" as Route);
+			replace(Links.Products as Route);
 		}
 	}, 500);
 
