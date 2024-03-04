@@ -1,6 +1,8 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { executeGraphQL } from "@/api/graphqlApi";
-import { CartChangeProductQuantityDocument } from "@/gql/graphql";
+import { Links } from "@/consts";
+import { CartChangeProductQuantityDocument, CartRemoveProductDocument } from "@/gql/graphql";
 
 export const changeProductQuantity = async (
 	cartId: string,
@@ -11,5 +13,12 @@ export const changeProductQuantity = async (
 		cartId,
 		productId,
 		quantity,
+	});
+	revalidatePath(Links.Cart);
+};
+
+export const removeProductFromCart = async (productId: string) => {
+	return executeGraphQL(CartRemoveProductDocument, {
+		productId,
 	});
 };

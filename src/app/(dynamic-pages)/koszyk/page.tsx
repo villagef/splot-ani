@@ -2,17 +2,16 @@ import Link from "next/link";
 import type { Route } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { Icons } from "@/ui/Icons";
 import { BoxShadow } from "@/ui/atoms/BoxShadow";
 import { Button } from "@/ui/atoms/Button";
-import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
 import { Separator } from "@/ui/atoms/Separator";
 import { Typography } from "@/ui/atoms/Typography";
 import { ButtonIncreaseDecrease } from "@/ui/components/ButtonIncreaseDecrease.tsx";
 import { SmallImage } from "@/ui/components/Product/SmallImage";
 import { priceHandler } from "@/utils/priceHandler";
 import { getCartById } from "@/api/cart";
-import { Cookies } from "@/consts";
+import { Cookies, Links } from "@/consts";
+import { ButtonRemoveFromCart } from "@/ui/components/ButtonRemoveFromCart";
 
 export default async function Cart() {
 	const cartId = cookies().get(Cookies.CartId)?.value;
@@ -21,8 +20,12 @@ export default async function Cart() {
 	}
 	const { order: cart } = await getCartById(cartId);
 
-	if (!cart) {
-		redirect("/");
+	if (!cart || cart.orderItems.length === 0) {
+		return (
+			<Typography variant="h4" className="text-pretty py-4 text-center text-primary">
+				Brak produktów w koszyku
+			</Typography>
+		);
 	}
 
 	return (
@@ -34,51 +37,43 @@ export default async function Cart() {
 				<div className="grid gap-4 lg:col-span-3">
 					{cart.orderItems?.map((item, index) => {
 						const { id, product, quantity } = item;
-						if (!product) {
-							return (
-								<div key={id}>
-									<Typography variant="h1" className="text-pretty text-center text-primary">
-										Brak produktów w koszyku
-									</Typography>
-								</div>
-							);
-						}
 						return (
-							<BoxShadow key={index} className="flex h-fit flex-row gap-4">
-								<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
-									<SmallImage idx={index} image={product.images[0]?.url || ""} selected={false} />
-								</Link>
-								<div className="flex w-full justify-between">
-									<div className="flex flex-col justify-between gap-2 sm:gap-4">
-										<div>
-											<Link href={`/produkt/${product.slug}?imgIdx=0` as Route}>
+							product && (
+								<BoxShadow key={id} className="flex h-fit flex-row gap-4">
+									<Link href={`${Links.Product}/${product.slug}?imgIdx=0` as Route}>
+										<SmallImage idx={index} image={product.images[0]?.url || ""} selected={false} />
+									</Link>
+									<div className="flex w-full justify-between">
+										<div className="flex flex-col justify-between gap-2 sm:gap-4">
+											<div>
+												<Link href={`${Links.Product}/${product.slug}?imgIdx=0` as Route}>
+													<Typography
+														variant="h6"
+														className="text-pretty text-xs hover:text-primary sm:text-base"
+													>
+														{product.name}
+													</Typography>
+												</Link>
 												<Typography
-													variant="h6"
-													className="text-pretty text-xs hover:text-primary sm:text-base"
+													variant="subtitle2"
+													className="text-pretty text-xs sm:text-base"
 												>
-													{product.name}
+													{priceHandler(product.price)}
 												</Typography>
-											</Link>
-											<Typography variant="subtitle2" className="text-pretty text-xs sm:text-base">
-												{priceHandler(product.price)}
-											</Typography>
-										</div>
-										<form>
+											</div>
 											<ButtonIncreaseDecrease
 												cartId={cartId}
 												productId={id}
 												quantity={quantity || 0}
 												maxQuantity={product.quantity}
 											/>
-										</form>
+										</div>
+										<div>
+											<ButtonRemoveFromCart productId={id} />
+										</div>
 									</div>
-									<div>
-										<ButtonIcon variant="text">
-											<Icons.close />
-										</ButtonIcon>
-									</div>
-								</div>
-							</BoxShadow>
+								</BoxShadow>
+							)
 						);
 					})}
 				</div>

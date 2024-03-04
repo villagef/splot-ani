@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Route } from "next";
-import { navbarLinks } from "@/consts";
+import { Links, navbarLinks } from "@/consts";
 import { Icons } from "@/ui/Icons";
 import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
 import { Logo } from "@/ui/atoms/Logo";
@@ -49,7 +49,7 @@ export function Navbar() {
 						<ButtonIcon variant="text" aria-label="Go to favourite products button">
 							<Icons.favourite />
 						</ButtonIcon>
-						<LinkActive href="/koszyk">
+						<LinkActive href={Links.Cart}>
 							<ButtonIcon variant="text" aria-label="Go to cart button">
 								<Icons.shoppingCart />
 							</ButtonIcon>

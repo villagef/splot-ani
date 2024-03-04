@@ -23,10 +23,14 @@ export const getProductsByCategorySlug = async ({ skip = 0, slug }: QueryParams)
 };
 
 export const getAllProducts = async ({ skip = 0 }: QueryParams) => {
-	const graphqlResponse = await executeGraphQL(ProductsGetAllDocument, {
-		first: PRODUCTS_PER_PAGE,
-		skip,
-	});
+	const graphqlResponse = await executeGraphQL(
+		ProductsGetAllDocument,
+		{
+			first: PRODUCTS_PER_PAGE,
+			skip,
+		},
+		60,
+	);
 	return {
 		products: graphqlResponse?.products,
 		productsConnection: graphqlResponse?.productsConnection,
@@ -39,7 +43,7 @@ export const getProduct = async ({ slug }: QueryParams) => {
 };
 
 export const getTopProducts = async () => {
-	const graphqlResponse = await executeGraphQL(ProductsGetTopDocument, {});
+	const graphqlResponse = await executeGraphQL(ProductsGetTopDocument, {}, 60);
 	return graphqlResponse?.products?.map((product) => ({
 		...product,
 		image: {
@@ -51,7 +55,7 @@ export const getTopProducts = async () => {
 };
 
 export const getMostPopularProducts = async ({ slug }: QueryParams) => {
-	const graphqlResponse = await executeGraphQL(ProductsGetMostPopularDocument, { slug });
+	const graphqlResponse = await executeGraphQL(ProductsGetMostPopularDocument, { slug }, 60);
 	return graphqlResponse?.products?.map((product) => ({
 		...product,
 		image: {
