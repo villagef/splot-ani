@@ -17,7 +17,7 @@ const documents = {
     "mutation CartChangeProductQuantity($cartId: ID!, $productId: ID!, $quantity: Int!) {\n  upsertOrderItem(\n    where: {id: $productId}\n    upsert: {create: {quantity: $quantity, total: $quantity, order: {connect: {id: $cartId}}, product: {connect: {id: $productId}}}, update: {quantity: $quantity, total: $quantity}}\n  ) {\n    quantity\n  }\n}": types.CartChangeProductQuantityDocument,
     "mutation CartCreate {\n  createOrder(data: {total: 0}) {\n    id\n  }\n}": types.CartCreateDocument,
     "query CartGetById($id: ID!) {\n  order(where: {id: $id}, stage: DRAFT) {\n    id\n    orderItems {\n      id\n      quantity\n      product {\n        quantity\n        images(first: 1) {\n          url\n        }\n        ...ProductCommon\n      }\n    }\n  }\n}": types.CartGetByIdDocument,
-    "mutation CartRemoveItem($productId: ID!) {\n  deleteOrderItem(where: {id: $productId}) {\n    id\n  }\n}": types.CartRemoveItemDocument,
+    "mutation CartRemoveProduct($productId: ID!) {\n  deleteOrderItem(where: {id: $productId}) {\n    id\n  }\n}": types.CartRemoveProductDocument,
     "fragment ProductCommon on Product {\n  id\n  slug\n  name\n  price\n  previousPrice\n  createdAt\n  categories(first: 1) {\n    name\n  }\n}": types.ProductCommonFragmentDoc,
     "fragment ProductDetails on Product {\n  images(first: 1) {\n    url\n  }\n  lowestPrice\n  previousPrice\n  quantity\n  description\n  ...ProductCommon\n}": types.ProductDetailsFragmentDoc,
     "query ProductGetById($id: ID!) {\n  product(where: {id: $id}) {\n    ...ProductCommon\n    lowestPrice\n    previousPrice\n    quantity\n    description\n    images {\n      url\n    }\n  }\n}": types.ProductGetByIdDocument,
@@ -62,7 +62,7 @@ export function graphql(source: "query CartGetById($id: ID!) {\n  order(where: {
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation CartRemoveItem($productId: ID!) {\n  deleteOrderItem(where: {id: $productId}) {\n    id\n  }\n}"): (typeof documents)["mutation CartRemoveItem($productId: ID!) {\n  deleteOrderItem(where: {id: $productId}) {\n    id\n  }\n}"];
+export function graphql(source: "mutation CartRemoveProduct($productId: ID!) {\n  deleteOrderItem(where: {id: $productId}) {\n    id\n  }\n}"): (typeof documents)["mutation CartRemoveProduct($productId: ID!) {\n  deleteOrderItem(where: {id: $productId}) {\n    id\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

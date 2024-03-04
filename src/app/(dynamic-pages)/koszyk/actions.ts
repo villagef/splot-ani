@@ -1,6 +1,6 @@
 "use server";
 import { executeGraphQL } from "@/api/graphqlApi";
-import { CartChangeProductQuantityDocument } from "@/gql/graphql";
+import { CartChangeProductQuantityDocument, CartRemoveProductDocument } from "@/gql/graphql";
 
 export const changeProductQuantity = async (
 	cartId: string,
@@ -11,5 +11,11 @@ export const changeProductQuantity = async (
 		cartId,
 		productId,
 		quantity,
+	});
+};
+
+export const removeProductFromCart = async (productId: string) => {
+	await executeGraphQL(CartRemoveProductDocument, {
+		productId,
 	});
 };
