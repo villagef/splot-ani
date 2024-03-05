@@ -12,7 +12,7 @@ export enum Links {
 	Terms = "/regulamin",
 	Privacy = "/polityka-prywatnosci",
 	Facebook = "https://www.facebook.com/",
-	Instagram = "https://www.instagram.com/",
+	Instagram = "https://www.instagram.com/splotani/",
 }
 
 export enum ProductCategory {

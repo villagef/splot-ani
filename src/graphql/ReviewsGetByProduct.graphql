@@ -1,0 +1,10 @@
+query ReviewsGetByProduct($id: ID!) {
+	reviews(orderBy: publishedAt_DESC, where: { product: { id: $id } }) {
+		name
+		title
+		rating
+		email
+		content
+		createdAt
+	}
+}

@@ -50,7 +50,7 @@ export function Typography({ variant = "body1", className = "", children }: Typo
 			case "caption":
 				return "text-xs";
 			case "button":
-				return "text-sm font-semibold uppercase";
+				return "text-sm font-semibold";
 			case "overline":
 				return "text-xs uppercase";
 			default:
