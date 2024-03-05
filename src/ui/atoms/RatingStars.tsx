@@ -17,13 +17,7 @@ export function RatingStars({ label, ...props }: Props) {
 
 					return (
 						<React.Fragment key={index}>
-							<input
-								type="radio"
-								name="rating"
-								value={rating}
-								className="star cursor-pointer"
-								{...props}
-							/>
+							<input type="radio" value={rating} className="star cursor-pointer" {...props} />
 							<i></i>
 						</React.Fragment>
 					);

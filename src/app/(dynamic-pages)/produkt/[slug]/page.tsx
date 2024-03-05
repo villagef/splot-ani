@@ -48,7 +48,7 @@ export default async function Product({ params, searchParams }: Props) {
 			<Suspense fallback={<ProductListLoading />}>
 				<MostPopularProductsList slug={params.slug} />
 			</Suspense>
-			<Review productId={product.id} />
+			<Review productId={product.id} slug={params.slug} />
 		</div>
 	);
 }

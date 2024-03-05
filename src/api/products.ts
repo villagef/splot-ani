@@ -1,4 +1,4 @@
-import type { QueryParams } from "@/api/types";
+import { type Variables } from "graphql-request";
 import {
 	ProductsGetMostPopularDocument,
 	ProductsGetTopDocument,
@@ -10,7 +10,7 @@ import {
 import { executeGraphQL } from "@/api/graphqlApi";
 import { PRODUCTS_PER_PAGE } from "@/consts";
 
-export const getProductsByCategorySlug = async ({ skip = 0, slug }: QueryParams) => {
+export const getProductsByCategorySlug = async ({ skip = 0, slug }: Variables) => {
 	const graphqlResponse = await executeGraphQL(ProductsGetByCategorySlugDocument, {
 		first: PRODUCTS_PER_PAGE,
 		slug,
@@ -22,7 +22,7 @@ export const getProductsByCategorySlug = async ({ skip = 0, slug }: QueryParams)
 	};
 };
 
-export const getAllProducts = async ({ skip = 0 }: QueryParams) => {
+export const getAllProducts = async ({ skip = 0 }: Variables) => {
 	const graphqlResponse = await executeGraphQL(
 		ProductsGetAllDocument,
 		{
@@ -37,7 +37,7 @@ export const getAllProducts = async ({ skip = 0 }: QueryParams) => {
 	};
 };
 
-export const getProduct = async ({ slug }: QueryParams) => {
+export const getProduct = async ({ slug }: Variables) => {
 	const graphqlResponse = await executeGraphQL(ProductGetBySlugDocument, { slug });
 	return graphqlResponse?.products[0];
 };
@@ -54,7 +54,7 @@ export const getTopProducts = async () => {
 	}));
 };
 
-export const getMostPopularProducts = async ({ slug }: QueryParams) => {
+export const getMostPopularProducts = async ({ slug }: Variables) => {
 	const graphqlResponse = await executeGraphQL(ProductsGetMostPopularDocument, { slug }, 60);
 	return graphqlResponse?.products?.map((product) => ({
 		...product,
@@ -66,7 +66,7 @@ export const getMostPopularProducts = async ({ slug }: QueryParams) => {
 	}));
 };
 
-export const getProductsBySearchQuery = async ({ query }: QueryParams) => {
+export const getProductsBySearchQuery = async ({ query }: Variables) => {
 	const graphqlResponse = await executeGraphQL(ProductsGetBySearchQueryDocument, {
 		query,
 	});

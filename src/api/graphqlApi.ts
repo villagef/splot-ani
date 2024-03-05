@@ -1,12 +1,12 @@
-import { GraphQLClient } from "graphql-request";
+import { GraphQLClient, type Variables } from "graphql-request";
 import { type TypedDocumentNode } from "@apollo/client";
 import { notFound } from "next/navigation";
-import type { QueryParams } from "@/api/types";
 
 export const executeGraphQL = async <TResult, TVariables>(
 	query: TypedDocumentNode<TResult, TVariables>,
-	variables: QueryParams,
+	variables: Variables,
 	revalidate?: NextFetchRequestConfig["revalidate"],
+	tags?: NextFetchRequestConfig["tags"],
 ): Promise<TResult> => {
 	try {
 		if (!process.env.HYGRAPH_ENDPOINT) {
@@ -20,6 +20,7 @@ export const executeGraphQL = async <TResult, TVariables>(
 			},
 			next: {
 				revalidate: revalidate,
+				tags: tags,
 			},
 		});
 		const data = await hygraph.request(query, variables);

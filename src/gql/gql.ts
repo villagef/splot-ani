@@ -14,7 +14,6 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  */
 const documents = {
     "mutation CartAddProduct($cartId: ID!, $productId: ID!, $quantity: Int!) {\n  createOrderItem(\n    data: {quantity: $quantity, total: $quantity, order: {connect: {id: $cartId}}, product: {connect: {id: $productId}}}\n  ) {\n    id\n  }\n}": types.CartAddProductDocument,
-    "mutation CartChangeItemQty($itemId: ID!, $quantity: Int!) {\n  updateOrderItem(where: {id: $itemId}, data: {quantity: $quantity}) {\n    id\n  }\n}": types.CartChangeItemQtyDocument,
     "mutation CartChangeProductQuantity($cartId: ID!, $productId: ID!, $quantity: Int!) {\n  upsertOrderItem(\n    where: {id: $productId}\n    upsert: {create: {quantity: $quantity, total: $quantity, order: {connect: {id: $cartId}}, product: {connect: {id: $productId}}}, update: {quantity: $quantity, total: $quantity}}\n  ) {\n    quantity\n  }\n}": types.CartChangeProductQuantityDocument,
     "mutation CartCreate {\n  createOrder(data: {total: 0}) {\n    id\n  }\n}": types.CartCreateDocument,
     "query CartGetById($id: ID!) {\n  order(where: {id: $id}, stage: DRAFT) {\n    id\n    orderItems {\n      id\n      quantity\n      product {\n        quantity\n        images(first: 1) {\n          url\n        }\n        ...ProductCommon\n      }\n    }\n  }\n}": types.CartGetByIdDocument,
@@ -28,6 +27,9 @@ const documents = {
     "query ProductsGetBySearchQuery($query: String!) {\n  products(where: {_search: $query}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}": types.ProductsGetBySearchQueryDocument,
     "query ProductsGetMostPopular($slug: String!) {\n  products(orderBy: publishedAt_DESC, first: 4, where: {NOT: {slug: $slug}}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}": types.ProductsGetMostPopularDocument,
     "query ProductsGetTop {\n  products(first: 4, where: {top: true}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}": types.ProductsGetTopDocument,
+    "mutation ReviewCreate($id: ID!, $title: String!, $name: String!, $email: String!, $content: String!, $rating: Int!) {\n  createReview(\n    data: {title: $title, name: $name, email: $email, content: $content, rating: $rating, product: {connect: {id: $id}}}\n  ) {\n    id\n  }\n}": types.ReviewCreateDocument,
+    "mutation ReviewPublish($id: ID!) {\n  publishReview(where: {id: $id}) {\n    id\n  }\n}": types.ReviewPublishDocument,
+    "query ReviewsGetByProduct($id: ID!) {\n  reviews(orderBy: publishedAt_DESC, where: {product: {id: $id}}) {\n    name\n    title\n    rating\n    email\n    content\n    createdAt\n  }\n}": types.ReviewsGetByProductDocument,
 };
 
 /**
@@ -48,10 +50,6 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation CartAddProduct($cartId: ID!, $productId: ID!, $quantity: Int!) {\n  createOrderItem(\n    data: {quantity: $quantity, total: $quantity, order: {connect: {id: $cartId}}, product: {connect: {id: $productId}}}\n  ) {\n    id\n  }\n}"): (typeof documents)["mutation CartAddProduct($cartId: ID!, $productId: ID!, $quantity: Int!) {\n  createOrderItem(\n    data: {quantity: $quantity, total: $quantity, order: {connect: {id: $cartId}}, product: {connect: {id: $productId}}}\n  ) {\n    id\n  }\n}"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "mutation CartChangeItemQty($itemId: ID!, $quantity: Int!) {\n  updateOrderItem(where: {id: $itemId}, data: {quantity: $quantity}) {\n    id\n  }\n}"): (typeof documents)["mutation CartChangeItemQty($itemId: ID!, $quantity: Int!) {\n  updateOrderItem(where: {id: $itemId}, data: {quantity: $quantity}) {\n    id\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -104,6 +102,18 @@ export function graphql(source: "query ProductsGetMostPopular($slug: String!) {\
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ProductsGetTop {\n  products(first: 4, where: {top: true}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}"): (typeof documents)["query ProductsGetTop {\n  products(first: 4, where: {top: true}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation ReviewCreate($id: ID!, $title: String!, $name: String!, $email: String!, $content: String!, $rating: Int!) {\n  createReview(\n    data: {title: $title, name: $name, email: $email, content: $content, rating: $rating, product: {connect: {id: $id}}}\n  ) {\n    id\n  }\n}"): (typeof documents)["mutation ReviewCreate($id: ID!, $title: String!, $name: String!, $email: String!, $content: String!, $rating: Int!) {\n  createReview(\n    data: {title: $title, name: $name, email: $email, content: $content, rating: $rating, product: {connect: {id: $id}}}\n  ) {\n    id\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation ReviewPublish($id: ID!) {\n  publishReview(where: {id: $id}) {\n    id\n  }\n}"): (typeof documents)["mutation ReviewPublish($id: ID!) {\n  publishReview(where: {id: $id}) {\n    id\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query ReviewsGetByProduct($id: ID!) {\n  reviews(orderBy: publishedAt_DESC, where: {product: {id: $id}}) {\n    name\n    title\n    rating\n    email\n    content\n    createdAt\n  }\n}"): (typeof documents)["query ReviewsGetByProduct($id: ID!) {\n  reviews(orderBy: publishedAt_DESC, where: {product: {id: $id}}) {\n    name\n    title\n    rating\n    email\n    content\n    createdAt\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
