@@ -6,6 +6,7 @@ import { ContentSection } from "@/ui/components/Product/ContentSection";
 import { getProduct } from "@/api/products";
 import { MostPopularProductsList } from "@/ui/components/ProductList/MostPopularProductsList";
 import { ProductListLoading } from "@/ui/components/ProductList/loading";
+import { Review } from "@/ui/components/Review";
 
 export async function generateMetadata({
 	params,
@@ -47,6 +48,7 @@ export default async function Product({ params, searchParams }: Props) {
 			<Suspense fallback={<ProductListLoading />}>
 				<MostPopularProductsList slug={params.slug} />
 			</Suspense>
+			<Review productId={product.id} />
 		</div>
 	);
 }
