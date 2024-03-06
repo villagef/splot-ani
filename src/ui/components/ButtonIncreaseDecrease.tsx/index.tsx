@@ -11,9 +11,16 @@ type Props = {
 	productId: string;
 	quantity: number;
 	maxQuantity: number | null | undefined;
+	price: number;
 };
 
-export function ButtonIncreaseDecrease({ cartId, productId, quantity, maxQuantity = 0 }: Props) {
+export function ButtonIncreaseDecrease({
+	cartId,
+	productId,
+	quantity,
+	maxQuantity = 0,
+	price,
+}: Props) {
 	const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
 		quantity,
 		(_state, action: "INC" | "DEC") => {
@@ -30,7 +37,9 @@ export function ButtonIncreaseDecrease({ cartId, productId, quantity, maxQuantit
 				data-testid="decrement"
 				formAction={async () => {
 					setOptimisticQuantity("DEC");
-					await changeProductQuantity(cartId, productId, optimisticQuantity - 1);
+					const _quantity = optimisticQuantity - 1;
+					const total = _quantity * price;
+					await changeProductQuantity(cartId, productId, _quantity, total);
 				}}
 			>
 				<Icons.minus />
@@ -45,7 +54,9 @@ export function ButtonIncreaseDecrease({ cartId, productId, quantity, maxQuantit
 				data-testid="increment"
 				formAction={async () => {
 					setOptimisticQuantity("INC");
-					await changeProductQuantity(cartId, productId, optimisticQuantity + 1);
+					const _quantity = optimisticQuantity + 1;
+					const total = _quantity * price;
+					await changeProductQuantity(cartId, productId, _quantity, total);
 				}}
 			>
 				<Icons.plus />
