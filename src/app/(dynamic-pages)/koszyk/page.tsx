@@ -1,16 +1,10 @@
-import Link from "next/link";
-import type { Route } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { BoxShadow } from "@/ui/atoms/BoxShadow";
 import { Typography } from "@/ui/atoms/Typography";
-import { ButtonIncreaseDecrease } from "@/ui/components/ButtonIncreaseDecrease.tsx";
-import { SmallImage } from "@/ui/components/Product/SmallImage";
-import { priceHandler } from "@/utils/priceHandler";
 import { getCartById } from "@/api/cart";
-import { Cookies, Links } from "@/consts";
-import { ButtonRemoveFromCart } from "@/ui/components/ButtonRemoveFromCart";
+import { Cookies } from "@/consts";
 import { CartSummary } from "@/ui/components/Cart/CartSummary";
+import { CartProductCard } from "@/ui/components/Cart/CartProductCard";
 
 export default async function Cart() {
 	const cartId = cookies().get(Cookies.CartId)?.value;
@@ -38,49 +32,14 @@ export default async function Cart() {
 						const { id, product, quantity } = item;
 						return (
 							product && (
-								<BoxShadow key={id} className="flex h-fit flex-row gap-4">
-									<Link href={`${Links.Product}/${product.slug}?imgIdx=0` as Route}>
-										<SmallImage idx={index} image={product.images[0]?.url || ""} selected={false} />
-									</Link>
-									<div className="flex w-full justify-between">
-										<div className="flex flex-col justify-between gap-2 ">
-											<div>
-												<Link href={`${Links.Product}/${product.slug}?imgIdx=0` as Route}>
-													<Typography
-														variant="h6"
-														className="text-pretty text-xs hover:text-primary sm:text-base"
-													>
-														{product.name}
-													</Typography>
-												</Link>
-												<Typography
-													variant="subtitle2"
-													className="text-pretty text-xs sm:text-base"
-												>
-													{priceHandler(product.price)}
-												</Typography>
-											</div>
-											{product.quantity && quantity > product.quantity && (
-												<Typography
-													variant="caption"
-													className="text-pretty font-bold text-primary"
-												>
-													Tylko {product.quantity} szt. w magazynie
-												</Typography>
-											)}
-											<ButtonIncreaseDecrease
-												cartId={cartId}
-												productId={id}
-												quantity={quantity || 0}
-												maxQuantity={product.quantity}
-												price={product.price || 0}
-											/>
-										</div>
-										<div>
-											<ButtonRemoveFromCart productId={id} />
-										</div>
-									</div>
-								</BoxShadow>
+								<CartProductCard
+									key={id}
+									id={id}
+									index={index}
+									product={product}
+									quantity={quantity}
+									cartId={cartId}
+								/>
 							)
 						);
 					})}

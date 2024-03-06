@@ -29,6 +29,10 @@ export enum Cookies {
 	ReviewAddedToast = "splotani_reviewAddedToast",
 }
 
+export enum GraphqlTags {
+	GetCartById = "getCartById",
+}
+
 export const CookieConfig = {
 	maxAge: 60 * 60 * 24 * 30,
 	expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
