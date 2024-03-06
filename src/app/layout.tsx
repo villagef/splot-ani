@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 	description: "Splotani - sklep z rękodziełem z makramy",
 	applicationName: "Splotani",
 	// TODO - change to real URL
-	metadataBase: new URL("https://splot-ani.vercel.app/"),
+	metadataBase: new URL(process.env.HYGRAPH_URL as string),
 };
 
 export default function RootLayout({
@@ -33,7 +33,7 @@ export default function RootLayout({
 					</main>
 					<Footer />
 				</Suspense>
-				<Toaster position="top-right" richColors />
+				<Toaster position="bottom-right" richColors />
 			</body>
 		</html>
 	);

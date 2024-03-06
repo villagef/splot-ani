@@ -26,11 +26,13 @@ export function ActionButtons({ productId, quantity = 0, price }: Props) {
 			const orderItem = orderItems.find((item) => item.product?.id === productId) || null;
 
 			if (orderItem) {
-				const _quantity = orderItem.quantity + 1;
-				const total = _quantity * price;
-				await changeProductQuantity(cartId, orderItem.id, _quantity, total).then(() => {
-					cookies().set(Cookies.ProductAddedToCartToast, "true");
-				});
+				if (orderItem.quantity < quantity) {
+					const _quantity = orderItem.quantity + 1;
+					const total = _quantity * price;
+					await changeProductQuantity(cartId, orderItem.id, _quantity, total).then(() => {
+						cookies().set(Cookies.ProductAddedToCartToast, "true");
+					});
+				}
 			} else {
 				await addProductToCart(cartId, productId, 1, price).then(() => {
 					cookies().set(Cookies.ProductAddedToCartToast, "true");
@@ -38,6 +40,7 @@ export function ActionButtons({ productId, quantity = 0, price }: Props) {
 			}
 		}
 	}
+
 	return (
 		<Wrapper>
 			{quantity && quantity <= 0 ? (

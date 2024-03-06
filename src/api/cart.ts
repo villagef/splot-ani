@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
+import { revalidateTag } from "next/cache";
 import { executeGraphQL } from "@/api/graphqlApi";
-import { Cookies } from "@/consts";
+import { Cookies, GraphqlTags } from "@/consts";
 import {
 	CartAddProductDocument,
 	CartCreateDocument,
@@ -9,7 +10,7 @@ import {
 } from "@/gql/graphql";
 
 export const getCartById = async (cartId: string) => {
-	return executeGraphQL(CartGetByIdDocument, { id: cartId });
+	return executeGraphQL(CartGetByIdDocument, { id: cartId }, 0, [GraphqlTags.GetCartById]);
 };
 
 export const createCart = async () => {
@@ -35,6 +36,7 @@ export const addProductToCart = async (
 		quantity,
 		total,
 	});
+	revalidateTag(GraphqlTags.GetCartById);
 };
 
 export const getOrCreateCart = async () => {
