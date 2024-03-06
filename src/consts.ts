@@ -35,11 +35,7 @@ export enum GraphqlTags {
 
 export const CookieConfig = {
 	maxAge: 60 * 60 * 24 * 30,
-	expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
-	httpOnly: true,
-	secure: process.env.NODE_ENV === "production",
-	sameSite: "lax",
-	priority: "low",
+	expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
 } as const;
 
 export const PRODUCTS_PER_PAGE = 4 as const;
