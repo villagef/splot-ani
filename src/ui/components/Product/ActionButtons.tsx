@@ -3,8 +3,7 @@ import { Typography } from "@/ui/atoms/Typography";
 import { Wrapper } from "@/ui/components/Product/Wrapper";
 import { addProductToCart, getCartById, getOrCreateCart } from "@/api/cart";
 import { CookieConfig, Cookies } from "@/consts";
-import { ButtonAddToCart } from "@/ui/components/ButtonAddToCart";
-import { changeProductQuantity } from "@/app/(dynamic-pages)/koszyk/actions";
+import { ButtonAddToCart } from "@/ui/components/Product/ButtonAddToCart";
 
 type Props = {
 	productId: string;
@@ -21,15 +20,11 @@ export function ActionButtons({ productId, quantity = 0 }: Props) {
 		const { order: cart } = await getCartById(cartId);
 
 		if (cart) {
-			const { orderItems } = cart;
-			const orderItem = orderItems.find((item) => item.product?.id === productId) || null;
-
-			orderItem
-				? await changeProductQuantity(cartId, orderItem.id, orderItem.quantity + 1)
-				: await addProductToCart(cartId, productId, 1);
+			await addProductToCart(cartId, productId, 1).then(() => {
+				cookies().set(Cookies.ProductAddedToCartToast, "true");
+			});
 		}
 	}
-
 	return (
 		<Wrapper>
 			{quantity && quantity <= 0 ? (

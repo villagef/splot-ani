@@ -12,7 +12,7 @@ export function Input({ label, type = "text", ...props }: Props) {
 				id="input"
 				{...props}
 				type={type}
-				className="border-primary-foregroundbg-transparentp-2.5 block w-full rounded-lg border bg-secondary-foreground p-2 text-sm text-primary-textDark"
+				className="border-primary-foregroundbg-transparentp-2.5 block w-full rounded-md border bg-secondary-foreground p-2 text-sm text-primary-textDark"
 			/>
 		</div>
 	);
