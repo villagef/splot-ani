@@ -52,9 +52,7 @@ export function CartProductCard({ id, index, product, quantity, cartId }: Props)
 						price={product.price || 0}
 					/>
 				</div>
-				<div>
-					<ButtonRemoveFromCart productId={id} />
-				</div>
+				<ButtonRemoveFromCart productId={id} />
 			</div>
 		</BoxShadow>
 	);
