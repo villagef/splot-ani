@@ -3,8 +3,6 @@ import type { Route } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { BoxShadow } from "@/ui/atoms/BoxShadow";
-import { Button } from "@/ui/atoms/Button";
-import { Separator } from "@/ui/atoms/Separator";
 import { Typography } from "@/ui/atoms/Typography";
 import { ButtonIncreaseDecrease } from "@/ui/components/ButtonIncreaseDecrease.tsx";
 import { SmallImage } from "@/ui/components/Product/SmallImage";
@@ -12,6 +10,7 @@ import { priceHandler } from "@/utils/priceHandler";
 import { getCartById } from "@/api/cart";
 import { Cookies, Links } from "@/consts";
 import { ButtonRemoveFromCart } from "@/ui/components/ButtonRemoveFromCart";
+import { CartSummary } from "@/ui/components/Cart/CartSummary";
 
 export default async function Cart() {
 	const cartId = cookies().get(Cookies.CartId)?.value;
@@ -44,7 +43,7 @@ export default async function Cart() {
 										<SmallImage idx={index} image={product.images[0]?.url || ""} selected={false} />
 									</Link>
 									<div className="flex w-full justify-between">
-										<div className="flex flex-col justify-between gap-2 sm:gap-4">
+										<div className="flex flex-col justify-between gap-2 ">
 											<div>
 												<Link href={`${Links.Product}/${product.slug}?imgIdx=0` as Route}>
 													<Typography
@@ -61,11 +60,20 @@ export default async function Cart() {
 													{priceHandler(product.price)}
 												</Typography>
 											</div>
+											{product.quantity && quantity > product.quantity && (
+												<Typography
+													variant="caption"
+													className="text-pretty font-bold text-primary"
+												>
+													Tylko {product.quantity} szt. w magazynie
+												</Typography>
+											)}
 											<ButtonIncreaseDecrease
 												cartId={cartId}
 												productId={id}
 												quantity={quantity || 0}
 												maxQuantity={product.quantity}
+												price={product.price || 0}
 											/>
 										</div>
 										<div>
@@ -78,29 +86,7 @@ export default async function Cart() {
 					})}
 				</div>
 				<div className="lg:col-span-2 lg:col-start-4">
-					<BoxShadow className="grid gap-2">
-						<Typography variant="h3">Podsumowanie zamówienia</Typography>
-						<Separator fullWidth />
-						<div className="flex justify-between">
-							<Typography variant="h6">Produkty</Typography>
-							<Typography variant="h6">122</Typography>
-						</div>
-						<div className="flex justify-between">
-							<Typography variant="h6">Dostawa</Typography>
-							<Typography variant="h6">{priceHandler(1600)}</Typography>
-						</div>
-						<Separator fullWidth />
-						<div className="flex justify-between">
-							<Typography variant="h4">Suma</Typography>
-							<Typography variant="h4">{priceHandler(43000)}</Typography>
-						</div>
-						<Typography variant="caption" className="text-end">
-							Including VAT
-						</Typography>
-						<Button variant="primary" color="primary" className="w-full shadow-md shadow-primary">
-							Zamów
-						</Button>
-					</BoxShadow>
+					<CartSummary cartId={cartId} />
 				</div>
 			</div>
 		</>

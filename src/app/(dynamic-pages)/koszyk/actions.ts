@@ -8,11 +8,13 @@ export const changeProductQuantity = async (
 	cartId: string,
 	productId: string,
 	quantity: number,
+	total: number,
 ) => {
 	await executeGraphQL(CartChangeProductQuantityDocument, {
 		cartId,
 		productId,
 		quantity,
+		total,
 	});
 	revalidatePath(Links.Cart);
 };

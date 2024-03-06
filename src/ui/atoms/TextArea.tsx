@@ -13,7 +13,7 @@ export function TextArea({ label, rows = 3, ...props }: Props) {
 				id="textarea"
 				{...props}
 				rows={rows}
-				className="border-primary-foregroundbg-transparentp-2.5 block w-full rounded-lg border bg-secondary-foreground p-2 text-sm text-primary-textDark"
+				className="border-primary-foregroundbg-transparentp-2.5 block w-full rounded-md border bg-secondary-foreground p-2 text-sm text-primary-textDark"
 			/>
 		</div>
 	);

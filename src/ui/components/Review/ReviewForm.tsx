@@ -1,9 +1,11 @@
 import { revalidateTag } from "next/cache";
-import { Button } from "@/ui/atoms/Button";
+import { cookies } from "next/headers";
 import { Input } from "@/ui/atoms/Input";
 import { TextArea } from "@/ui/atoms/TextArea";
 import { RatingStars } from "@/ui/atoms/RatingStars";
 import { addProductReview, publishReview } from "@/api/reviews";
+import { ButtonAddReview } from "@/ui/components/Review/ButtonAddReview";
+import { Cookies } from "@/consts";
 
 type Props = {
 	productId: string;
@@ -22,8 +24,10 @@ export function ReviewForm({ productId }: Props) {
 		const { createReview } = await addProductReview(productId, title, name, email, content, rating);
 
 		if (createReview?.id) {
-			await publishReview(createReview.id);
-			revalidateTag("reviews");
+			await publishReview(createReview.id).then(() => {
+				cookies().set(Cookies.ReviewAddedToast, "true");
+				revalidateTag("reviews");
+			});
 		}
 	}
 
@@ -34,9 +38,7 @@ export function ReviewForm({ productId }: Props) {
 			<RatingStars label="Ocena" name="rating" required />
 			<Input label="Imię" name="name" type="text" required />
 			<Input label="Email" name="email" type="email" required />
-			<Button type="submit" variant="primary" className="mt-4 w-full">
-				Dodaj recenzję
-			</Button>
+			<ButtonAddReview />
 		</form>
 	);
 }

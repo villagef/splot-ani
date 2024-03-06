@@ -24,6 +24,9 @@ export enum ProductCategory {
 
 export enum Cookies {
 	CartId = "splotani_cartId",
+	ProductAddedToCartToast = "splotani_productAddedToCartToast",
+	ProductRemovedFromCartToast = "splotani_productRemovedFromCartToast",
+	ReviewAddedToast = "splotani_reviewAddedToast",
 }
 
 export const CookieConfig = {

@@ -16,7 +16,12 @@ export const createCart = async () => {
 	return executeGraphQL(CartCreateDocument, {});
 };
 
-export const addProductToCart = async (cartId: string, productId: string, quantity: number) => {
+export const addProductToCart = async (
+	cartId: string,
+	productId: string,
+	quantity: number,
+	total: number,
+) => {
 	const { product } = await executeGraphQL(ProductGetByIdDocument, {
 		id: productId,
 	});
@@ -28,6 +33,7 @@ export const addProductToCart = async (cartId: string, productId: string, quanti
 		cartId,
 		productId,
 		quantity,
+		total,
 	});
 };
 

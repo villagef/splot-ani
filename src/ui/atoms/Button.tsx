@@ -3,7 +3,8 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export function Button({ variant = "default", className = "", children, ...rest }: Props) {
-	const baseClasses = "rounded px-3 font-medium focus:outline-none";
+	const baseClasses =
+		"rounded px-3 font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
 	let buttonClasses = "";
 
 	switch (variant) {

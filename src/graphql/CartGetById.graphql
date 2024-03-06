@@ -4,6 +4,7 @@ query CartGetById($id: ID!) {
 		orderItems {
 			id
 			quantity
+			total
 			product {
 				quantity
 				images(first: 1) {
