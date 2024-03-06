@@ -1,34 +1,35 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { revalidateTag } from "next/cache";
+import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
 import { removeProductFromCart } from "@/app/(dynamic-pages)/koszyk/actions";
 import { Icons } from "@/ui/Icons";
 import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
+import { GraphqlTags } from "@/consts";
 
 type Props = {
 	productId: string;
 };
 
 export function ButtonRemoveFromCart({ productId }: Props) {
-	const router = useRouter();
-	const [isPending, startTransition] = useTransition();
+	const status = useFormStatus();
+
 	return (
-		<ButtonIcon
-			variant="text"
-			type="submit"
-			disabled={isPending}
-			onClick={() => {
-				startTransition(async () => {
+		<form>
+			<ButtonIcon
+				variant="text"
+				type="submit"
+				disabled={status.pending}
+				formAction={async () => {
 					await removeProductFromCart(productId).then(() => {
+						revalidateTag(GraphqlTags.GetCartById);
 						toast.success("Produkt usunięty z koszyka!");
 					});
-					router.refresh();
-				});
-			}}
-		>
-			<Icons.close />
-		</ButtonIcon>
+				}}
+			>
+				<Icons.close />
+			</ButtonIcon>
+		</form>
 	);
 }
