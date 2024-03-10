@@ -1,5 +1,5 @@
 import { type Route } from "next";
-import { Icons } from "@/ui/Icons";
+// import { Icons } from "@/ui/Icons";
 import { Button } from "@/ui/atoms/Button";
 import { LinkActive } from "@/ui/atoms/LinkActive";
 import { PRODUCTS_PER_PAGE } from "@/consts";
@@ -42,7 +42,7 @@ export function Pagination({ total, itemsPerPage, currentPage, path }: Props) {
 			className="flex h-10 items-center justify-center gap-2 -space-x-px pb-4 text-base md:pb-0"
 			aria-label="pagination"
 		>
-			<li>
+			{/* <li>
 				<LinkActive href={`${path}${currentPage - 1}` as Route}>
 					<Button
 						className="ms-0 h-10 rounded-l-lg border  px-4 leading-tight"
@@ -51,9 +51,9 @@ export function Pagination({ total, itemsPerPage, currentPage, path }: Props) {
 						<Icons.chevronLeft />
 					</Button>
 				</LinkActive>
-			</li>
+			</li> */}
 			{renderPages()}
-			<li>
+			{/* <li>
 				<LinkActive href={`${path}${currentPage + 1}` as Route}>
 					<Button
 						className="h-10 rounded-r-lg border px-4 leading-tight"
@@ -62,7 +62,7 @@ export function Pagination({ total, itemsPerPage, currentPage, path }: Props) {
 						<Icons.chevronRight />
 					</Button>
 				</LinkActive>
-			</li>
+			</li> */}
 		</ul>
 	);
 }
