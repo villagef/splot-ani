@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { Typography } from "@/ui/atoms/Typography";
 import { getCartById } from "@/api/cart";
 import { Cookies } from "@/consts";
@@ -8,12 +7,18 @@ import { CartProductCard } from "@/ui/components/Cart/CartProductCard";
 
 export default async function Cart() {
 	const cartId = cookies().get(Cookies.CartId)?.value;
+
 	if (!cartId) {
-		redirect("/");
+		return (
+			<Typography variant="h4" className="text-pretty py-4 text-center text-primary">
+				Brak produktów w koszyku
+			</Typography>
+		);
 	}
+
 	const { order: cart } = await getCartById(cartId);
 
-	if (!cart || cart.orderItems.length === 0) {
+	if (cart?.orderItems?.length === 0) {
 		return (
 			<Typography variant="h4" className="text-pretty py-4 text-center text-primary">
 				Brak produktów w koszyku
@@ -28,7 +33,7 @@ export default async function Cart() {
 			</Typography>
 			<div className="grid w-full gap-10 py-4 text-secondary-textDark md:py-8 lg:grid-cols-5">
 				<div className="grid gap-4 lg:col-span-3">
-					{cart.orderItems?.map((item, index) => {
+					{cart?.orderItems?.map((item, index) => {
 						const { id, product, quantity } = item;
 						return (
 							product && (

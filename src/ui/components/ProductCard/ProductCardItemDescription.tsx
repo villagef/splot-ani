@@ -9,7 +9,7 @@ type Props = {
 
 export function ProductCardItemDescription({ product: { name, price } }: Props) {
 	return (
-		<div className="flex items-center justify-between gap-2 px-2 py-4">
+		<div className="flex flex-col justify-between gap-2 px-2 py-2 sm:flex-row sm:items-center sm:py-4">
 			<h3 role="heading" className="truncate text-sm font-medium uppercase text-primary">
 				{name}
 			</h3>

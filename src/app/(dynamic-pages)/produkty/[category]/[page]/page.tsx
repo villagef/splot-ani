@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { getAllProducts, getProductsByCategorySlug } from "@/api/products";
 import { Links, PRODUCTS_PER_PAGE, ProductCategory } from "@/consts";
 import { FiltersCategories } from "@/ui/components/FiltersCategories";
 import { Pagination } from "@/ui/components/Pagination.tsx";
 import { ProductList } from "@/ui/components/ProductList";
 import { categoryHandler } from "@/utils/categoryHandler";
+import { ProductListLoading } from "@/ui/components/ProductList/loading";
 
 type Props = {
 	params: { category: ProductCategory; page: string };
@@ -41,7 +43,9 @@ export default async function ProductsPaginated({ params }: Props) {
 	return (
 		<>
 			<FiltersCategories params={params} />
-			<ProductList products={products} />
+			<Suspense fallback={<ProductListLoading />}>
+				<ProductList products={products} />
+			</Suspense>
 			<Pagination
 				total={totalItems}
 				itemsPerPage={PRODUCTS_PER_PAGE}

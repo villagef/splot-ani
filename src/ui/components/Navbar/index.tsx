@@ -46,9 +46,11 @@ export function Navbar() {
 						<div className="hidden lg:block">
 							<Searchbar />
 						</div>
-						<ButtonIcon variant="text" aria-label="Go to favourite products button">
-							<Icons.favourite />
-						</ButtonIcon>
+						<LinkActive href={Links.Cart}>
+							<ButtonIcon variant="text" aria-label="Go to favourite products button">
+								<Icons.favourite />
+							</ButtonIcon>
+						</LinkActive>
 						<LinkActive href={Links.Cart}>
 							<ButtonIcon variant="text" aria-label="Go to cart button">
 								<Icons.shoppingCart />

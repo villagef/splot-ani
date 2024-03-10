@@ -13,7 +13,7 @@ export function ProductList({ products, columns = "4" }: Props) {
 		<ul
 			data-testid="products-list"
 			aria-label="products list"
-			className={`grid grid-cols-1 gap-8 py-8 sm:grid-cols-2 ${gridColumns}`}
+			className={`grid grid-cols-2 gap-4 py-8 sm:grid-cols-2 sm:gap-8 ${gridColumns}`}
 		>
 			{products?.map((product) => <ProductCard key={product.slug} product={product} />)}
 		</ul>

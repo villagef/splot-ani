@@ -6,7 +6,7 @@ export function ProductListLoading() {
 			data-testid="products-list"
 			aria-label="products list"
 			aria-busy="true"
-			className={`grid grid-cols-1 gap-8 py-8 sm:grid-cols-2 lg:grid-cols-4`}
+			className={`grid grid-cols-2 gap-8 py-8 sm:grid-cols-2 lg:grid-cols-4`}
 		>
 			{Array.from({ length: 4 }, (_, i) => (
 				<li
