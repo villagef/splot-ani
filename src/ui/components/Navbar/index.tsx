@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Route } from "next";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Links, navbarLinks } from "@/consts";
 import { Icons } from "@/ui/Icons";
 import { ButtonIcon } from "@/ui/atoms/ButtonIcon";
@@ -46,16 +47,32 @@ export function Navbar() {
 						<div className="hidden lg:block">
 							<Searchbar />
 						</div>
-						<LinkActive href={Links.Cart}>
+						<LinkActive href={Links.Cart as Route}>
 							<ButtonIcon variant="text" aria-label="Go to favourite products button">
 								<Icons.favourite />
 							</ButtonIcon>
 						</LinkActive>
-						<LinkActive href={Links.Cart}>
+						<LinkActive href={Links.Cart as Route}>
 							<ButtonIcon variant="text" aria-label="Go to cart button">
 								<Icons.shoppingCart />
 							</ButtonIcon>
 						</LinkActive>
+						<div className="hidden lg:block">
+							<SignedIn>
+								<UserButton
+									afterSignOutUrl="/"
+									userProfileMode="navigation"
+									userProfileUrl="/user-profile"
+								/>
+							</SignedIn>
+							<SignedOut>
+								<LinkActive href={Links.SignIn as Route}>
+									<ButtonIcon variant="text" aria-label="Sign in button">
+										<Icons.login />
+									</ButtonIcon>
+								</LinkActive>
+							</SignedOut>
+						</div>
 					</div>
 				</div>
 			</nav>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Suspense } from "react";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { Footer } from "@/ui/components/Footer";
@@ -24,17 +25,19 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="pl">
-			<body className={fonts.className}>
-				<Suspense fallback={<>Ładowanie strony...</>}>
-					<Navbar />
-					<main className="flex min-h-screen w-full flex-auto flex-col items-center text-primary-textDark">
-						{children}
-					</main>
-					<Footer />
-				</Suspense>
-				<Toaster position="bottom-right" richColors />
-			</body>
-		</html>
+		<ClerkProvider>
+			<html lang="pl">
+				<body className={fonts.className}>
+					<Suspense fallback={<>Ładowanie strony...</>}>
+						<Navbar />
+						<main className="flex min-h-screen w-full flex-auto flex-col items-center text-primary-textDark">
+							{children}
+						</main>
+						<Footer />
+					</Suspense>
+					<Toaster position="bottom-right" richColors />
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 }
