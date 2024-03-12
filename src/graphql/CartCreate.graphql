@@ -1,5 +1,5 @@
-mutation CartCreate {
-	createOrder(data: { total: 0 }) {
+mutation CartCreate($userId: String!, $currentStatus: OrderStatus!) {
+	createOrder(data: { total: 0, userId: $userId, currentStatus: $currentStatus}) {
 		id
 	}
 }
