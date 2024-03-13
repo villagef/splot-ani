@@ -8,6 +8,7 @@ export enum Links {
 	Products = "/produkty",
 	Search = "/szukaj",
 	Returns = "/zwroty",
+	Orders = "/zamowienia",
 	Payments = "/platnosci",
 	Terms = "/regulamin",
 	Privacy = "/polityka-prywatnosci",
@@ -46,13 +47,13 @@ export const PRODUCTS_PER_PAGE = 4 as const;
 export const navbarLinks = [
 	{ name: "Strona Główna", href: Links.Home },
 	{ name: "Produkty", href: Links.Products },
-	{ name: "O nas", href: Links.About },
+	{ name: "Zamówienia", href: Links.Orders },
 ] as const;
 
 export const mobileNavbarLinksGroupOne = [
 	{ name: "Strona Główna", href: Links.Home },
 	{ name: "Produkty", href: Links.Products },
-	{ name: "O nas", href: Links.About },
+	{ name: "Zamówienia", href: Links.Orders },
 ] as const;
 
 export const mobileNavbarLinksGroupTwo = [

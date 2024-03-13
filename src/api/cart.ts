@@ -14,7 +14,7 @@ export const getCartById = async (cartId: string) => {
 };
 
 export const createCart = async () => {
-	return executeGraphQL(CartCreateDocument, {});
+	return executeGraphQL(CartCreateDocument, { userId: "filwyd123@gmail.com", currentStatus: "Pending"});
 };
 
 export const addProductToCart = async (
