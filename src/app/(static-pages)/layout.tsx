@@ -11,5 +11,5 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	return <Container className="prose prose-md flex flex-col overflow-hidden">{children}</Container>;
+	return <Container className="prose-md prose flex flex-col overflow-hidden">{children}</Container>;
 }

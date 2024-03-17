@@ -2,7 +2,7 @@ import { getCartById } from "@/api/cart";
 import { BoxShadow } from "@/ui/atoms/BoxShadow";
 import { Separator } from "@/ui/atoms/Separator";
 import { Typography } from "@/ui/atoms/Typography";
-import ButtonOrder from "@/ui/components/Cart/ButtonOrder";
+import { ButtonOrder } from "@/ui/components/Cart/ButtonOrder";
 import { priceHandler } from "@/utils/priceHandler";
 
 type Props = {

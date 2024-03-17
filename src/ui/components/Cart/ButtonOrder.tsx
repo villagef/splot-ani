@@ -3,24 +3,24 @@ import { auth } from "@clerk/nextjs";
 import { Button } from "@/ui/atoms/Button";
 import { Links } from "@/consts";
 
-export default function ButtonOrder() {
+export function ButtonOrder() {
 	const { userId } = auth();
 
-  async function handleSubmit () {
-    "use server";
+	async function handleSubmit() {
+		"use server";
 		if (!userId) {
 			redirect(Links.SignIn);
 		}
-    console.log("Ordering")
+		console.log("Ordering");
 		// redirect(Links.Home);
-	};
+	}
 
 	return (
 		<form action={handleSubmit}>
 			<Button
 				variant="primary"
 				color="primary"
-        type="submit"
+				type="submit"
 				className="w-full shadow-md shadow-primary"
 			>
 				Zamów
