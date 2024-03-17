@@ -10,10 +10,12 @@ export default authMiddleware({
 		"/blog",
 		"/o-nas",
 		"/kontakt",
+		"/koszyk/success",
 		"/produkty/(.*)",
 		"/produkt/(.*)",
 		"/kategorie/(.*)",
 		"/kolekcje/(.*)",
+		"/api/stripe",
 	],
 	// Routes that can always be accessed, and have
 	// no authentication information
