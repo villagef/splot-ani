@@ -38,7 +38,7 @@ export default async function Orders() {
                                 >
                                     id - {order.id}
                                 </Typography>
-                                <Typography variant="h6" >
+                                           <Typography variant="h6" >
                                 {order.currentStatus}
                             </Typography>
                             <Typography variant="subtitle2" >

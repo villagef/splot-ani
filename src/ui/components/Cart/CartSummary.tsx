@@ -1,8 +1,8 @@
 import { getCartById } from "@/api/cart";
 import { BoxShadow } from "@/ui/atoms/BoxShadow";
-import { Button } from "@/ui/atoms/Button";
 import { Separator } from "@/ui/atoms/Separator";
 import { Typography } from "@/ui/atoms/Typography";
+import ButtonOrder from "@/ui/components/Cart/ButtonOrder";
 import { priceHandler } from "@/utils/priceHandler";
 
 type Props = {
@@ -40,9 +40,7 @@ export async function CartSummary({ cartId }: Props) {
 			<Typography variant="caption" className="text-end">
 				Including VAT
 			</Typography>
-			<Button variant="primary" color="primary" className="w-full shadow-md shadow-primary">
-				Zamów
-			</Button>
+			<ButtonOrder />
 		</BoxShadow>
 	);
 }

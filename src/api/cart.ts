@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
+import { useId } from "react";
+import { currentUser } from "@clerk/nextjs";
 import { executeGraphQL } from "@/api/graphqlApi";
 import { Cookies, GraphqlTags } from "@/consts";
 import {
@@ -14,7 +16,12 @@ export const getCartById = async (cartId: string) => {
 };
 
 export const createCart = async () => {
-	return executeGraphQL(CartCreateDocument, { userId: "filwyd123@gmail.com", currentStatus: "Pending"});
+	const user = await currentUser();
+    const emailId = user?.primaryEmailAddressId;
+	const randomId = useId();
+    const userId = (user && emailId) ? user?.emailAddresses.find((email) => email.id === emailId)?.emailAddress : randomId;
+
+	return executeGraphQL(CartCreateDocument, { userId, currentStatus: "Pending"});
 };
 
 export const addProductToCart = async (
