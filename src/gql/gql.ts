@@ -23,7 +23,13 @@ const documents = {
 		types.CartGetByIdDocument,
 	"mutation CartRemoveProduct($productId: ID!) {\n  deleteOrderItem(where: {id: $productId}) {\n    id\n  }\n}":
 		types.CartRemoveProductDocument,
-	"query OrdersGetAll($userId: String!) {\n  orders(orderBy: createdAt_DESC, where: {userId: $userId}) {\n    id\n    currentStatus\n    updatedAt\n    total\n  }\n}":
+	"mutation OrderPublish($id: ID!) {\n  publishOrder(where: {id: $id}) {\n    id\n  }\n}":
+		types.OrderPublishDocument,
+	"mutation OrderUpdateStatus($orderId: ID!, $stripeCheckoutId: String!, $status: OrderStatus!) {\n  updateOrder(\n    data: {currentStatus: $status, stripeCheckoutId: $stripeCheckoutId}\n    where: {id: $orderId}\n  ) {\n    id\n  }\n}":
+		types.OrderUpdateStatusDocument,
+	"mutation OrderUpdateTotal($cartId: ID!, $total: Int!) {\n  updateOrder(data: {total: $total}, where: {id: $cartId}) {\n    id\n  }\n}":
+		types.OrderUpdateTotalDocument,
+	"query OrdersGetAll($userId: String!) {\n  orders(\n    orderBy: createdAt_DESC\n    where: {userId: $userId, currentStatus_not: Pending}\n  ) {\n    id\n    currentStatus\n    updatedAt\n    total\n  }\n}":
 		types.OrdersGetAllDocument,
 	"fragment ProductCommon on Product {\n  id\n  slug\n  name\n  price\n  previousPrice\n  createdAt\n  categories(first: 1) {\n    name\n  }\n}":
 		types.ProductCommonFragmentDoc,
@@ -99,8 +105,26 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-	source: "query OrdersGetAll($userId: String!) {\n  orders(orderBy: createdAt_DESC, where: {userId: $userId}) {\n    id\n    currentStatus\n    updatedAt\n    total\n  }\n}",
-): (typeof documents)["query OrdersGetAll($userId: String!) {\n  orders(orderBy: createdAt_DESC, where: {userId: $userId}) {\n    id\n    currentStatus\n    updatedAt\n    total\n  }\n}"];
+	source: "mutation OrderPublish($id: ID!) {\n  publishOrder(where: {id: $id}) {\n    id\n  }\n}",
+): (typeof documents)["mutation OrderPublish($id: ID!) {\n  publishOrder(where: {id: $id}) {\n    id\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+	source: "mutation OrderUpdateStatus($orderId: ID!, $stripeCheckoutId: String!, $status: OrderStatus!) {\n  updateOrder(\n    data: {currentStatus: $status, stripeCheckoutId: $stripeCheckoutId}\n    where: {id: $orderId}\n  ) {\n    id\n  }\n}",
+): (typeof documents)["mutation OrderUpdateStatus($orderId: ID!, $stripeCheckoutId: String!, $status: OrderStatus!) {\n  updateOrder(\n    data: {currentStatus: $status, stripeCheckoutId: $stripeCheckoutId}\n    where: {id: $orderId}\n  ) {\n    id\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+	source: "mutation OrderUpdateTotal($cartId: ID!, $total: Int!) {\n  updateOrder(data: {total: $total}, where: {id: $cartId}) {\n    id\n  }\n}",
+): (typeof documents)["mutation OrderUpdateTotal($cartId: ID!, $total: Int!) {\n  updateOrder(data: {total: $total}, where: {id: $cartId}) {\n    id\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+	source: "query OrdersGetAll($userId: String!) {\n  orders(\n    orderBy: createdAt_DESC\n    where: {userId: $userId, currentStatus_not: Pending}\n  ) {\n    id\n    currentStatus\n    updatedAt\n    total\n  }\n}",
+): (typeof documents)["query OrdersGetAll($userId: String!) {\n  orders(\n    orderBy: createdAt_DESC\n    where: {userId: $userId, currentStatus_not: Pending}\n  ) {\n    id\n    currentStatus\n    updatedAt\n    total\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

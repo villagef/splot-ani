@@ -9185,6 +9185,27 @@ export type CartRemoveProductMutationVariables = Exact<{
 
 export type CartRemoveProductMutation = { deleteOrderItem?: { id: string } | null };
 
+export type OrderPublishMutationVariables = Exact<{
+	id: Scalars["ID"]["input"];
+}>;
+
+export type OrderPublishMutation = { publishOrder?: { id: string } | null };
+
+export type OrderUpdateStatusMutationVariables = Exact<{
+	orderId: Scalars["ID"]["input"];
+	stripeCheckoutId: Scalars["String"]["input"];
+	status: OrderStatus;
+}>;
+
+export type OrderUpdateStatusMutation = { updateOrder?: { id: string } | null };
+
+export type OrderUpdateTotalMutationVariables = Exact<{
+	cartId: Scalars["ID"]["input"];
+	total: Scalars["Int"]["input"];
+}>;
+
+export type OrderUpdateTotalMutation = { updateOrder?: { id: string } | null };
+
 export type OrdersGetAllQueryVariables = Exact<{
 	userId: Scalars["String"]["input"];
 }>;
@@ -10032,6 +10053,213 @@ export const CartRemoveProductDocument = {
 		},
 	],
 } as unknown as DocumentNode<CartRemoveProductMutation, CartRemoveProductMutationVariables>;
+export const OrderPublishDocument = {
+	kind: "Document",
+	definitions: [
+		{
+			kind: "OperationDefinition",
+			operation: "mutation",
+			name: { kind: "Name", value: "OrderPublish" },
+			variableDefinitions: [
+				{
+					kind: "VariableDefinition",
+					variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+					type: {
+						kind: "NonNullType",
+						type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+					},
+				},
+			],
+			selectionSet: {
+				kind: "SelectionSet",
+				selections: [
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "publishOrder" },
+						arguments: [
+							{
+								kind: "Argument",
+								name: { kind: "Name", value: "where" },
+								value: {
+									kind: "ObjectValue",
+									fields: [
+										{
+											kind: "ObjectField",
+											name: { kind: "Name", value: "id" },
+											value: { kind: "Variable", name: { kind: "Name", value: "id" } },
+										},
+									],
+								},
+							},
+						],
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
+						},
+					},
+				],
+			},
+		},
+	],
+} as unknown as DocumentNode<OrderPublishMutation, OrderPublishMutationVariables>;
+export const OrderUpdateStatusDocument = {
+	kind: "Document",
+	definitions: [
+		{
+			kind: "OperationDefinition",
+			operation: "mutation",
+			name: { kind: "Name", value: "OrderUpdateStatus" },
+			variableDefinitions: [
+				{
+					kind: "VariableDefinition",
+					variable: { kind: "Variable", name: { kind: "Name", value: "orderId" } },
+					type: {
+						kind: "NonNullType",
+						type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+					},
+				},
+				{
+					kind: "VariableDefinition",
+					variable: { kind: "Variable", name: { kind: "Name", value: "stripeCheckoutId" } },
+					type: {
+						kind: "NonNullType",
+						type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+					},
+				},
+				{
+					kind: "VariableDefinition",
+					variable: { kind: "Variable", name: { kind: "Name", value: "status" } },
+					type: {
+						kind: "NonNullType",
+						type: { kind: "NamedType", name: { kind: "Name", value: "OrderStatus" } },
+					},
+				},
+			],
+			selectionSet: {
+				kind: "SelectionSet",
+				selections: [
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "updateOrder" },
+						arguments: [
+							{
+								kind: "Argument",
+								name: { kind: "Name", value: "data" },
+								value: {
+									kind: "ObjectValue",
+									fields: [
+										{
+											kind: "ObjectField",
+											name: { kind: "Name", value: "currentStatus" },
+											value: { kind: "Variable", name: { kind: "Name", value: "status" } },
+										},
+										{
+											kind: "ObjectField",
+											name: { kind: "Name", value: "stripeCheckoutId" },
+											value: {
+												kind: "Variable",
+												name: { kind: "Name", value: "stripeCheckoutId" },
+											},
+										},
+									],
+								},
+							},
+							{
+								kind: "Argument",
+								name: { kind: "Name", value: "where" },
+								value: {
+									kind: "ObjectValue",
+									fields: [
+										{
+											kind: "ObjectField",
+											name: { kind: "Name", value: "id" },
+											value: { kind: "Variable", name: { kind: "Name", value: "orderId" } },
+										},
+									],
+								},
+							},
+						],
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
+						},
+					},
+				],
+			},
+		},
+	],
+} as unknown as DocumentNode<OrderUpdateStatusMutation, OrderUpdateStatusMutationVariables>;
+export const OrderUpdateTotalDocument = {
+	kind: "Document",
+	definitions: [
+		{
+			kind: "OperationDefinition",
+			operation: "mutation",
+			name: { kind: "Name", value: "OrderUpdateTotal" },
+			variableDefinitions: [
+				{
+					kind: "VariableDefinition",
+					variable: { kind: "Variable", name: { kind: "Name", value: "cartId" } },
+					type: {
+						kind: "NonNullType",
+						type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+					},
+				},
+				{
+					kind: "VariableDefinition",
+					variable: { kind: "Variable", name: { kind: "Name", value: "total" } },
+					type: {
+						kind: "NonNullType",
+						type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+					},
+				},
+			],
+			selectionSet: {
+				kind: "SelectionSet",
+				selections: [
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "updateOrder" },
+						arguments: [
+							{
+								kind: "Argument",
+								name: { kind: "Name", value: "data" },
+								value: {
+									kind: "ObjectValue",
+									fields: [
+										{
+											kind: "ObjectField",
+											name: { kind: "Name", value: "total" },
+											value: { kind: "Variable", name: { kind: "Name", value: "total" } },
+										},
+									],
+								},
+							},
+							{
+								kind: "Argument",
+								name: { kind: "Name", value: "where" },
+								value: {
+									kind: "ObjectValue",
+									fields: [
+										{
+											kind: "ObjectField",
+											name: { kind: "Name", value: "id" },
+											value: { kind: "Variable", name: { kind: "Name", value: "cartId" } },
+										},
+									],
+								},
+							},
+						],
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
+						},
+					},
+				],
+			},
+		},
+	],
+} as unknown as DocumentNode<OrderUpdateTotalMutation, OrderUpdateTotalMutationVariables>;
 export const OrdersGetAllDocument = {
 	kind: "Document",
 	definitions: [
@@ -10071,6 +10299,11 @@ export const OrdersGetAllDocument = {
 											kind: "ObjectField",
 											name: { kind: "Name", value: "userId" },
 											value: { kind: "Variable", name: { kind: "Name", value: "userId" } },
+										},
+										{
+											kind: "ObjectField",
+											name: { kind: "Name", value: "currentStatus_not" },
+											value: { kind: "EnumValue", value: "Pending" },
 										},
 									],
 								},

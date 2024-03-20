@@ -2,6 +2,7 @@
 
 import { type NextRequest } from "next/server";
 import Stripe from "stripe";
+import { publishOrder, updateOrderStatus } from "@/api/orders";
 
 export async function POST(req: NextRequest): Promise<Response> {
 	console.log("Stripe webhook received");
@@ -33,7 +34,10 @@ export async function POST(req: NextRequest): Promise<Response> {
 		case "checkout.session.completed":
 			const cartId = event.data.object.metadata?.cartId;
 			event.data.object.metadata?.userId;
-			console.log("Checkout session completed", cartId);
+			await updateOrderStatus(cartId!, event.data.object.id, "Completed");
+			await publishOrder(cartId!);
+
+			console.log(`Checkout session completed`);
 			break;
 		default:
 			console.log(`Unhandled event type: ${event.type}`);

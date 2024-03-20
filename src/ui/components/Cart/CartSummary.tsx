@@ -1,4 +1,5 @@
 import { getCartById } from "@/api/cart";
+import { updateOrderTotal } from "@/api/orders";
 import { BoxShadow } from "@/ui/atoms/BoxShadow";
 import { Separator } from "@/ui/atoms/Separator";
 import { Typography } from "@/ui/atoms/Typography";
@@ -19,6 +20,8 @@ export async function CartSummary({ cartId }: Props) {
 		}, 0) || 0;
 
 	const totalPrice = subtotal + shippingPrice;
+
+	await updateOrderTotal(cartId, totalPrice);
 
 	return (
 		<BoxShadow className="grid gap-2">

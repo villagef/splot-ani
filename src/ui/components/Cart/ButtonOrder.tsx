@@ -51,6 +51,7 @@ export function ButtonOrder() {
 		if (!checkoutSession.url) {
 			throw new Error("Checkout session url is not defined");
 		}
+		cookies().delete(Cookies.CartId);
 
 		redirect(checkoutSession.url);
 	}

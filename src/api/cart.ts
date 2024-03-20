@@ -9,6 +9,7 @@ import {
 	CartGetByIdDocument,
 	ProductGetByIdDocument,
 } from "@/gql/graphql";
+import { publishOrder } from "@/api/orders";
 
 export const getCartById = async (cartId: string) => {
 	return executeGraphQL(CartGetByIdDocument, { id: cartId }, 0, [GraphqlTags.GetCartById]);
@@ -63,6 +64,8 @@ export const getOrCreateCart = async () => {
 	if (!cart.createOrder) {
 		throw new Error("Failed to create cart");
 	}
+
+	await publishOrder(cart.createOrder.id);
 
 	return cart.createOrder;
 };
