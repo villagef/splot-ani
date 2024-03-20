@@ -1,8 +1,8 @@
 query OrdersGetAll($userId: String!) {
-  orders(orderBy: createdAt_DESC, where: {userId: $userId}) {
-    id
-    currentStatus
-    updatedAt
-    total
-  }
+	orders(orderBy: createdAt_DESC, where: { userId: $userId, currentStatus_not: Pending }) {
+		id
+		currentStatus
+		updatedAt
+		total
+	}
 }

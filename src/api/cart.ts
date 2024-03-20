@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
+import { currentUser } from "@clerk/nextjs";
 import { executeGraphQL } from "@/api/graphqlApi";
 import { Cookies, GraphqlTags } from "@/consts";
 import {
@@ -8,13 +9,22 @@ import {
 	CartGetByIdDocument,
 	ProductGetByIdDocument,
 } from "@/gql/graphql";
+import { publishOrder } from "@/api/orders";
 
 export const getCartById = async (cartId: string) => {
 	return executeGraphQL(CartGetByIdDocument, { id: cartId }, 0, [GraphqlTags.GetCartById]);
 };
 
 export const createCart = async () => {
-	return executeGraphQL(CartCreateDocument, { userId: "filwyd123@gmail.com", currentStatus: "Pending"});
+	const user = await currentUser();
+	const emailId = user?.primaryEmailAddressId;
+	const randomId = Math.random().toString(36).slice(2, 10);
+	const userId =
+		user && emailId
+			? user?.emailAddresses.find((email) => email.id === emailId)?.emailAddress
+			: randomId;
+
+	return executeGraphQL(CartCreateDocument, { userId, currentStatus: "Pending" });
 };
 
 export const addProductToCart = async (
@@ -54,6 +64,8 @@ export const getOrCreateCart = async () => {
 	if (!cart.createOrder) {
 		throw new Error("Failed to create cart");
 	}
+
+	await publishOrder(cart.createOrder.id);
 
 	return cart.createOrder;
 };
