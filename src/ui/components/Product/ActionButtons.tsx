@@ -43,7 +43,7 @@ export function ActionButtons({ productId, quantity = 0, price }: Props) {
 
 	return (
 		<Wrapper>
-			{quantity && quantity <= 0 ? (
+			{quantity === 0 ? (
 				<Typography variant="subtitle1" className="text-pretty font-bold text-primary">
 					Produkt wyprzedany!
 				</Typography>
