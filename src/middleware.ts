@@ -13,7 +13,7 @@ export default authMiddleware({
 		"/produkt/(.*)",
 		"/kategorie/(.*)",
 		"/kolekcje/(.*)",
-		"/api/stripe",
+		"/api/webhooks/stripe",
 	],
 	// Routes that can always be accessed, and have
 	// no authentication information
