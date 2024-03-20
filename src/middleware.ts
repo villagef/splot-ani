@@ -4,13 +4,11 @@ export default authMiddleware({
 	// Routes that can be accessed while signed out
 	publicRoutes: [
 		"/",
-		"/koszyk",
 		"/ulubione",
 		"/szukaj",
 		"/blog",
 		"/o-nas",
 		"/kontakt",
-		"/koszyk/success",
 		"/produkty/(.*)",
 		"/produkt/(.*)",
 		"/kategorie/(.*)",

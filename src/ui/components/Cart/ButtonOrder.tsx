@@ -9,6 +9,7 @@ import { getCartById } from "@/api/cart";
 export function ButtonOrder() {
 	const { userId } = auth();
 	const cartId = cookies().get(Cookies.CartId)?.value;
+	const domain = process.env.HYGRAPH_URL;
 
 	async function handlePaymentAction() {
 		"use server";
@@ -44,8 +45,8 @@ export function ButtonOrder() {
 			shipping_options: [{ shipping_rate: process.env.STRIPE_SHIPPING_RATE_ID }],
 			currency: "pln",
 			mode: "payment",
-			success_url: "http://localhost:3000/koszyk/success?session_id={CHECKOUT_SESSION_ID}",
-			cancel_url: "http://localhost:3000/koszyk",
+			success_url: `${domain}/koszyk/success?session_id={CHECKOUT_SESSION_ID}`,
+			cancel_url: `${domain}/koszyk`,
 		});
 
 		if (!checkoutSession.url) {
