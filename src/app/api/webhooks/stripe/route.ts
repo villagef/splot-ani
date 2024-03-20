@@ -5,9 +5,9 @@ import Stripe from "stripe";
 import { publishOrder, updateOrderStatus } from "@/api/orders";
 
 export async function POST(req: NextRequest): Promise<Response> {
-	console.log("Stripe webhook received");
-	const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-	if (!webhookSecret) {
+	const body = await req.text();
+
+	if (!process.env.STRIPE_WEBHOOK_SECRET) {
 		return new Response("No webhook secret", { status: 500 });
 	}
 
@@ -20,25 +20,36 @@ export async function POST(req: NextRequest): Promise<Response> {
 	});
 
 	const signature = req.headers.get("stripe-signature");
+
 	if (!signature) {
 		return new Response("No signature", { status: 400 });
 	}
 
 	const event = stripe.webhooks.constructEvent(
-		await req.text(),
+		body,
 		signature,
-		webhookSecret,
+		process.env.STRIPE_WEBHOOK_SECRET,
 	) as Stripe.DiscriminatedEvent;
 
 	switch (event.type) {
 		case "checkout.session.completed":
+			event.data.object;
 			const cartId = event.data.object.metadata?.cartId;
-			event.data.object.metadata?.userId;
+
 			await updateOrderStatus(cartId!, event.data.object.id, "Completed");
 			await publishOrder(cartId!);
 
 			console.log(`Checkout session completed`);
 			break;
+		case "checkout.session.expired": {
+			console.log(event.type);
+		}
+		case "checkout.session.async_payment_failed": {
+			console.log(event.type);
+		}
+		case "checkout.session.async_payment_succeeded": {
+			console.log(event.type);
+		}
 		default:
 			console.log(`Unhandled event type: ${event.type}`);
 	}
