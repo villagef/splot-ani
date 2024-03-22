@@ -5,7 +5,8 @@ export default authMiddleware({
 	publicRoutes: [
 		"/",
 		"/ulubione",
-		"/szukaj",
+		"/search",
+		"/search/(.*)",
 		"/blog",
 		"/o-nas",
 		"/kontakt",
