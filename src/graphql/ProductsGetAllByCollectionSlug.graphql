@@ -1,0 +1,8 @@
+query ProductsGetAllByCollectionSlug($query: String!) {
+	products(where: { collections_some: { slug: $query } }) {
+		images(first: 1) {
+			url
+		}
+		...ProductCommon
+	}
+}

@@ -23,6 +23,8 @@ const documents = {
 		types.CartGetByIdDocument,
 	"mutation CartRemoveProduct($productId: ID!) {\n  deleteOrderItem(where: {id: $productId}) {\n    id\n  }\n}":
 		types.CartRemoveProductDocument,
+	"query CollectionsGetAll {\n  collections {\n    name\n    slug\n  }\n}":
+		types.CollectionsGetAllDocument,
 	"mutation OrderPublish($id: ID!) {\n  publishOrder(where: {id: $id}) {\n    id\n  }\n}":
 		types.OrderPublishDocument,
 	"mutation OrderUpdateStatus($orderId: ID!, $stripeCheckoutId: String!, $status: OrderStatus!) {\n  updateOrder(\n    data: {currentStatus: $status, stripeCheckoutId: $stripeCheckoutId}\n    where: {id: $orderId}\n  ) {\n    id\n  }\n}":
@@ -41,6 +43,8 @@ const documents = {
 		types.ProductGetBySlugDocument,
 	"query ProductsGetAll($first: Int!, $skip: Int!) {\n  products(first: $first, skip: $skip) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}":
 		types.ProductsGetAllDocument,
+	"query ProductsGetAllByCollectionSlug($query: String!) {\n  products(where: {collections_some: {slug: $query}}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}":
+		types.ProductsGetAllByCollectionSlugDocument,
 	"query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip) {\n      images(first: 1) {\n        url\n      }\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}":
 		types.ProductsGetByCategorySlugDocument,
 	"query ProductsGetBySearchQuery($query: String!) {\n  products(where: {_search: $query}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}":
@@ -105,6 +109,12 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+	source: "query CollectionsGetAll {\n  collections {\n    name\n    slug\n  }\n}",
+): (typeof documents)["query CollectionsGetAll {\n  collections {\n    name\n    slug\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
 	source: "mutation OrderPublish($id: ID!) {\n  publishOrder(where: {id: $id}) {\n    id\n  }\n}",
 ): (typeof documents)["mutation OrderPublish($id: ID!) {\n  publishOrder(where: {id: $id}) {\n    id\n  }\n}"];
 /**
@@ -155,6 +165,12 @@ export function graphql(
 export function graphql(
 	source: "query ProductsGetAll($first: Int!, $skip: Int!) {\n  products(first: $first, skip: $skip) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}",
 ): (typeof documents)["query ProductsGetAll($first: Int!, $skip: Int!) {\n  products(first: $first, skip: $skip) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+	source: "query ProductsGetAllByCollectionSlug($query: String!) {\n  products(where: {collections_some: {slug: $query}}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}",
+): (typeof documents)["query ProductsGetAllByCollectionSlug($query: String!) {\n  products(where: {collections_some: {slug: $query}}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

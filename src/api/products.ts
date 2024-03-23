@@ -6,6 +6,8 @@ import {
 	ProductsGetByCategorySlugDocument,
 	ProductsGetAllDocument,
 	ProductsGetBySearchQueryDocument,
+	ProductsGetAllByCollectionSlugDocument,
+	CollectionsGetAllDocument,
 } from "@/gql/graphql";
 import { executeGraphQL } from "@/api/graphqlApi";
 import { PRODUCTS_PER_PAGE } from "@/consts";
@@ -71,4 +73,16 @@ export const getProductsBySearchQuery = async ({ query }: Variables) => {
 		query,
 	});
 	return graphqlResponse?.products;
+};
+
+export const getProductsByCollectionSlug = async ({ query }: Variables) => {
+	const graphqlResponse = await executeGraphQL(ProductsGetAllByCollectionSlugDocument, {
+		query,
+	});
+	return graphqlResponse?.products;
+};
+
+export const getCollections = async () => {
+	const graphqlResponse = await executeGraphQL(CollectionsGetAllDocument, {});
+	return graphqlResponse?.collections;
 };

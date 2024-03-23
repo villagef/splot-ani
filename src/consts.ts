@@ -6,6 +6,7 @@ export enum Links {
 	Blog = "/blog",
 	Product = "/produkt",
 	Products = "/produkty",
+	Collections = "/collections",
 	Search = "/search",
 	Returns = "/zwroty",
 	Orders = "/zamowienia",

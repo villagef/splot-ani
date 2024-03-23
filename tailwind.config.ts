@@ -15,6 +15,9 @@ const config: Config = {
 					foreground: "rgba(255,255,255, 0.5)",
 					textLight: "rgb(244,247,251)",
 					textDark: "rgb(30,41,59)",
+					categoryOne: "rgb(216,167,177)",
+					categoryTwo: "rgb(182,226,211)",
+					categoryThree: "rgb(255,163,132)",
 				},
 				secondary: {
 					DEFAULT: "rgb(34,46,89)",
