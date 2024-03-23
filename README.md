@@ -36,3 +36,21 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 Run Stripe on localhost - stripe listen --forward-to localhost:3000/api/webhooks/stripe
+
+## .env variables schema
+
+- HYGRAPH_URL=
+- HYGRAPH_ENDPOINT=
+- HYGRAPH_QUERY_TOKEN=
+
+- NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+- CLERK_SECRET_KEY=
+- NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+- NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+- NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+- NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+
+- NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+- STRIPE_SECRET_KEY=
+- STRIPE_WEBHOOK_SECRET=
+- STRIPE_SHIPPING_RATE_ID=
