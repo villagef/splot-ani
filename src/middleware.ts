@@ -10,6 +10,8 @@ export default authMiddleware({
 		"/blog",
 		"/o-nas",
 		"/kontakt",
+		"/koszyk",
+		"/zwroty",
 		"/produkty/(.*)",
 		"/produkt/(.*)",
 		"/kategorie/(.*)",
