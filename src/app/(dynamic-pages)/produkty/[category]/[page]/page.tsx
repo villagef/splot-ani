@@ -60,6 +60,7 @@ export default async function ProductsPaginated({ params, searchParams }: Props)
 				itemsPerPage={PRODUCTS_PER_PAGE}
 				currentPage={_pageNumber}
 				path={_path}
+				sort={searchParams.sort}
 			/>
 		</>
 	);
