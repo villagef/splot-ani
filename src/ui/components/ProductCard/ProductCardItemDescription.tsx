@@ -13,7 +13,7 @@ export function ProductCardItemDescription({ product: { name, price } }: Props) 
 			<h3 role="heading" className="truncate text-sm font-medium uppercase text-primary">
 				{name}
 			</h3>
-			<p className="text-sm font-medium text-primary-textDark">
+			<p className="text-sm font-medium text-primary-textDark" data-testid="product-price">
 				<span className="sr-only">Cena:</span> {priceHandler(price)}
 			</p>
 		</div>

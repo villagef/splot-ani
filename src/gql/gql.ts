@@ -41,11 +41,11 @@ const documents = {
 		types.ProductGetByIdDocument,
 	"query ProductGetBySlug($slug: String!) {\n  products(where: {slug: $slug}) {\n    ...ProductCommon\n    lowestPrice\n    previousPrice\n    quantity\n    description\n    images {\n      url\n    }\n  }\n}":
 		types.ProductGetBySlugDocument,
-	"query ProductsGetAll($first: Int!, $skip: Int!) {\n  products(first: $first, skip: $skip) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}":
+	"query ProductsGetAll($first: Int!, $skip: Int!, $orderBy: ProductOrderByInput!) {\n  products(first: $first, skip: $skip, orderBy: $orderBy) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}":
 		types.ProductsGetAllDocument,
 	"query ProductsGetAllByCollectionSlug($query: String!) {\n  products(where: {collections_some: {slug: $query}}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}":
 		types.ProductsGetAllByCollectionSlugDocument,
-	"query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip) {\n      images(first: 1) {\n        url\n      }\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}":
+	"query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!, $orderBy: ProductOrderByInput!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip, orderBy: $orderBy) {\n      images(first: 1) {\n        url\n      }\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}":
 		types.ProductsGetByCategorySlugDocument,
 	"query ProductsGetBySearchQuery($query: String!) {\n  products(where: {_search: $query}) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n}":
 		types.ProductsGetBySearchQueryDocument,
@@ -163,8 +163,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-	source: "query ProductsGetAll($first: Int!, $skip: Int!) {\n  products(first: $first, skip: $skip) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}",
-): (typeof documents)["query ProductsGetAll($first: Int!, $skip: Int!) {\n  products(first: $first, skip: $skip) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}"];
+	source: "query ProductsGetAll($first: Int!, $skip: Int!, $orderBy: ProductOrderByInput!) {\n  products(first: $first, skip: $skip, orderBy: $orderBy) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}",
+): (typeof documents)["query ProductsGetAll($first: Int!, $skip: Int!, $orderBy: ProductOrderByInput!) {\n  products(first: $first, skip: $skip, orderBy: $orderBy) {\n    images(first: 1) {\n      url\n    }\n    ...ProductCommon\n  }\n  productsConnection(first: $first, skip: $skip) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -175,8 +175,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-	source: "query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip) {\n      images(first: 1) {\n        url\n      }\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}",
-): (typeof documents)["query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip) {\n      images(first: 1) {\n        url\n      }\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}"];
+	source: "query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!, $orderBy: ProductOrderByInput!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip, orderBy: $orderBy) {\n      images(first: 1) {\n        url\n      }\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}",
+): (typeof documents)["query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!, $orderBy: ProductOrderByInput!) {\n  categories(where: {slug: $slug}) {\n    products(first: $first, skip: $skip, orderBy: $orderBy) {\n      images(first: 1) {\n        url\n      }\n      ...ProductCommon\n    }\n  }\n  productsConnection(where: {categories_every: {slug: $slug}}) {\n    pageInfo {\n      pageSize\n    }\n    aggregate {\n      count\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

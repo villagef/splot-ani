@@ -14,10 +14,11 @@ type TypographyProps = {
 		| "button"
 		| "overline";
 	className?: string;
+	role?: string;
 	children: React.ReactNode;
 };
 
-export function Typography({ variant = "body1", className = "", children }: TypographyProps) {
+export function Typography({ variant = "body1", className = "", role, children }: TypographyProps) {
 	let Tag = "p" as keyof JSX.IntrinsicElements;
 	const getFontSize = (variant: string) => {
 		switch (variant) {
@@ -60,5 +61,9 @@ export function Typography({ variant = "body1", className = "", children }: Typo
 
 	const classes = `typography ${getFontSize(variant)} ${className}`;
 
-	return <Tag className={classes}>{children}</Tag>;
+	return (
+		<Tag className={classes} role={role || ""}>
+			{children}
+		</Tag>
+	);
 }

@@ -25,7 +25,11 @@ export async function CollectionsList(): Promise<JSX.Element | null> {
 						key={product.slug}
 						className={`rounded-md ${colors[index]} bg-opacity-90 py-2 text-center hover:${colors[index]} hover:bg-opacity-100 md:py-6`}
 					>
-						<Typography variant="h4" className="tracking-widest text-primary-textLight">
+						<Typography
+							variant="h4"
+							className="tracking-widest text-primary-textLight"
+							role="heading"
+						>
 							{product.name}
 						</Typography>
 					</li>

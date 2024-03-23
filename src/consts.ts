@@ -39,6 +39,12 @@ export enum GraphqlTags {
 	GetAllOrders = "getAllOrders",
 }
 
+export enum SortOptions {
+	updatedAt_DESC = "Sortowanie domyślne",
+	price_ASC = "Cena rosnąco",
+	price_DESC = "Cena malejąco",
+}
+
 export const CookieConfig = {
 	maxAge: 60 * 60 * 24,
 	expires: new Date(Date.now() + 1000 * 60 * 60 * 24),

@@ -9285,6 +9285,7 @@ export type ProductGetBySlugQuery = {
 export type ProductsGetAllQueryVariables = Exact<{
 	first: Scalars["Int"]["input"];
 	skip: Scalars["Int"]["input"];
+	orderBy: ProductOrderByInput;
 }>;
 
 export type ProductsGetAllQuery = {
@@ -9322,6 +9323,7 @@ export type ProductsGetByCategorySlugQueryVariables = Exact<{
 	first: Scalars["Int"]["input"];
 	slug: Scalars["String"]["input"];
 	skip: Scalars["Int"]["input"];
+	orderBy: ProductOrderByInput;
 }>;
 
 export type ProductsGetByCategorySlugQuery = {
@@ -10583,6 +10585,14 @@ export const ProductsGetAllDocument = {
 						type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
 					},
 				},
+				{
+					kind: "VariableDefinition",
+					variable: { kind: "Variable", name: { kind: "Name", value: "orderBy" } },
+					type: {
+						kind: "NonNullType",
+						type: { kind: "NamedType", name: { kind: "Name", value: "ProductOrderByInput" } },
+					},
+				},
 			],
 			selectionSet: {
 				kind: "SelectionSet",
@@ -10600,6 +10610,11 @@ export const ProductsGetAllDocument = {
 								kind: "Argument",
 								name: { kind: "Name", value: "skip" },
 								value: { kind: "Variable", name: { kind: "Name", value: "skip" } },
+							},
+							{
+								kind: "Argument",
+								name: { kind: "Name", value: "orderBy" },
+								value: { kind: "Variable", name: { kind: "Name", value: "orderBy" } },
 							},
 						],
 						selectionSet: {
@@ -10838,6 +10853,14 @@ export const ProductsGetByCategorySlugDocument = {
 						type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
 					},
 				},
+				{
+					kind: "VariableDefinition",
+					variable: { kind: "Variable", name: { kind: "Name", value: "orderBy" } },
+					type: {
+						kind: "NonNullType",
+						type: { kind: "NamedType", name: { kind: "Name", value: "ProductOrderByInput" } },
+					},
+				},
 			],
 			selectionSet: {
 				kind: "SelectionSet",
@@ -10877,6 +10900,11 @@ export const ProductsGetByCategorySlugDocument = {
 											kind: "Argument",
 											name: { kind: "Name", value: "skip" },
 											value: { kind: "Variable", name: { kind: "Name", value: "skip" } },
+										},
+										{
+											kind: "Argument",
+											name: { kind: "Name", value: "orderBy" },
+											value: { kind: "Variable", name: { kind: "Name", value: "orderBy" } },
 										},
 									],
 									selectionSet: {
