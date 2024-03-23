@@ -16,12 +16,19 @@ export function ReviewForm({ productId }: Props) {
 	async function addReview(formData: FormData) {
 		"use server";
 
-		const title = formData.get("title") as string;
+		const headline = formData.get("headline") as string;
 		const content = formData.get("content") as string;
 		const rating = Number(formData.get("rating"));
 		const name = formData.get("name") as string;
 		const email = formData.get("email") as string;
-		const { createReview } = await addProductReview(productId, title, name, email, content, rating);
+		const { createReview } = await addProductReview(
+			productId,
+			headline,
+			name,
+			email,
+			content,
+			rating,
+		);
 
 		if (createReview?.id) {
 			await publishReview(createReview.id).then(() => {
@@ -33,7 +40,7 @@ export function ReviewForm({ productId }: Props) {
 
 	return (
 		<form className="grid w-full gap-3" data-testid="add-review-form" action={addReview}>
-			<Input label="Tytuł" name="title" type="text" required />
+			<Input label="Tytuł" name="headline" type="text" required />
 			<TextArea label="Recenzja" name="content" required />
 			<RatingStars label="Ocena" name="rating" required />
 			<Input label="Imię" name="name" type="text" required />

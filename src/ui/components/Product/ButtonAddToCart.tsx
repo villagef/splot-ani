@@ -23,6 +23,7 @@ export function ButtonAddToCart() {
 			variant="primary"
 			color="primary"
 			disabled={status.pending}
+			data-testid="add-to-cart-button"
 			className="h-full shadow-sm shadow-primary disabled:cursor-wait"
 		>
 			{status.pending ? (

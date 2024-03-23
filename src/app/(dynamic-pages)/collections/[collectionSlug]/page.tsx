@@ -1,8 +1,8 @@
 import { Suspense } from "react";
-import { getProductsByCollectionSlug } from "@/api/products";
+import { getCollections, getProductsByCollectionSlug } from "@/api/products";
 import { Typography } from "@/ui/atoms/Typography";
 import { ProductCard } from "@/ui/components/ProductCard";
-import { CollectionsList } from "@/ui/components/CollectionsList";
+// import { CollectionsList } from "@/ui/components/CollectionsList";
 
 type Props = {
 	params: {
@@ -19,9 +19,18 @@ export default async function Collections({ params }: Props) {
 		return <Typography variant="h1">Nie znaleziono produktów</Typography>;
 	}
 
+	const collections = await getCollections();
+
+	const title =
+		collections &&
+		collections.find((collection) => collection.slug === params.collectionSlug)?.name;
+
 	return (
 		<>
-			<CollectionsList />
+			{/* <CollectionsList /> */}
+			<Typography variant="h1" role="heading">
+				{title}
+			</Typography>
 			<Suspense>
 				<ul
 					data-testid="products-list"

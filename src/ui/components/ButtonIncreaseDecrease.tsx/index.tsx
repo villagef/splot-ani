@@ -44,7 +44,7 @@ export function ButtonIncreaseDecrease({
 			>
 				<Icons.minus />
 			</ButtonIcon>
-			<Typography variant="h6" className="w-2">
+			<Typography variant="h6" className="w-2" data-testid="quantity">
 				{optimisticQuantity}
 			</Typography>
 			<ButtonIcon
