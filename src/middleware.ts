@@ -5,14 +5,15 @@ export default authMiddleware({
 	publicRoutes: [
 		"/",
 		"/ulubione",
-		"/szukaj",
+		"/search",
+		"/search/(.*)",
 		"/blog",
 		"/o-nas",
 		"/kontakt",
 		"/produkty/(.*)",
 		"/produkt/(.*)",
 		"/kategorie/(.*)",
-		"/kolekcje/(.*)",
+		"/collections/(.*)",
 		"/api/webhooks/stripe",
 	],
 	// Routes that can always be accessed, and have

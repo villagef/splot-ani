@@ -1,6 +1,11 @@
-query ProductsGetByCategorySlug($first: Int!, $slug: String!, $skip: Int!) {
+query ProductsGetByCategorySlug(
+	$first: Int!
+	$slug: String!
+	$skip: Int!
+	$orderBy: ProductOrderByInput!
+) {
 	categories(where: { slug: $slug }) {
-		products(first: $first, skip: $skip) {
+		products(first: $first, skip: $skip, orderBy: $orderBy) {
 			images(first: 1) {
 				url
 			}

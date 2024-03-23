@@ -6,7 +6,8 @@ export enum Links {
 	Blog = "/blog",
 	Product = "/produkt",
 	Products = "/produkty",
-	Search = "/szukaj",
+	Collections = "/collections",
+	Search = "/search",
 	Returns = "/zwroty",
 	Orders = "/zamowienia",
 	Payments = "/platnosci",
@@ -36,6 +37,12 @@ export enum Cookies {
 export enum GraphqlTags {
 	GetCartById = "getCartById",
 	GetAllOrders = "getAllOrders",
+}
+
+export enum SortOptions {
+	updatedAt_DESC = "Sortowanie domyślne",
+	price_ASC = "Cena rosnąco",
+	price_DESC = "Cena malejąco",
 }
 
 export const CookieConfig = {

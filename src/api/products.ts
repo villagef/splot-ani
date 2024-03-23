@@ -6,15 +6,18 @@ import {
 	ProductsGetByCategorySlugDocument,
 	ProductsGetAllDocument,
 	ProductsGetBySearchQueryDocument,
+	ProductsGetAllByCollectionSlugDocument,
+	CollectionsGetAllDocument,
 } from "@/gql/graphql";
 import { executeGraphQL } from "@/api/graphqlApi";
 import { PRODUCTS_PER_PAGE } from "@/consts";
 
-export const getProductsByCategorySlug = async ({ skip = 0, slug }: Variables) => {
+export const getProductsByCategorySlug = async ({ skip = 0, slug, orderBy }: Variables) => {
 	const graphqlResponse = await executeGraphQL(ProductsGetByCategorySlugDocument, {
 		first: PRODUCTS_PER_PAGE,
 		slug,
 		skip,
+		orderBy,
 	});
 	return {
 		products: graphqlResponse?.categories[0]?.products,
@@ -22,12 +25,13 @@ export const getProductsByCategorySlug = async ({ skip = 0, slug }: Variables) =
 	};
 };
 
-export const getAllProducts = async ({ skip = 0 }: Variables) => {
+export const getAllProducts = async ({ skip = 0, orderBy }: Variables) => {
 	const graphqlResponse = await executeGraphQL(
 		ProductsGetAllDocument,
 		{
 			first: PRODUCTS_PER_PAGE,
 			skip,
+			orderBy,
 		},
 		60,
 	);
@@ -71,4 +75,16 @@ export const getProductsBySearchQuery = async ({ query }: Variables) => {
 		query,
 	});
 	return graphqlResponse?.products;
+};
+
+export const getProductsByCollectionSlug = async ({ query }: Variables) => {
+	const graphqlResponse = await executeGraphQL(ProductsGetAllByCollectionSlugDocument, {
+		query,
+	});
+	return graphqlResponse?.products;
+};
+
+export const getCollections = async () => {
+	const graphqlResponse = await executeGraphQL(CollectionsGetAllDocument, {});
+	return graphqlResponse?.collections;
 };
